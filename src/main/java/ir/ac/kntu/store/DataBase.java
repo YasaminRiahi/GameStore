@@ -1,7 +1,7 @@
 package ir.ac.kntu.store;
 
 import ir.ac.kntu.admins.Admin;
-import ir.ac.kntu.products.Games;
+import ir.ac.kntu.accessories.Games;
 import ir.ac.kntu.regularUsers.RegularUser;
 
 import java.util.ArrayList;

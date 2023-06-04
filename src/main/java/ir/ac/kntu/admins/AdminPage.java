@@ -69,7 +69,8 @@ public class AdminPage implements UsernameAndPasswordChecker {
         } else if (typeOfAdmins == TypeOfAdmins.Developers) {
             int index = UsernameAndPasswordChecker.checkUsernameAndPassword(dataBase.getDevelopers());
             if (index != -1) {
-                ;
+                DeveloperPage developerPage = new DeveloperPage(dataBase);
+                developerPage.goToDeveloperPage(index);
             } else {
                 goToAdminPage();
             }

@@ -1,5 +1,11 @@
 package ir.ac.kntu.helpers;
 
+import ir.ac.kntu.admins.Admin;
+import ir.ac.kntu.store.User;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
 import static ir.ac.kntu.helpers.Scan.*;
 
 public class TextTypings {
@@ -23,6 +29,18 @@ public class TextTypings {
 
     public static void noAccount() {
         System.out.println(ConsoleColors.RED + "There isn't any account with this information!" + ConsoleColors.RESET);
+    }
+
+    public static void showAdmins(int index, ArrayList<Admin> admins) {
+        System.out.println("1)Username : " + admins.get(index).getUserName());
+        System.out.println("2)Password : " + admins.get(index).getPassword());
+        System.out.println("3)Phone number : " + admins.get(index).getPhoneNumber());
+        System.out.println("4)Email : " + admins.get(index).getEmail());
+    }
+
+    public static void changedSuccessfully() {
+        System.out.println(ConsoleColors.GREEN_BOLD + "Your information changed successfully!"
+                + ConsoleColors.RESET);
     }
 
     public static String forWrongInputs() {
