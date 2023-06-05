@@ -1,12 +1,17 @@
 package ir.ac.kntu.helpers;
 
+import ir.ac.kntu.admins.managers.ManagerGamesOption;
 import ir.ac.kntu.products.games.Games;
+import ir.ac.kntu.products.games.GamesLevel;
 import ir.ac.kntu.regularUsers.RegularUser;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import static ir.ac.kntu.helpers.TextTypings.getNumberFromOptions;
+import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
 public class Scan {
 
@@ -107,4 +112,45 @@ public class Scan {
         }
         return newPassword;
     }
+
+    public static Games scanGames() {
+        Games newGame = new Games();
+        System.out.println("Enter game name :");
+        newGame.setName(scanString());
+        System.out.println("Enter game genre :");
+        newGame.setGenre(scanString());
+        System.out.println("Add some description :");
+        newGame.setDescription(scanString());
+        System.out.println("Game rating is :");
+        double rating = scanDouble();
+        newGame.setRating(rating);
+        newGame.setBeginningRate(rating);
+        System.out.println("Enter number of rates :");
+        int numberOfRates = scanInt();
+        newGame.setNumberOfRates(numberOfRates);
+        newGame.setBeginningNumber(numberOfRates);
+        System.out.println("Enter game cost :");
+        newGame.setCost(scanDouble());
+        System.out.println("Choose game level :");
+        showGamesLevel(newGame);
+        System.out.println("Game added successfully!");
+        return newGame;
+    }
+
+    public static void showGamesLevel(Games newGame) {
+        for (GamesLevel gamesLevel1 : GamesLevel.values()) {
+            System.out.print(gamesLevel1.getValue() + ")");
+            System.out.println(gamesLevel1);
+        }
+        fromValue(getNumberFromOptions(), newGame);
+    }
+
+    public static void fromValue(String value, Games newGame) {
+        for (GamesLevel e : GamesLevel.values()) {
+            if (e.getValue().equals(value)) {
+                newGame.setGamesLevel(e);
+            }
+        }
+    }
+
 }

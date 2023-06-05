@@ -36,6 +36,10 @@ public class DataBase {
         this.games = games;
     }
 
+    public void addGames(Games game) {
+        games.add(game);
+    }
+
     public ArrayList<Admin> getManagers() {
         return managers;
     }

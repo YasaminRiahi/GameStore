@@ -26,7 +26,12 @@ public class AddAUser {
         System.out.println(ConsoleColors.BLUE_BOLD + "******( ADD USERS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
-            addUsers(whichManager);
+            RegularUser newUser = new RegularUser();
+            newUser = scanUsers(dataBase);
+            dataBase.getRegularUsers().add(newUser);
+            System.out.println("User added successfully!");
+            ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
+            managerUserPage.usersPage(whichManager);
         } else if (nextChoose.equals("2")) {
             ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
             managerUserPage.usersPage(whichManager);
@@ -39,28 +44,5 @@ public class AddAUser {
         }
     }
 
-    public void addUsers(int whichManager) {
-        drawingLines();
-        System.out.println(ConsoleColors.BLUE_BOLD + "******( ADD USERS )******" + ConsoleColors.RESET);
-        String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            RegularUser newUser = new RegularUser();
-            newUser = scanUsers(dataBase);
-            dataBase.getRegularUsers().add(newUser);
-            System.out.println("User added successfully!");
-            ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
-            managerUserPage.usersPage(whichManager);
-        } else if (nextChoose.equals("2")) {
-            ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
-            managerUserPage.usersPage(whichManager);
-        } else if (nextChoose.equals("3")) {
-            System.out.println("Finish!");
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            addUsers(whichManager);
-        }
-    }
 
 }

@@ -1,5 +1,6 @@
 package ir.ac.kntu.admins.managers;
 
+import ir.ac.kntu.admins.AddAGame;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -55,7 +56,8 @@ public class ManagerGamePage {
 
     public void goToOptions(int whichManager) {
         if (managerGamesOption == ManagerGamesOption.ADD_A_GAME) {
-            ;
+            AddAGame addAGame = new AddAGame(dataBase);
+            addAGame.toAddGames(whichManager,"MANAGER");
         } else if (managerGamesOption == ManagerGamesOption.CHANGE_GAMES_INFORMATION) {
             ;
         } else if (managerGamesOption == ManagerGamesOption.REMOVE_A_GAME) {
