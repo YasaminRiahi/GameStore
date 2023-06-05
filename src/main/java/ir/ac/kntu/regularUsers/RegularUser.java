@@ -4,10 +4,11 @@ import ir.ac.kntu.products.accessories.gamePad.GamePad;
 import ir.ac.kntu.products.accessories.monitorGaming.MonitorGaming;
 import ir.ac.kntu.products.games.Games;
 import ir.ac.kntu.store.User;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class RegularUser extends User {
+public class RegularUser extends User implements Comparable<RegularUser> {
 
     private double wallet;
 
@@ -17,13 +18,13 @@ public class RegularUser extends User {
 
     private ArrayList<RegularUser> requests;
 
-    private HashMap<MonitorGaming,Integer> monitorGaming;
+    private HashMap<MonitorGaming, Integer> monitorGaming;
 
     private HashMap<GamePad, Integer> gamePad;
 
     private int score;
 
-    public RegularUser(String userName, String password, String phoneNumber, String email, double wallet,int score) {
+    public RegularUser(String userName, String password, String phoneNumber, String email, double wallet, int score) {
         super(userName, password, phoneNumber, email);
         this.wallet = wallet;
         this.score = score;
@@ -70,7 +71,7 @@ public class RegularUser extends User {
         this.friends = friends;
     }
 
-    public void addFriends(RegularUser friend){
+    public void addFriends(RegularUser friend) {
         this.friends.add(friend);
     }
 
@@ -82,7 +83,7 @@ public class RegularUser extends User {
         this.requests = requests;
     }
 
-    public void addRequests(RegularUser request){
+    public void addRequests(RegularUser request) {
         this.requests.add(request);
     }
 
@@ -108,5 +109,14 @@ public class RegularUser extends User {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    @Override
+    public int compareTo(RegularUser other) {
+        int scoreComparisonResult = other.score - score;
+        if (scoreComparisonResult != 0) {
+            return scoreComparisonResult;
+        }
+        return other.getUserName().compareTo(this.getUserName());
     }
 }

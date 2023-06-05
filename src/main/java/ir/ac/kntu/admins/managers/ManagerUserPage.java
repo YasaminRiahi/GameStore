@@ -5,6 +5,8 @@ import ir.ac.kntu.admins.AdminPage;
 import ir.ac.kntu.admins.AdminProfile;
 import ir.ac.kntu.helpers.ConsoleColors;
 
+import java.util.IllegalFormatCodePointException;
+
 import static ir.ac.kntu.helpers.TextTypings.*;
 
 public class ManagerUserPage {
@@ -64,9 +66,12 @@ public class ManagerUserPage {
         } else if (managerUsersOption == ManagerUsersOption.CHANGE_A_USER_INFORMATION) {
             ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
             changeUserInformation.changeAUserInformation(whichManager);
-        } else {
+        } else if (managerUsersOption == ManagerUsersOption.REMOVE_A_USER){
             RemoveAUser removeAUser = new RemoveAUser(dataBase);
             removeAUser.toRemoveUsers(whichManager);
+        } else {
+            ViewTheMostActiveUsers viewTheMostActiveUsers = new ViewTheMostActiveUsers(dataBase);
+            viewTheMostActiveUsers.showActiveUsers(whichManager);
         }
     }
 }
