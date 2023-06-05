@@ -229,17 +229,20 @@ public class DataBase {
         user1Games.add(games.get(2));
         RegularUser user1 = new RegularUser("Yasamin", "ysminR82", "09160340706",
                 "ysminriahi@gmail.com", 1000, 30);
+        user1.setMyGames(user1Games);
         addRegularUser(user1);
         ArrayList<Games> user2Games = new ArrayList<>();
         user2Games.add(games.get(0));
         user2Games.add(games.get(1));
         RegularUser user2 = new RegularUser("Kimia", "Kimia1234", "09123456743",
-                "@kimiasadeeghi83@gmail.com", 800, 10);
+                "kimiasadeeghi83@gmail.com", 800, 10);
+        user2.setMyGames(user2Games);
         addRegularUser(user2);
         ArrayList<Games> user3Games = new ArrayList<>();
         user3Games.add(games.get(1));
         RegularUser user3 = new RegularUser("Bahar", "Bahar821017", "09162345674",
                 "baharOrak@gmail.com", 900, 50);
+        user3.setMyGames(user3Games);
         addRegularUser(user3);
     }
 

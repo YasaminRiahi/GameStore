@@ -1,6 +1,5 @@
 package ir.ac.kntu.userSearcher;
 
-import ir.ac.kntu.admins.managers.ManagerUsersOption;
 import ir.ac.kntu.admins.managers.ViewUserInformation;
 import ir.ac.kntu.store.DataBase;
 
@@ -8,7 +7,6 @@ import static ir.ac.kntu.helpers.TextTypings.getNumberFromOptions;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
 import ir.ac.kntu.helpers.ConsoleColors;
-import ir.ac.kntu.userSearcher.UserSearcher;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
 
@@ -27,7 +25,7 @@ public class UserSearcher {
         System.out.println(ConsoleColors.BLUE_BOLD + "******( SHOW OPTIONS TO SEARCH )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
-            showSearchOptions(whichUser);
+            showSearchOptions(goBack, whichUser);
         } else if (nextChoose.equals("2")) {
             if (goBack.equals("VIEW_USER_INFORMATION")) {
                 ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
@@ -47,32 +45,35 @@ public class UserSearcher {
     }
 
 
-    public void showSearchOptions(int whichUser) {
+    public void showSearchOptions(String goBack, int whichUser) {
         for (SearchOption searchOption1 : SearchOption.values()) {
             System.out.print(searchOption1.getValue() + ")");
             System.out.println(searchOption1);
         }
-        fromValue(getNumberFromOptions(), whichUser);
+        fromValue(getNumberFromOptions(), whichUser, goBack);
     }
 
-    public void fromValue(String value, int whichUser) {
+    public void fromValue(String value, int whichUser, String goBack) {
         for (SearchOption e : SearchOption.values()) {
             if (e.getValue().equals(value)) {
                 this.searchOption = e;
-                goToOptions(whichUser);
+                goToOptions(goBack, whichUser);
             }
         }
         incorrect();
-        showSearchOptions(whichUser);
+        showSearchOptions(goBack, whichUser);
     }
 
-    public void goToOptions(int whichUser) {
+    public void goToOptions(String goBack, int whichUser) {
         if (searchOption == SearchOption.SEARCH_BY_USERNAME) {
-            ;
+            UsernameSearcher usernameSearching = new UsernameSearcher(dataBase);
+            usernameSearching.searchByUsername(goBack, whichUser);
         } else if (searchOption == SearchOption.SEARCH_BY_EMAIL) {
-            ;
+            EmailSearcher emailSearcher = new EmailSearcher(dataBase);
+            emailSearcher.searchByEmail(goBack, whichUser);
         } else {
-            ;
+            PhoneNumberSearcher phoneNumberSearcher = new PhoneNumberSearcher(dataBase);
+            phoneNumberSearcher.searchByPhoneNumber(goBack,whichUser);
         }
     }
 }
