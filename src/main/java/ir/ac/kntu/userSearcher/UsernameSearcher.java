@@ -1,5 +1,7 @@
 package ir.ac.kntu.userSearcher;
 
+import ir.ac.kntu.admins.managers.AddAUser;
+import ir.ac.kntu.admins.managers.ChangeUserInformation;
 import ir.ac.kntu.admins.managers.ManagerUserPage;
 import ir.ac.kntu.admins.managers.ViewUserInformation;
 import ir.ac.kntu.products.accessories.gamePad.GamePad;
@@ -57,11 +59,13 @@ public class UsernameSearcher {
                     viewUserInformation.showUser(foundUsers.get(Integer.parseInt(whichOne) - 1));
                     ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
                     managerUserPage.usersPage(whichUser);
+                } else if (goBack.equals("CHANGE_A_USER_INFORMATION")) {
+                    ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
+                    changeUserInformation.toChange(foundUsers.get(Integer.parseInt(whichOne) - 1),whichUser);
+                    ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
+                    managerUserPage.usersPage(whichUser);
                 }
-//                else if (goBack.equals("")) {
-//                    toChange(foundUsers.get(Integer.parseInt(whichUser) - 1), store);
-//                    usersPage(store);
-//                } else {
+//                else {
 //                    Users user = new Users();
 //                    user = store.getUsers().get(foundUsers.get(Integer.parseInt(whichUser) - 1));
 //                    for (int i = 0; i < store.getUsers().size(); i++) {

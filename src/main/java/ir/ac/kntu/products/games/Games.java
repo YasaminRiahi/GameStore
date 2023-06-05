@@ -1,8 +1,10 @@
 package ir.ac.kntu.products.games;
 
+import ir.ac.kntu.admins.Admin;
 import ir.ac.kntu.products.Product;
 import ir.ac.kntu.regularUsers.RegularUser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Games extends Product {
@@ -21,6 +23,8 @@ public class Games extends Product {
 
     private HashMap<RegularUser, Double> usersRate = new HashMap<>();
 
+    private ArrayList<Admin> developers;
+
     public Games(String name, String description, double cost, String genre, double rating, int numberOfRates,
                  GamesLevel gamesLevel) {
         super(name, description, cost);
@@ -29,6 +33,7 @@ public class Games extends Product {
         this.numberOfRates = numberOfRates;
         this.gamesLevel = gamesLevel;
         usersRate = new HashMap<>();
+        developers = new ArrayList<>();
     }
 
     public void addRate(RegularUser user, double rating) {

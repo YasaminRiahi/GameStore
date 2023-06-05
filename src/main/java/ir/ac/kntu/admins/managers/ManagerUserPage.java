@@ -62,7 +62,8 @@ public class ManagerUserPage {
             AddAUser addAUser = new AddAUser(dataBase);
             addAUser.toAddUsers(whichManager);
         } else if (managerUsersOption == ManagerUsersOption.CHANGE_A_USER_INFORMATION) {
-            ;
+            ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
+            changeUserInformation.changeAUserInformation(whichManager);
         } else {
             ;
         }
