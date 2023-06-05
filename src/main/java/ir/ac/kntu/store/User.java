@@ -19,6 +19,8 @@ public class User {
         this.email = email;
     }
 
+    public User() {
+    }
 
     public DataBase getDataBase() {
         return dataBase;
