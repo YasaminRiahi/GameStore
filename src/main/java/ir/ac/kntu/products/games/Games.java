@@ -21,6 +21,8 @@ public class Games extends Product {
 
     private GamesLevel gamesLevel;
 
+    private boolean isBeta;
+
     private HashMap<RegularUser, Double> usersRate = new HashMap<>();
 
     private ArrayList<Admin> developers;
@@ -105,6 +107,22 @@ public class Games extends Product {
 
     public void setGamesLevel(GamesLevel gamesLevel) {
         this.gamesLevel = gamesLevel;
+    }
+
+    public boolean isBeta() {
+        return isBeta;
+    }
+
+    public void setBeta(boolean beta) {
+        isBeta = beta;
+    }
+
+    public ArrayList<Admin> getDevelopers() {
+        return developers;
+    }
+
+    public void setDevelopers(ArrayList<Admin> developers) {
+        this.developers = developers;
     }
 
     public Games() {

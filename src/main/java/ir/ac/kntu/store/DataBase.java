@@ -155,6 +155,7 @@ public class DataBase {
         Games game1 = new Games("The Legend Of Zelda",description1,60,"Action-Adventure",9.1,
                 768,GamesLevel.LEVEL_3);
         game1.setCommunity(community1);
+        game1.setBeta(false);
         games.add(game1);
         String description2 = "Hawk's back - with new technology, new pros and new tricks! THPS2, the legend rides on!…";
         ArrayList<String> community2 = new ArrayList<>();
@@ -162,6 +163,7 @@ public class DataBase {
         Games game2 = new Games("TONY HAWK'S PRO SKATER 2",description2,30,"Sports-Alternative",
                 6.6,116,GamesLevel.LEVEL_1);
         game2.setCommunity(community2);
+        game2.setBeta(true);
         games.add(game2);
         String description3 = "Step into the Dark... As Carrington Institute's most promising new Agent..";;
         ArrayList<String> community3 = new ArrayList<>();
@@ -169,6 +171,7 @@ public class DataBase {
         Games game3 = new Games("PERFECT DARK",description3,50,"Action",8.8,511,
                 GamesLevel.LEVEL_2);
         game3.setCommunity(community3);
+        game3.setBeta(false);
         games.add(game3);
     }
 

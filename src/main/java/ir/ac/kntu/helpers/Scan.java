@@ -133,6 +133,13 @@ public class Scan {
         newGame.setCost(scanDouble());
         System.out.println("Choose game level :");
         showGamesLevel(newGame);
+        System.out.println("Is beta version ? true / false");
+        String isBeta = scanString();
+        if (isBeta.equals("true")){
+            newGame.setBeta(true);
+        } else {
+            newGame.setBeta(false);
+        }
         System.out.println("Game added successfully!");
         return newGame;
     }
