@@ -59,7 +59,8 @@ public class ManagerUserPage {
             ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
             viewUserInformation.viewUsersInformation(whichManager);
         } else if (managerUsersOption == ManagerUsersOption.ADD_A_USER) {
-            ;
+            AddAUser addAUser = new AddAUser(dataBase);
+            addAUser.toAddUsers(whichManager);
         } else if (managerUsersOption == ManagerUsersOption.CHANGE_A_USER_INFORMATION) {
             ;
         } else {
