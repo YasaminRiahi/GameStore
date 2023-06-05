@@ -115,6 +115,7 @@ public class DataBase {
         this.games = new ArrayList<>();
         this.regularUsers = new ArrayList<>();
         this.gamePads = new ArrayList<>();
+        this.monitorGaming = new ArrayList<>();
     }
 
     public void addEveryThing() {

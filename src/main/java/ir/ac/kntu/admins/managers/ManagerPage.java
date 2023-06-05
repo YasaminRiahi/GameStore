@@ -1,5 +1,7 @@
-package ir.ac.kntu.admins;
+package ir.ac.kntu.admins.managers;
 
+import ir.ac.kntu.admins.AdminPage;
+import ir.ac.kntu.admins.AdminProfile;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -58,7 +60,8 @@ public class ManagerPage {
             AdminProfile adminProfile = new AdminProfile(dataBase);
             adminProfile.profile(whichManager, dataBase.getManagers(), "MANAGER");
         } else if (managerOptions == ManagerOptions.USERS) {
-            ;
+            ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
+            managerUserPage.usersPage(whichManager);
         } else if (managerOptions == ManagerOptions.GAMES) {
             ;
         } else {

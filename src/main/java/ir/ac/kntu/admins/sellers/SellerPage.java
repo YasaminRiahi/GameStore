@@ -1,22 +1,23 @@
-package ir.ac.kntu.admins;
+package ir.ac.kntu.admins.sellers;
 
+import ir.ac.kntu.admins.AdminPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
-public class DeveloperPage {
+public class SellerPage {
 
     private DataBase dataBase;
 
-    public DeveloperPage(DataBase dataBase) {
+    public SellerPage(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 
-    public void goToDeveloperPage(int whichManager) {
+    public void goToSellerPage(int whichManager) {
         drawingLines();
-        System.out.println(ConsoleColors.BLUE_BOLD + "******( DEVELOPER PAGE )******" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( SELLER PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             ;
@@ -28,7 +29,7 @@ public class DeveloperPage {
             exit();
         } else {
             incorrect();
-            goToDeveloperPage(whichManager);
+            goToSellerPage(whichManager);
         }
     }
 }

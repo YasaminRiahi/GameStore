@@ -1,5 +1,8 @@
 package ir.ac.kntu.admins;
 
+import ir.ac.kntu.admins.developers.DeveloperPage;
+import ir.ac.kntu.admins.managers.ManagerPage;
+import ir.ac.kntu.admins.sellers.SellerPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.store.DataBase;
@@ -10,7 +13,7 @@ import java.util.ArrayList;
 import static ir.ac.kntu.helpers.TextTypings.*;
 
 
-public class AdminPage implements UsernameAndPasswordChecker {
+public class AdminPage {
 
     private TypeOfAdmins typeOfAdmins;
 
@@ -59,7 +62,8 @@ public class AdminPage implements UsernameAndPasswordChecker {
 
     public void goToOptions() {
         if (typeOfAdmins == TypeOfAdmins.Managers) {
-            int index = UsernameAndPasswordChecker.checkUsernameAndPassword(dataBase.getManagers());
+            UsernameAndPasswordChecker usernameAndPasswordChecker = new UsernameAndPasswordChecker();
+            int index = usernameAndPasswordChecker.checkUsernameAndPassword(dataBase.getManagers());
             if (index != -1) {
                 ManagerPage managerPage = new ManagerPage(dataBase);
                 managerPage.goToManagerPage(index);
@@ -67,7 +71,8 @@ public class AdminPage implements UsernameAndPasswordChecker {
                 goToAdminPage();
             }
         } else if (typeOfAdmins == TypeOfAdmins.Developers) {
-            int index = UsernameAndPasswordChecker.checkUsernameAndPassword(dataBase.getDevelopers());
+            UsernameAndPasswordChecker usernameAndPasswordChecker = new UsernameAndPasswordChecker();
+            int index = usernameAndPasswordChecker.checkUsernameAndPassword(dataBase.getDevelopers());
             if (index != -1) {
                 DeveloperPage developerPage = new DeveloperPage(dataBase);
                 developerPage.goToDeveloperPage(index);
@@ -75,12 +80,15 @@ public class AdminPage implements UsernameAndPasswordChecker {
                 goToAdminPage();
             }
         } else {
-            int index = UsernameAndPasswordChecker.checkUsernameAndPassword(dataBase.getSellers());
+            UsernameAndPasswordChecker usernameAndPasswordChecker = new UsernameAndPasswordChecker();
+            int index = usernameAndPasswordChecker.checkUsernameAndPassword(dataBase.getSellers());
             if (index != -1) {
-                ;
+                SellerPage sellerPage =  new SellerPage(dataBase);
+                sellerPage.goToSellerPage(index);
             } else {
                 goToAdminPage();
             }
         }
     }
+
 }
