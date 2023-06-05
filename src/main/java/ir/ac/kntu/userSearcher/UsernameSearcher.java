@@ -6,6 +6,7 @@ import ir.ac.kntu.admins.managers.ManagerUserPage;
 import ir.ac.kntu.admins.managers.ViewUserInformation;
 import ir.ac.kntu.products.accessories.gamePad.GamePad;
 import ir.ac.kntu.products.accessories.monitorGaming.MonitorGaming;
+import ir.ac.kntu.regularUsers.RegularUser;
 import ir.ac.kntu.store.DataBase;
 import ir.ac.kntu.helpers.ConsoleColors;
 import java.util.ArrayList;
@@ -64,17 +65,16 @@ public class UsernameSearcher {
                     changeUserInformation.toChange(foundUsers.get(Integer.parseInt(whichOne) - 1),whichUser);
                     ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
                     managerUserPage.usersPage(whichUser);
+                }  else {
+                    for (int i = 0; i < dataBase.getRegularUsers().size(); i++) {
+                        dataBase.getRegularUsers().get(i).getFriends().
+                                remove(dataBase.getRegularUsers().get(foundUsers.get(Integer.parseInt(whichOne) - 1)));
+                    }
+                    dataBase.getRegularUsers().remove(dataBase.getRegularUsers().get(foundUsers.get(Integer.parseInt(whichOne) - 1)));
+                    System.out.println("User removed successfully!");
+                    ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
+                    managerUserPage.usersPage(whichUser);
                 }
-//                else {
-//                    Users user = new Users();
-//                    user = store.getUsers().get(foundUsers.get(Integer.parseInt(whichUser) - 1));
-//                    for (int i = 0; i < store.getUsers().size(); i++) {
-//                        store.getUsers().get(i).getFriends().remove(user);
-//                    }
-//                    store.getUsers().remove(foundUsers.get(Integer.parseInt(whichUser) - 1));
-//                    System.out.println("User removed successfully!");
-//                    usersPage(store);
-//                }
             }
         }
     }

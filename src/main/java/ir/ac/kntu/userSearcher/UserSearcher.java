@@ -1,5 +1,7 @@
 package ir.ac.kntu.userSearcher;
 
+import ir.ac.kntu.admins.managers.ChangeUserInformation;
+import ir.ac.kntu.admins.managers.RemoveAUser;
 import ir.ac.kntu.admins.managers.ViewUserInformation;
 import ir.ac.kntu.store.DataBase;
 
@@ -30,10 +32,12 @@ public class UserSearcher {
             if (goBack.equals("VIEW_USER_INFORMATION")) {
                 ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
                 viewUserInformation.viewUsersInformation(whichUser);
-            } else if (goBack.equals("")) {
-                ;
+            } else if (goBack.equals("CHANGE_A_USER_INFORMATION")) {
+                ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
+                changeUserInformation.changeAUserInformation(whichUser);
             } else {
-                ;
+                RemoveAUser removeAUser = new RemoveAUser(dataBase);
+                removeAUser.toRemoveUsers(whichUser);
             }
         } else if (nextChoose.equals("3")) {
             drawingLines();

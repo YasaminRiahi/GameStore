@@ -84,6 +84,10 @@ public class DataBase {
         this.regularUsers.add(regularUser);
     }
 
+    public void removeRegularUser(RegularUser regularUser){
+        regularUsers.remove(regularUser);
+    }
+
     public ArrayList<GamePad> getGamePads() {
         return gamePads;
     }

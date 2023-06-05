@@ -23,7 +23,7 @@ public class AddAUser {
 
     public void toAddUsers(int whichManager) {
         drawingLines();
-        System.out.println(ConsoleColors.BLUE_BOLD + "******( ADD A USER )******" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( ADD USERS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             addUsers(whichManager);

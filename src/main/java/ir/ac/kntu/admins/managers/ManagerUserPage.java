@@ -65,7 +65,8 @@ public class ManagerUserPage {
             ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
             changeUserInformation.changeAUserInformation(whichManager);
         } else {
-            ;
+            RemoveAUser removeAUser = new RemoveAUser(dataBase);
+            removeAUser.toRemoveUsers(whichManager);
         }
     }
 }
