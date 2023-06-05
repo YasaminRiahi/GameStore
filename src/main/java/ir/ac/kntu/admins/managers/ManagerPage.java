@@ -63,7 +63,8 @@ public class ManagerPage {
             ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
             managerUserPage.usersPage(whichManager);
         } else if (managerOptions == ManagerOptions.GAMES) {
-            ;
+            ManagerGamePage managerGamePage = new ManagerGamePage(dataBase);
+            managerGamePage.gamesPage(whichManager);
         } else {
             ;
         }

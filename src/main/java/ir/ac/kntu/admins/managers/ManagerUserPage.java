@@ -21,7 +21,7 @@ public class ManagerUserPage {
 
     public void usersPage(int whichManager) {
         drawingLines();
-        System.out.println(ConsoleColors.BLUE_BOLD + "******( MANAGERS USERS' PAGE )******" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( MANAGERS USERS PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             showManagerUsersOptions(whichManager);
