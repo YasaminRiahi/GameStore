@@ -12,7 +12,7 @@ public class SigningInOrSigningUp {
 
     private DataBase dataBase;
 
-    public SigningInOrSigningUp(DataBase dataBase){
+    public SigningInOrSigningUp(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 
@@ -71,7 +71,10 @@ public class SigningInOrSigningUp {
             if (dataBase.getRegularUsers().get(i).getUserName().equals(username) &&
                     dataBase.getRegularUsers().get(i).getPassword().equals(password)) {
                 System.out.println("You're logged in successfully!!");
-
+                Stopwatch1 stopwatch1 = new Stopwatch1();
+                stopwatch1.start();
+                RegularUserPage regularUserPage = new RegularUserPage(dataBase);
+                regularUserPage.userAccess(i, stopwatch1);
             }
         }
         System.out.println(ConsoleColors.RED + "There isn't any account with this information!Try again"
@@ -100,6 +103,9 @@ public class SigningInOrSigningUp {
         RegularUser user = scanUsers(dataBase);
         dataBase.addRegularUser(user);
         System.out.println("You signed up successfully!");
-
+        Stopwatch1 stopwatch1 = new Stopwatch1();
+        stopwatch1.start();
+        RegularUserPage regularUserPage = new RegularUserPage(dataBase);
+        regularUserPage.userAccess(dataBase.getRegularUsers().size() - 1, stopwatch1);
     }
 }
