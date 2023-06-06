@@ -73,7 +73,8 @@ public class AccessoriesPage {
             ChangeAccessories changeAccessories = new ChangeAccessories(dataBase);
             changeAccessories.changeAccessories(whichUser,typeOfAdmin);
         } else {
-            ;
+            RemoveAccessories removeAccessories = new RemoveAccessories(dataBase);
+            removeAccessories.removeAccessories(whichUser,typeOfAdmin);
         }
     }
 }

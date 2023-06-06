@@ -71,21 +71,21 @@ public class ChangeAccessories {
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             showMonitorGaming();
-            String whichGame = scanString();
-            if (Integer.parseInt(whichGame) - 1 >= dataBase.getMonitorGaming().size() || Integer.parseInt(whichGame) - 1 < 0) {
+            String whichOne = scanString();
+            if (Integer.parseInt(whichOne) - 1 >= dataBase.getMonitorGaming().size() || Integer.parseInt(whichOne) - 1 < 0) {
                 incorrect();
                 changeMonitorGaming(whichUser,typeOfAdmin);
             } else {
                 if (typeOfAdmin.equals("SELLER")) {
-                    if (!dataBase.getMonitorGaming().get(Integer.parseInt(whichGame) - 1).getSellers().
+                    if (!dataBase.getMonitorGaming().get(Integer.parseInt(whichOne) - 1).getSellers().
                             contains(dataBase.getSellers().get(whichUser))) {
                         notSeller();
                         changeMonitorGaming(whichUser,typeOfAdmin);
                     }
                 }
                 whichMonitorGamingOption();
-                toChangeMonitorGaming(Integer.parseInt(whichGame) - 1);
-                System.out.println("Game changed successfully!");
+                toChangeMonitorGaming(Integer.parseInt(whichOne) - 1);
+                System.out.println("Monitor gaming changed successfully!");
                 changeAccessories(whichUser,typeOfAdmin);
             }
         } else if (nextChoose.equals("2")) {
@@ -105,20 +105,20 @@ public class ChangeAccessories {
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             showGamePads();
-            String whichGame = scanString();
-            if (Integer.parseInt(whichGame) - 1 >= dataBase.getGamePads().size() || Integer.parseInt(whichGame) - 1 < 0) {
+            String whichOne = scanString();
+            if (Integer.parseInt(whichOne) - 1 >= dataBase.getGamePads().size() || Integer.parseInt(whichOne) - 1 < 0) {
                 incorrect();
                 changeGamePad(whichUser,typeOfAdmin);
             } else {
                 if (typeOfAdmin.equals("SELLER")) {
-                    if (!dataBase.getGamePads().get(Integer.parseInt(whichGame) - 1).getSellers().
+                    if (!dataBase.getGamePads().get(Integer.parseInt(whichOne) - 1).getSellers().
                             contains(dataBase.getSellers().get(whichUser))) {
                         notSeller();
                         changeGamePad(whichUser,typeOfAdmin);
                     }
                 }
                 whichGamePadOption();
-                toChangeGamePad(Integer.parseInt(whichGame) - 1);
+                toChangeGamePad(Integer.parseInt(whichOne) - 1);
                 System.out.println("Game pad changed successfully!");
                 changeAccessories(whichUser,typeOfAdmin);
             }
