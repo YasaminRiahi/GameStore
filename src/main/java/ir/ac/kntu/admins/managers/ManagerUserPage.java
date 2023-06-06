@@ -1,11 +1,7 @@
 package ir.ac.kntu.admins.managers;
 
 import ir.ac.kntu.store.DataBase;
-import ir.ac.kntu.admins.AdminPage;
-import ir.ac.kntu.admins.AdminProfile;
 import ir.ac.kntu.helpers.ConsoleColors;
-
-import java.util.IllegalFormatCodePointException;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
 
@@ -13,7 +9,7 @@ public class ManagerUserPage {
 
     private DataBase dataBase;
 
-    private ManagerUsersOption managerUsersOption;
+    private ManagerUsersOptions managerUsersOption;
 
     public ManagerUserPage(DataBase dataBase) {
         this.dataBase = dataBase;
@@ -38,7 +34,7 @@ public class ManagerUserPage {
     }
 
     public void showManagerUsersOptions(int whichManager) {
-        for (ManagerUsersOption managerUsersOption1 : ManagerUsersOption.values()) {
+        for (ManagerUsersOptions managerUsersOption1 : ManagerUsersOptions.values()) {
             System.out.print(managerUsersOption1.getValue() + ")");
             System.out.println(managerUsersOption1);
         }
@@ -46,7 +42,7 @@ public class ManagerUserPage {
     }
 
     public void fromValue(String value, int whichManager) {
-        for (ManagerUsersOption e : ManagerUsersOption.values()) {
+        for (ManagerUsersOptions e : ManagerUsersOptions.values()) {
             if (e.getValue().equals(value)) {
                 this.managerUsersOption = e;
                 goToOptions(whichManager);
@@ -57,16 +53,16 @@ public class ManagerUserPage {
     }
 
     public void goToOptions(int whichManager) {
-        if (managerUsersOption == ManagerUsersOption.VIEW_USER_INFORMATION) {
+        if (managerUsersOption == ManagerUsersOptions.VIEW_USER_INFORMATION) {
             ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
             viewUserInformation.viewUsersInformation(whichManager);
-        } else if (managerUsersOption == ManagerUsersOption.ADD_A_USER) {
+        } else if (managerUsersOption == ManagerUsersOptions.ADD_A_USER) {
             AddAUser addAUser = new AddAUser(dataBase);
             addAUser.toAddUsers(whichManager);
-        } else if (managerUsersOption == ManagerUsersOption.CHANGE_A_USER_INFORMATION) {
+        } else if (managerUsersOption == ManagerUsersOptions.CHANGE_A_USER_INFORMATION) {
             ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
             changeUserInformation.changeAUserInformation(whichManager);
-        } else if (managerUsersOption == ManagerUsersOption.REMOVE_A_USER){
+        } else if (managerUsersOption == ManagerUsersOptions.REMOVE_A_USER){
             RemoveAUser removeAUser = new RemoveAUser(dataBase);
             removeAUser.toRemoveUsers(whichManager);
         } else {

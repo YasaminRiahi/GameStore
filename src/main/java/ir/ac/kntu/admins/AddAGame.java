@@ -1,7 +1,10 @@
 package ir.ac.kntu.admins;
 
+import ir.ac.kntu.admins.developers.DeveloperPage;
 import ir.ac.kntu.admins.managers.ManagerGamePage;
+import ir.ac.kntu.admins.managers.ManagerPage;
 import ir.ac.kntu.admins.managers.ManagerUserPage;
+import ir.ac.kntu.admins.sellers.SellerPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -31,16 +34,23 @@ public class AddAGame {
                 dataBase.addDevelopers(dataBase.getDevelopers().get(whichUser));
 
             }
-
         } else if (nextChoose.equals("2")) {
-            ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
-            managerUserPage.usersPage(whichUser);
+            goBack(whichUser,typeOfAdmin);
         } else if (nextChoose.equals("3")) {
             drawingLines();
             exit();
         } else {
             incorrect();
             toAddGames(whichUser, typeOfAdmin);
+        }
+    }
+
+    public void goBack(int whichUser, String typeOfAdmin) {
+        if (typeOfAdmin.equals("MANAGER")) {
+            ManagerGamePage managerGamePage = new ManagerGamePage(dataBase);
+            managerGamePage.gamesPage(whichUser);
+        } else if (typeOfAdmin.equals("DEVELOPER")) {
+            ;
         }
     }
 }

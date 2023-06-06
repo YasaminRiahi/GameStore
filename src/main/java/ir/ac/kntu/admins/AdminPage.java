@@ -6,9 +6,7 @@ import ir.ac.kntu.admins.sellers.SellerPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.store.DataBase;
-import ir.ac.kntu.store.User;
 
-import java.util.ArrayList;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
 

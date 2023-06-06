@@ -1,17 +1,13 @@
 package ir.ac.kntu.helpers;
 
-import ir.ac.kntu.admins.managers.ManagerGamesOption;
+
 import ir.ac.kntu.products.games.Games;
 import ir.ac.kntu.products.games.GamesLevel;
 import ir.ac.kntu.regularUsers.RegularUser;
 import ir.ac.kntu.store.DataBase;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
-
 import static ir.ac.kntu.helpers.TextTypings.getNumberFromOptions;
-import static ir.ac.kntu.helpers.TextTypings.incorrect;
+
 
 public class Scan {
 

@@ -1,6 +1,6 @@
 package ir.ac.kntu.admins.managers;
 
-public enum ManagerGamesOption {
+public enum ManagerGamesOptions {
 
     ADD_A_GAME("1"),
     CHANGE_GAMES_INFORMATION("2"),
@@ -9,7 +9,7 @@ public enum ManagerGamesOption {
 
     String value;
 
-    ManagerGamesOption(String value){
+    ManagerGamesOptions(String value){
         this.value = value;
     }
 

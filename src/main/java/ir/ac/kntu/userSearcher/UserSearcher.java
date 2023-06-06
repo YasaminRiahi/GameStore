@@ -16,7 +16,7 @@ public class UserSearcher {
 
     private DataBase dataBase;
 
-    private SearchOption searchOption;
+    private SearchOptions searchOption;
 
     public UserSearcher(DataBase dataBase) {
         this.dataBase = dataBase;
@@ -50,7 +50,7 @@ public class UserSearcher {
 
 
     public void showSearchOptions(String goBack, int whichUser) {
-        for (SearchOption searchOption1 : SearchOption.values()) {
+        for (SearchOptions searchOption1 : SearchOptions.values()) {
             System.out.print(searchOption1.getValue() + ")");
             System.out.println(searchOption1);
         }
@@ -58,7 +58,7 @@ public class UserSearcher {
     }
 
     public void fromValue(String value, int whichUser, String goBack) {
-        for (SearchOption e : SearchOption.values()) {
+        for (SearchOptions e : SearchOptions.values()) {
             if (e.getValue().equals(value)) {
                 this.searchOption = e;
                 goToOptions(goBack, whichUser);
@@ -69,10 +69,10 @@ public class UserSearcher {
     }
 
     public void goToOptions(String goBack, int whichUser) {
-        if (searchOption == SearchOption.SEARCH_BY_USERNAME) {
+        if (searchOption == SearchOptions.SEARCH_BY_USERNAME) {
             UsernameSearcher usernameSearching = new UsernameSearcher(dataBase);
             usernameSearching.searchByUsername(goBack, whichUser);
-        } else if (searchOption == SearchOption.SEARCH_BY_EMAIL) {
+        } else if (searchOption == SearchOptions.SEARCH_BY_EMAIL) {
             EmailSearcher emailSearcher = new EmailSearcher(dataBase);
             emailSearcher.searchByEmail(goBack, whichUser);
         } else {

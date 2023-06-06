@@ -1,6 +1,7 @@
 package ir.ac.kntu.admins.managers;
 
 import ir.ac.kntu.admins.AddAGame;
+import ir.ac.kntu.admins.ChangeGameInformation;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -11,7 +12,7 @@ public class ManagerGamePage {
 
     private DataBase dataBase;
 
-    private ManagerGamesOption managerGamesOption;
+    private ManagerGamesOptions managerGamesOption;
 
     public ManagerGamePage(DataBase dataBase) {
         this.dataBase = dataBase;
@@ -36,7 +37,7 @@ public class ManagerGamePage {
     }
 
     public void showManagerGamesOptions(int whichManager) {
-        for (ManagerGamesOption managerUsersOption1 : ManagerGamesOption.values()) {
+        for (ManagerGamesOptions managerUsersOption1 : ManagerGamesOptions.values()) {
             System.out.print(managerUsersOption1.getValue() + ")");
             System.out.println(managerUsersOption1);
         }
@@ -44,7 +45,7 @@ public class ManagerGamePage {
     }
 
     public void fromValue(String value, int whichManager) {
-        for (ManagerGamesOption e : ManagerGamesOption.values()) {
+        for (ManagerGamesOptions e : ManagerGamesOptions.values()) {
             if (e.getValue().equals(value)) {
                 this.managerGamesOption = e;
                 goToOptions(whichManager);
@@ -55,12 +56,13 @@ public class ManagerGamePage {
     }
 
     public void goToOptions(int whichManager) {
-        if (managerGamesOption == ManagerGamesOption.ADD_A_GAME) {
+        if (managerGamesOption == ManagerGamesOptions.ADD_A_GAME) {
             AddAGame addAGame = new AddAGame(dataBase);
             addAGame.toAddGames(whichManager,"MANAGER");
-        } else if (managerGamesOption == ManagerGamesOption.CHANGE_GAMES_INFORMATION) {
-            ;
-        } else if (managerGamesOption == ManagerGamesOption.REMOVE_A_GAME) {
+        } else if (managerGamesOption == ManagerGamesOptions.CHANGE_GAMES_INFORMATION) {
+            ChangeGameInformation changeGameInformation = new ChangeGameInformation(dataBase);
+            changeGameInformation.changeGamesInformation(whichManager,"MANAGER");
+        } else if (managerGamesOption == ManagerGamesOptions.REMOVE_A_GAME) {
             ;
         } else {
             ;

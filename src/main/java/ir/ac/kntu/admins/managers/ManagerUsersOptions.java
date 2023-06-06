@@ -1,8 +1,6 @@
 package ir.ac.kntu.admins.managers;
 
-import javax.swing.text.View;
-
-public enum ManagerUsersOption {
+public enum ManagerUsersOptions {
 
     VIEW_USER_INFORMATION("1"),
     ADD_A_USER("2"),
@@ -13,7 +11,7 @@ public enum ManagerUsersOption {
 
     private String value;
 
-    ManagerUsersOption(String value) {
+    ManagerUsersOptions(String value) {
         this.value = value;
     }
 

@@ -1,11 +1,6 @@
 package ir.ac.kntu.userSearcher;
 
-import ir.ac.kntu.admins.managers.ManagerUsersOption;
-
-import static ir.ac.kntu.helpers.TextTypings.getNumberFromOptions;
-import static ir.ac.kntu.helpers.TextTypings.incorrect;
-
-public enum SearchOption {
+public enum SearchOptions {
 
     SEARCH_BY_USERNAME("1"),
     SEARCH_BY_EMAIL("2"),
@@ -13,7 +8,7 @@ public enum SearchOption {
 
     private String value;
 
-    SearchOption(String value) {
+    SearchOptions(String value) {
         this.value = value;
     }
 

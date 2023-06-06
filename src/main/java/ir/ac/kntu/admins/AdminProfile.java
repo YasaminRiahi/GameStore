@@ -3,7 +3,6 @@ package ir.ac.kntu.admins;
 import ir.ac.kntu.admins.developers.DeveloperPage;
 import ir.ac.kntu.admins.managers.ManagerPage;
 import ir.ac.kntu.admins.sellers.*;
-import ir.ac.kntu.admins.managers.ManagerUsersOption;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 

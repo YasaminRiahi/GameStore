@@ -1,14 +1,13 @@
-package ir.ac.kntu.products.games;
+package ir.ac.kntu.admins;
 
-public enum GamesLevel {
-    LEVEL_1("1"),
-    LEVEL_2("2"),
-    LEVEL_3("3"),
-    LEVEL_4("4");
+public enum EditingGameOptions {
+
+    BY_LIST_OF_GAMES("1"),
+    BY_SEARCHING_NAME("2");
 
     String value;
 
-    GamesLevel(String value){
+    EditingGameOptions(String value) {
         this.value = value;
     }
 
