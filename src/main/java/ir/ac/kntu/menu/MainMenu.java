@@ -2,6 +2,7 @@ package ir.ac.kntu.menu;
 
 import ir.ac.kntu.admins.AdminPage;
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.regularUsers.SigningInOrSigningUp;
 import ir.ac.kntu.store.DataBase;
 import ir.ac.kntu.store.TypeOfUsers;
 
@@ -43,7 +44,8 @@ public class MainMenu {
             AdminPage adminPage = new AdminPage(dataBase);
             adminPage.goToAdminPage();
         } else {
-            ;
+            SigningInOrSigningUp signingInOrSigningUp = new SigningInOrSigningUp(dataBase);
+            signingInOrSigningUp.signInOrUp();
         }
     }
 
