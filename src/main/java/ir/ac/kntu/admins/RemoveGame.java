@@ -4,6 +4,8 @@ import ir.ac.kntu.admins.managers.ManagerGamePage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
+import java.util.ArrayList;
+
 import static ir.ac.kntu.helpers.Scan.*;
 import static ir.ac.kntu.helpers.Scan.scanDouble;
 import static ir.ac.kntu.helpers.TextTypings.*;
@@ -37,6 +39,84 @@ public class RemoveGame {
 
     }
 
+    public void removeByList(int whichUser, String typeOfAdmin) {
+        drawingLines();
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( REMOVE GAMES BY LIST )******" + ConsoleColors.RESET);
+        String nextChoose = whereToGo();
+        if (nextChoose.equals("1")) {
+            showGames();
+            String whichGame = scanString();
+            if (Integer.parseInt(whichGame) - 1 >= dataBase.getGames().size() || Integer.parseInt(whichGame) - 1 < 0) {
+                incorrect();
+                removeByList(whichUser, typeOfAdmin);
+            } else {
+                if (typeOfAdmin.equals("DEVELOPER")) {
+                    if (!dataBase.getGames().get(Integer.parseInt(whichGame) - 1).getDevelopers().
+                            contains(dataBase.getDevelopers().get(whichUser))) {
+                        notDeveloper();
+                        removeByList(whichUser, typeOfAdmin);
+                    }
+                }
+                dataBase.getGames().remove(Integer.parseInt(whichGame) - 1);
+                System.out.println("Game removed successfully!");
+                removeGames(whichUser,typeOfAdmin);
+            }
+        } else if (nextChoose.equals("2")) {
+            removeGames(whichUser, typeOfAdmin);
+        } else if (nextChoose.equals("3")) {
+            drawingLines();
+            exit();
+        } else {
+            incorrect();
+            removeByList(whichUser, typeOfAdmin);
+        }
+    }
+
+    public void removeBySearch(int whichUser, String typeOfAdmin) {
+        drawingLines();
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( REMOVE GAMES BY SEARCH )******" + ConsoleColors.RESET);
+        String nextChoose = whereToGo();
+        if (nextChoose.equals("1")) {
+            searchOptionToRemove(whichUser, typeOfAdmin);
+        } else if (nextChoose.equals("2")) {
+            removeGames(whichUser, typeOfAdmin);
+        } else if (nextChoose.equals("3")) {
+            drawingLines();
+            exit();
+        } else {
+            incorrect();
+            removeBySearch(whichUser, typeOfAdmin);
+        }
+    }
+
+    public void searchOptionToRemove(int whichUser, String typeOfAdmin) {
+        System.out.println("Enter name:");
+        String name = scanString();
+        ArrayList<Integer> foundGames = searchGame(name);
+        if (foundGames.size() == 0) {
+            System.out.println(ConsoleColors.RED + "No result!Try again" + ConsoleColors.RESET);
+            removeBySearch(whichUser, typeOfAdmin);
+        } else {
+            showFoundGames(foundGames);
+            String whichGame = scanString();
+            if (Integer.parseInt(whichGame) - 1 >= foundGames.size() || Integer.parseInt(whichGame) - 1 < 0) {
+                incorrect();
+                removeBySearch(whichUser, typeOfAdmin);
+            } else {
+                if (typeOfAdmin.equals("DEVELOPER")) {
+                    if (!dataBase.getGames().get(Integer.parseInt(whichGame) - 1).getDevelopers().
+                            contains(dataBase.getDevelopers().get(whichUser))) {
+                        notDeveloper();
+                        removeByList(whichUser, typeOfAdmin);
+                    }
+                }
+                dataBase.getGames().remove(Integer.parseInt(whichGame) - 1);
+                System.out.println("Game removed successfully!");
+                removeGames(whichUser,typeOfAdmin);
+            }
+        }
+    }
+
     public void showEditingGamesOptions(int whichUser, String typeOfAdmin) {
         for (EditingGameOptions editingGameOptions1 : EditingGameOptions.values()) {
             System.out.print(editingGameOptions1.getValue() + ")");
@@ -58,9 +138,9 @@ public class RemoveGame {
 
     public void goToOptions(int whichManager, String typeOfAdmin) {
         if (editingGameOptions == EditingGameOptions.BY_LIST_OF_GAMES) {
-            ;
+            removeByList(whichManager, typeOfAdmin);
         } else {
-            ;
+            removeBySearch(whichManager,typeOfAdmin);
         }
     }
 
@@ -73,5 +153,31 @@ public class RemoveGame {
         }
     }
 
+    public void showGames() {
+        int j = 1;
+        for (int i = 0; i < dataBase.getGames().size(); i++) {
+            System.out.print(j + ")");
+            System.out.println(dataBase.getGames().get(i).getName());
+            j++;
+        }
+    }
 
+    public ArrayList searchGame(String name) {
+        ArrayList<Integer> indexes = new ArrayList<Integer>();
+        for (int i = 0; i < dataBase.getGames().size(); i++) {
+            if (dataBase.getGames().get(i).getName().toLowerCase().startsWith(name.toLowerCase())) {
+                indexes.add(i);
+            }
+        }
+        return indexes;
+    }
+
+    public void showFoundGames(ArrayList<Integer> foundGames) {
+        int j = 1;
+        for (int i = 0; i < foundGames.size(); i++) {
+            System.out.print(+j + ")");
+            System.out.println(dataBase.getGames().get(foundGames.get(i)).getName());
+            j++;
+        }
+    }
 }

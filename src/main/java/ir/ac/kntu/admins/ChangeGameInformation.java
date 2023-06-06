@@ -143,6 +143,7 @@ public class ChangeGameInformation {
                 whichOption();
                 toChange(Integer.parseInt(whichGame) - 1);
                 System.out.println("Game changed successfully!");
+                changeGamesInformation(whichUser,typeOfAdmin);
             }
         }
     }

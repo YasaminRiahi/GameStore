@@ -2,6 +2,7 @@ package ir.ac.kntu.admins.managers;
 
 import ir.ac.kntu.admins.AddAGame;
 import ir.ac.kntu.admins.ChangeGameInformation;
+import ir.ac.kntu.admins.RemoveGame;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -63,7 +64,8 @@ public class ManagerGamePage {
             ChangeGameInformation changeGameInformation = new ChangeGameInformation(dataBase);
             changeGameInformation.changeGamesInformation(whichManager,"MANAGER");
         } else if (managerGamesOption == ManagerGamesOptions.REMOVE_A_GAME) {
-            ;
+            RemoveGame removeGame =  new RemoveGame(dataBase);
+            removeGame.removeGames(whichManager,"MANAGER");
         } else {
             ;
         }
