@@ -62,9 +62,9 @@ public class UserFriend {
         if (userFriendOptions == UserFriendOptions.LIST_OF_FRIENDS) {
             listOfFriends(whichUser, stopwatch1);
         } else if (userFriendOptions == UserFriendOptions.SEARCH_FRIENDS) {
-            searchInFriends(whichUser,stopwatch1);
+            searchInFriends(whichUser, stopwatch1);
         } else if (userFriendOptions == UserFriendOptions.FIND_FRIENDS) {
-            ;
+            findFriends(whichUser, stopwatch1);
         } else {
             ;
         }
@@ -83,8 +83,8 @@ public class UserFriend {
                 listOfFriends(userIndex, stopwatch1);
             } else {
                 int friendIndex = Integer.parseInt(whichFriends) - 1;
-                showFriendProducts(userIndex,friendIndex);
-                friend(userIndex,stopwatch1);
+                showFriendProducts(userIndex, friendIndex);
+                friend(userIndex, stopwatch1);
             }
         } else if (nextChoose.equals("2")) {
             friend(userIndex, stopwatch1);
@@ -103,35 +103,74 @@ public class UserFriend {
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             System.out.println("Enter friend username :");
-            ArrayList<Integer> foundFriends = searchByUsername(scanString(),dataBase.getRegularUsers().get(userIndex).getFriends());
+            ArrayList<Integer> foundFriends = searchByUsername(scanString(), dataBase.getRegularUsers().get(userIndex).getFriends());
             if (foundFriends.size() == 0) {
                 System.out.println(ConsoleColors.RED + "No result!Try again" + ConsoleColors.RESET);
-                searchInFriends(userIndex,stopwatch1);
+                searchInFriends(userIndex, stopwatch1);
             } else {
-                showFoundUsers(foundFriends,dataBase.getRegularUsers().get(userIndex).getFriends());
+                showFoundUsers(foundFriends, dataBase.getRegularUsers().get(userIndex).getFriends());
                 String whichGame = scanString();
                 if (Integer.parseInt(whichGame) - 1 >= foundFriends.size() || Integer.parseInt(whichGame) - 1 < 0) {
                     incorrect();
-                    searchInFriends(userIndex,stopwatch1);
+                    searchInFriends(userIndex, stopwatch1);
                 } else {
                     int friendIndex = foundFriends.get(Integer.parseInt(whichGame) - 1);
-                    showFriendProducts(userIndex,friendIndex);
-                    friend(userIndex,stopwatch1);
+                    showFriendProducts(userIndex, friendIndex);
+                    friend(userIndex, stopwatch1);
                 }
             }
         } else if (nextChoose.equals("2")) {
-            friend(userIndex,stopwatch1);
+            friend(userIndex, stopwatch1);
         } else if (nextChoose.equals("3")) {
             drawingLines();
             exit();
         } else {
             incorrect();
-            searchInFriends(userIndex,stopwatch1);
+            searchInFriends(userIndex, stopwatch1);
         }
     }
 
-    public ArrayList searchByUsername(String name,ArrayList<RegularUser> list) {
-        ArrayList<Integer> indexes = new ArrayList<Integer>();;
+    public void findFriends(int userIndex, Stopwatch1 stopwatch1) {
+        drawingLines();
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( FINDING FRIENDS )******" + ConsoleColors.RESET);
+        String nextChoose = whereToGo();
+        if (nextChoose.equals("1")) {
+            System.out.println("Enter friend username :");
+            ArrayList<Integer> foundUsers = searchByUsername(scanString(), dataBase.getRegularUsers());
+            if (foundUsers.size() == 0) {
+                System.out.println(ConsoleColors.RED + "No result!Try again" + ConsoleColors.RESET);
+                findFriends(userIndex, stopwatch1);
+            } else {
+                for (int i = 0; i < foundUsers.size(); i++) {
+                    if (foundUsers.get(i) == userIndex) {
+                        foundUsers.remove(foundUsers.get(i));
+                        break;
+                    }
+                }
+                showFoundUsers(foundUsers, dataBase.getRegularUsers());
+                String whichUser = scanString();
+                if (Integer.parseInt(whichUser) - 1 >= foundUsers.size() || Integer.parseInt(whichUser) - 1 < 0) {
+                    incorrect();
+                    findFriends(userIndex, stopwatch1);
+                } else {
+                    int foundUserIndex = foundUsers.get(Integer.parseInt(whichUser) - 1);
+                    sendRequestPage(userIndex, foundUserIndex, stopwatch1);
+                }
+            }
+        } else if (nextChoose.equals("2")) {
+            friend(userIndex, stopwatch1);
+        } else if (nextChoose.equals("3")) {
+            drawingLines();
+            exit();
+        } else {
+            incorrect();
+            findFriends(userIndex, stopwatch1);
+        }
+    }
+
+    public ArrayList searchByUsername(String name, ArrayList<RegularUser> list) {
+        ArrayList<Integer> indexes = new ArrayList<Integer>();
+        ;
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getUserName().toLowerCase().startsWith(name.toLowerCase())) {
                 indexes.add(i);
@@ -140,7 +179,7 @@ public class UserFriend {
         return indexes;
     }
 
-    public void showFoundUsers(ArrayList<Integer> foundUsers,ArrayList<RegularUser> list) {
+    public void showFoundUsers(ArrayList<Integer> foundUsers, ArrayList<RegularUser> list) {
         System.out.println("Choose one of these users!");
         int j = 1;
         for (int i = 0; i < foundUsers.size(); i++) {
@@ -173,19 +212,84 @@ public class UserFriend {
         }
         System.out.println("Your friend gaming monitor(s):");
         j = 1;
-        for (MonitorGaming monitorGaming: friend.getMonitorGaming().keySet()) {
+        for (MonitorGaming monitorGaming : friend.getMonitorGaming().keySet()) {
             String key = monitorGaming.getName();
             int value = friend.getMonitorGaming().get(monitorGaming);
-            System.out.println("    " + j + ")" + key + " (" + value +")");
+            System.out.println("    " + j + ")" + key + " (" + value + ")");
             j++;
         }
         System.out.println("Your friend gaming pad(s):");
         j = 1;
-        for (GamePad gamePad: friend.getGamePad().keySet()) {
+        for (GamePad gamePad : friend.getGamePad().keySet()) {
             String key = gamePad.getName();
             int value = friend.getGamePad().get(gamePad);
-            System.out.println("    " + j + ")" + key + " (" + value +")");
+            System.out.println("    " + j + ")" + key + " (" + value + ")");
             j++;
         }
+    }
+
+    public void sendRequestPage(int userIndex, int foundUserIndex, Stopwatch1 stopwatch1) {
+        drawingLines();
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( SEND REQUEST )******" + ConsoleColors.RESET);
+        String nextChoose = whereToGo();
+        if (nextChoose.equals("1")) {
+            if (isFriendOrNo(userIndex, foundUserIndex) == 0) {
+                System.out.println("Do you want to request this user?");
+                System.out.println("1)Yes");
+                System.out.println("2)No");
+                switch (scanString()) {
+                    case "1":
+                        sendRequest(userIndex, foundUserIndex, stopwatch1);
+                        break;
+                    case "2":
+                        findFriends(userIndex, stopwatch1);
+                        break;
+                    default:
+                        incorrect();
+                        sendRequestPage(userIndex, foundUserIndex, stopwatch1);
+                }
+            } else {
+                System.out.println("You've already had this user as your friend!");
+                findFriends(userIndex, stopwatch1);
+            }
+        } else if (nextChoose.equals("2")) {
+            findFriends(userIndex, stopwatch1);
+        } else if (nextChoose.equals("3")) {
+            drawingLines();
+            exit();
+        } else {
+            incorrect();
+            sendRequestPage(userIndex, foundUserIndex, stopwatch1);
+        }
+    }
+
+    public int isFriendOrNo(int userIndex, int foundUserIndex) {
+        RegularUser user = new RegularUser();
+        user = dataBase.getRegularUsers().get(userIndex);
+        RegularUser foundUser = new RegularUser();
+        foundUser = dataBase.getRegularUsers().get(foundUserIndex);
+        for (int i = 0; i < user.getFriends().size(); i++) {
+            if (user.getFriends().get(i) == foundUser) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    public void sendRequest(int userIndex, int foundUser, Stopwatch1 stopwatch1) {
+        if (isRequested(userIndex, foundUser) == 0) {
+            dataBase.getRegularUsers().get(foundUser).getRequests().add(dataBase.getRegularUsers().get(userIndex));
+            System.out.println("You requested successfully");
+        } else {
+            System.out.println("You've already requested this user and she/he has not accepted or declined!");
+        }
+        findFriends(userIndex, stopwatch1);
+    }
+
+    public int isRequested(int userIndex, int foundUserIndex) {
+        if (dataBase.getRegularUsers().get(foundUserIndex).getRequests().contains(dataBase.getRegularUsers().get(userIndex))) {
+            return 1;
+        }
+        return 0;
     }
 }
