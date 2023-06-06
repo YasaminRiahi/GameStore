@@ -83,7 +83,7 @@ public class AddAccessories {
             exit();
         } else {
             incorrect();
-            addAccessories(whichUser, typeOfAdmin);
+            addMonitorGaming(whichUser,typeOfAdmin);
         }
     }
 
@@ -105,7 +105,9 @@ public class AddAccessories {
             exit();
         } else {
             incorrect();
-            addAccessories(whichUser, typeOfAdmin);
+            addGamePad(whichUser,typeOfAdmin);
         }
     }
+
+
 }

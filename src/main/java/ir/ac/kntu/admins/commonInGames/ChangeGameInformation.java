@@ -13,7 +13,7 @@ public class ChangeGameInformation {
 
     private DataBase dataBase;
 
-    private EditingGameOptions editingGameOptions;
+    private EditingGamesOptions editingGameOptions;
 
     public ChangeGameInformation(DataBase dataBase) {
         this.dataBase = dataBase;
@@ -28,7 +28,6 @@ public class ChangeGameInformation {
         } else if (nextChoose.equals("2")) {
             goBack(whichUser, typeOfAdmin);
         } else if (nextChoose.equals("3")) {
-            System.out.println("Finish!");
             drawingLines();
             exit();
         } else {
@@ -39,7 +38,7 @@ public class ChangeGameInformation {
     }
 
     public void showEditingGamesOptions(int whichUser, String typeOfAdmin) {
-        for (EditingGameOptions editingGameOptions1 : EditingGameOptions.values()) {
+        for (EditingGamesOptions editingGameOptions1 : EditingGamesOptions.values()) {
             System.out.print(editingGameOptions1.getValue() + ")");
             System.out.println(editingGameOptions1);
         }
@@ -47,7 +46,7 @@ public class ChangeGameInformation {
     }
 
     public void fromValue(String value, int whichUser, String typeOfAdmin) {
-        for (EditingGameOptions e : EditingGameOptions.values()) {
+        for (EditingGamesOptions e : EditingGamesOptions.values()) {
             if (e.getValue().equals(value)) {
                 this.editingGameOptions = e;
                 goToOptions(whichUser, typeOfAdmin);
@@ -58,7 +57,7 @@ public class ChangeGameInformation {
     }
 
     public void goToOptions(int whichManager, String typeOfAdmin) {
-        if (editingGameOptions == EditingGameOptions.BY_LIST_OF_GAMES) {
+        if (editingGameOptions == EditingGamesOptions.BY_LIST_OF_GAMES) {
             changeByList(whichManager, typeOfAdmin);
         } else {
             changBySearch(whichManager, typeOfAdmin);

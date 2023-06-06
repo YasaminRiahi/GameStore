@@ -70,7 +70,8 @@ public class AccessoriesPage {
             AddAccessories addAccessories = new AddAccessories(dataBase);
             addAccessories.addAccessories(whichUser,typeOfAdmin);
         } else if (accessoriesPageOptions == AccessoriesPageOptions.CHANGE_ACCESSORIES){
-            ;
+            ChangeAccessories changeAccessories = new ChangeAccessories(dataBase);
+            changeAccessories.changeAccessories(whichUser,typeOfAdmin);
         } else {
             ;
         }

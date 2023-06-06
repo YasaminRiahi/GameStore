@@ -92,6 +92,10 @@ public class TextTypings {
         System.out.println(ConsoleColors.RED + "You're not the developer of this game!" + ConsoleColors.RESET);
     }
 
+    public static void notSeller(){
+        System.out.println(ConsoleColors.RED + "You're not the seller of this accessory!" + ConsoleColors.RESET);
+    }
+
     public static void exit() {
         System.exit(0);
     }

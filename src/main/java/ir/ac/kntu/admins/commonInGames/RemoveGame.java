@@ -1,6 +1,5 @@
 package ir.ac.kntu.admins.commonInGames;
 
-import ir.ac.kntu.admins.commonInGames.EditingGameOptions;
 import ir.ac.kntu.admins.managers.ManagerGamePage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
@@ -14,7 +13,7 @@ public class RemoveGame {
 
     private DataBase dataBase;
 
-    private EditingGameOptions editingGameOptions;
+    private EditingGamesOptions editingGameOptions;
 
     public RemoveGame(DataBase dataBase) {
         this.dataBase = dataBase;
@@ -118,7 +117,7 @@ public class RemoveGame {
     }
 
     public void showEditingGamesOptions(int whichUser, String typeOfAdmin) {
-        for (EditingGameOptions editingGameOptions1 : EditingGameOptions.values()) {
+        for (EditingGamesOptions editingGameOptions1 : EditingGamesOptions.values()) {
             System.out.print(editingGameOptions1.getValue() + ")");
             System.out.println(editingGameOptions1);
         }
@@ -126,7 +125,7 @@ public class RemoveGame {
     }
 
     public void fromValue(String value, int whichUser, String typeOfAdmin) {
-        for (EditingGameOptions e : EditingGameOptions.values()) {
+        for (EditingGamesOptions e : EditingGamesOptions.values()) {
             if (e.getValue().equals(value)) {
                 this.editingGameOptions = e;
                 goToOptions(whichUser, typeOfAdmin);
@@ -137,7 +136,7 @@ public class RemoveGame {
     }
 
     public void goToOptions(int whichManager, String typeOfAdmin) {
-        if (editingGameOptions == EditingGameOptions.BY_LIST_OF_GAMES) {
+        if (editingGameOptions == EditingGamesOptions.BY_LIST_OF_GAMES) {
             removeByList(whichManager, typeOfAdmin);
         } else {
             removeBySearch(whichManager,typeOfAdmin);

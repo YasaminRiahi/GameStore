@@ -1,13 +1,13 @@
 package ir.ac.kntu.admins.commonInGames;
 
-public enum EditingGameOptions {
+public enum EditingGamesOptions {
 
     BY_LIST_OF_GAMES("1"),
     BY_SEARCHING_NAME("2");
 
     String value;
 
-    EditingGameOptions(String value) {
+    EditingGamesOptions(String value) {
         this.value = value;
     }
 
