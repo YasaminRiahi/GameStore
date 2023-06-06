@@ -1,5 +1,6 @@
 package ir.ac.kntu.admins.managers;
 
+import ir.ac.kntu.admins.commonInAccessories.AccessoriesPage;
 import ir.ac.kntu.admins.AdminPage;
 import ir.ac.kntu.admins.AdminProfile;
 import ir.ac.kntu.helpers.ConsoleColors;
@@ -66,7 +67,8 @@ public class ManagerPage {
             ManagerGamePage managerGamePage = new ManagerGamePage(dataBase);
             managerGamePage.gamesPage(whichManager);
         } else {
-            ;
+            AccessoriesPage accessoriesPage = new AccessoriesPage(dataBase);
+            accessoriesPage.goToAccessoriesPage(whichManager,"MANAGER");
         }
     }
 }

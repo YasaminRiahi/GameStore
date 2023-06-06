@@ -1,9 +1,6 @@
-package ir.ac.kntu.admins;
+package ir.ac.kntu.admins.commonInGames;
 
-import ir.ac.kntu.admins.developers.DeveloperPage;
 import ir.ac.kntu.admins.managers.ManagerGamePage;
-import ir.ac.kntu.admins.managers.ManagerGamesOptions;
-import ir.ac.kntu.admins.managers.ManagerPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 

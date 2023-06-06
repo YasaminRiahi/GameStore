@@ -1,4 +1,4 @@
-package ir.ac.kntu.admins;
+package ir.ac.kntu.admins.commonInGames;
 
 import ir.ac.kntu.admins.developers.DeveloperPage;
 import ir.ac.kntu.admins.managers.ManagerGamePage;

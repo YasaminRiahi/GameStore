@@ -1,4 +1,4 @@
-package ir.ac.kntu.admins;
+package ir.ac.kntu.admins.commonInGames;
 
 public enum EditingGameOptions {
 

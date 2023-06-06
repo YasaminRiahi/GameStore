@@ -1,5 +1,6 @@
-package ir.ac.kntu.admins;
+package ir.ac.kntu.admins.commonInGames;
 
+import ir.ac.kntu.admins.commonInGames.EditingGameOptions;
 import ir.ac.kntu.admins.managers.ManagerGamePage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
@@ -7,7 +8,6 @@ import ir.ac.kntu.store.DataBase;
 import java.util.ArrayList;
 
 import static ir.ac.kntu.helpers.Scan.*;
-import static ir.ac.kntu.helpers.Scan.scanDouble;
 import static ir.ac.kntu.helpers.TextTypings.*;
 
 public class RemoveGame {
