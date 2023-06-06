@@ -66,7 +66,7 @@ public class UserFriend {
         } else if (userFriendOptions == UserFriendOptions.FIND_FRIENDS) {
             findFriends(whichUser, stopwatch1);
         } else {
-            ;
+            requests(whichUser, stopwatch1);
         }
     }
 
@@ -165,6 +165,87 @@ public class UserFriend {
         } else {
             incorrect();
             findFriends(userIndex, stopwatch1);
+        }
+    }
+
+    public void requests(int userIndex, Stopwatch1 stopwatch1) {
+        drawingLines();
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( REQUEST PAGE )******" + ConsoleColors.RESET);
+        String nextChoose = whereToGo();
+        if (nextChoose.equals("1")) {
+            if (dataBase.getRegularUsers().get(userIndex).getRequests().size() != 0) {
+                showRequests(userIndex, stopwatch1);
+            } else {
+                System.out.println("You don't have any request!");
+                friend(userIndex, stopwatch1);
+            }
+        } else if (nextChoose.equals("2")) {
+            friend(userIndex, stopwatch1);
+        } else if (nextChoose.equals("3")) {
+            drawingLines();
+            exit();
+        } else {
+            incorrect();
+            requests(userIndex, stopwatch1);
+        }
+    }
+
+    public void showRequests(int userIndex, Stopwatch1 stopwatch1) {
+        drawingLines();
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( SHOW REQUESTS )******" + ConsoleColors.RESET);
+        String nextChoose = whereToGo();
+        if (nextChoose.equals("1")) {
+            int j = 1;
+            for (int i = 0; i < dataBase.getRegularUsers().get(userIndex).getRequests().size(); i++) {
+                System.out.println(j + ")" + dataBase.getRegularUsers().get(userIndex).getRequests().get(i).getUserName());
+            }
+            answerRequest(userIndex, stopwatch1);
+        } else if (nextChoose.equals("2")) {
+            requests(userIndex, stopwatch1);
+        } else if (nextChoose.equals("3")) {
+            drawingLines();
+            exit();
+        } else {
+            incorrect();
+            showRequests(userIndex, stopwatch1);
+        }
+    }
+
+    public void answerRequest(int userIndex, Stopwatch1 stopwatch1) {
+        System.out.println("Choose one of the users");
+        String whichUser = scanString();
+        if (Integer.parseInt(whichUser) - 1 >= dataBase.getRegularUsers().get(userIndex).getRequests().size() ||
+                Integer.parseInt(whichUser) - 1 < 0) {
+            incorrect();
+            answerRequest(userIndex, stopwatch1);
+        } else {
+            int index = Integer.parseInt(whichUser) - 1;
+            System.out.println("1)Accept this user");
+            System.out.println("2)Decline this user");
+            System.out.println("3)Go to previous page");
+            switch (scanString()) {
+                case "1":
+                    RegularUser friend = new RegularUser();
+                    friend = dataBase.getRegularUsers().get(userIndex).getRequests().get(index);
+                    dataBase.getRegularUsers().get(userIndex).getFriends().add(friend);
+                    System.out.println("User added to your friends successfully!");
+                    dataBase.getRegularUsers().get(userIndex).getRequests().remove(index);
+                    friend.getFriends().add(dataBase.getRegularUsers().get(userIndex));
+                    friend.getRequests().remove(dataBase.getRegularUsers().get(userIndex));
+                    requests(userIndex, stopwatch1);
+                    break;
+                case "2":
+                    dataBase.getRegularUsers().get(userIndex).getRequests().remove(index);
+                    System.out.println("User declined successfully!");
+                    requests(userIndex, stopwatch1);
+                    break;
+                case "3":
+                    showRequests(userIndex, stopwatch1);
+                    break;
+                default:
+                    incorrect();
+                    answerRequest(userIndex, stopwatch1);
+            }
         }
     }
 
