@@ -1,9 +1,5 @@
 package ir.ac.kntu.regularUsers;
 
-import ir.ac.kntu.admins.AdminProfile;
-import ir.ac.kntu.admins.developers.AddDevelopersToGame;
-import ir.ac.kntu.admins.developers.DeveloperGamePage;
-import ir.ac.kntu.admins.developers.DeveloperOptions;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -70,7 +66,8 @@ public class RegularUserPage {
         } else if (userOptions == UserOptions.LIBRARY) {
             ;
         } else {
-            ;
+            UserFriend userFriend = new UserFriend(dataBase);
+            userFriend.friend(whichUser,stopwatch1);
         }
     }
 }
