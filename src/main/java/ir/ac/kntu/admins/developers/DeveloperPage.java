@@ -71,7 +71,8 @@ public class DeveloperPage {
         } else if (developerOptions == DeveloperOptions.SCHEDULED_EVENTS) {
             ;
         } else {
-            ;
+            AddDevelopersToGame addDevelopersToGame = new AddDevelopersToGame(dataBase);
+            addDevelopersToGame.addDevelopers(whichDeveloper);
         }
     }
 }

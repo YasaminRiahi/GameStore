@@ -33,6 +33,8 @@ public class AddAGame {
             } else {
                 dataBase.addGames(scanGames());
                 dataBase.getGames().get(dataBase.getGames().size()-1).addDeveloper(dataBase.getDevelopers().get(whichUser));
+                dataBase.getDevelopers().get(whichUser).getDeveloperGame().
+                        add(dataBase.getGames().get(dataBase.getGames().size()-1));
             }
             toAddGames(whichUser,typeOfAdmin);
         } else if (nextChoose.equals("2")) {

@@ -141,10 +141,13 @@ public class DataBase {
         Admin admin2 = new Admin("BaharOrak", "Bahar821017", "09160340853", "baharorak@gmail.com");
         Admin admin3 = new Admin("RaziehRiahi", "Razii78Riahi", "09167594761", "raziriahi@gmail.com");
         Admin admin4 = new Admin("ShakibaMirzadeh", "Shakiba1352", "09132135049", "ShMirzadeh8962");
+        Admin admin5 =new Admin("Hooman","Hooriahi49","091321899832","hooriahi@gmail.com");
         addManagers(admin1);
         addManagers(admin2);
         addDevelopers(admin3);
         addSellers(admin4);
+        addSellers(admin5);
+        addDevelopers(admin5);
     }
 
     public void addDefaultGames() {
