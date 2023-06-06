@@ -28,4 +28,16 @@ public class Accessories extends Product {
     public void setNumber(int number) {
         this.number = number;
     }
+
+    public ArrayList<Admin> getSellers() {
+        return sellers;
+    }
+
+    public void setSellers(ArrayList<Admin> sellers) {
+        this.sellers = sellers;
+    }
+
+    public void addSellers(Admin seller){
+        this.sellers.add(seller);
+    }
 }

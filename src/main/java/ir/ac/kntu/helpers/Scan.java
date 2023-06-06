@@ -1,6 +1,7 @@
 package ir.ac.kntu.helpers;
 
 
+import ir.ac.kntu.products.accessories.monitorGaming.MonitorGaming;
 import ir.ac.kntu.products.games.Games;
 import ir.ac.kntu.products.games.GamesLevel;
 import ir.ac.kntu.regularUsers.RegularUser;
@@ -138,6 +139,26 @@ public class Scan {
         }
         System.out.println("Game added successfully!");
         return newGame;
+    }
+
+    public static MonitorGaming scanMonitorGaming() {
+        MonitorGaming monitorGaming = new MonitorGaming();
+        System.out.println("Enter monitor gaming name :");
+        monitorGaming.setName(scanString());
+        System.out.println("Add some description :");
+        monitorGaming.setDescription(scanString());
+        System.out.println("Enter monitor gaming cost :");
+        monitorGaming.setCost(scanDouble());
+        System.out.println("Enter number of this monitor gaming :");
+        monitorGaming.setNumber(scanInt());
+        System.out.println("Enter monitor gaming screen size :");
+        monitorGaming.setScreenSize(scanDouble());
+        System.out.println("Enter monitor gaming refresh rate :");
+        monitorGaming.setRefreshRate(scanDouble());
+        System.out.println("Enter monitor gaming response time :");
+        monitorGaming.setResponseTime(scanDouble());
+        System.out.println("Monitor gaming added successfully!");
+        return monitorGaming;
     }
 
     public static void showGamesLevel(Games newGame) {

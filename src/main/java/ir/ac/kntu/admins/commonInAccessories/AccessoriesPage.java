@@ -24,7 +24,7 @@ public class AccessoriesPage {
         System.out.println(ConsoleColors.BLUE_BOLD + "******( ACCESSORIES PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
-            ;
+            showAccessoriesPageOption(whichUser,typeOfAdmin);
         } else if (nextChoose.equals("2")) {
             goBack(whichUser, typeOfAdmin);
         } else if (nextChoose.equals("3")) {
@@ -65,9 +65,10 @@ public class AccessoriesPage {
         showAccessoriesPageOption(whichUser, typeOfAdmin);
     }
 
-    public void goToOptions(int whichManager, String typeOfAdmin) {
+    public void goToOptions(int whichUser, String typeOfAdmin) {
         if (accessoriesPageOptions == AccessoriesPageOptions.ADD_ACCESSORIES) {
-            ;
+            AddAccessories addAccessories = new AddAccessories(dataBase);
+            addAccessories.addAccessories(whichUser,typeOfAdmin);
         } else if (accessoriesPageOptions == AccessoriesPageOptions.CHANGE_ACCESSORIES){
             ;
         } else {

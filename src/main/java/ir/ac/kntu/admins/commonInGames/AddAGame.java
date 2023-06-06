@@ -31,8 +31,7 @@ public class AddAGame {
                 managerGamePage.gamesPage(whichUser);
             } else {
                 dataBase.addGames(scanGames());
-                dataBase.addDevelopers(dataBase.getDevelopers().get(whichUser));
-
+                dataBase.getGames().get(dataBase.getGames().size()-1).addDeveloper(dataBase.getDevelopers().get(whichUser));
             }
         } else if (nextChoose.equals("2")) {
             goBack(whichUser,typeOfAdmin);

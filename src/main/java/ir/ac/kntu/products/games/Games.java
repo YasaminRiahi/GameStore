@@ -125,6 +125,10 @@ public class Games extends Product {
         this.developers = developers;
     }
 
+    public void addDeveloper(Admin developer){
+        this.developers.add(developer);
+    }
+
     public Games() {
         super();
         usersRate = new HashMap<>();
