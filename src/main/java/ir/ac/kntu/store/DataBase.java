@@ -144,7 +144,6 @@ public class DataBase {
         addManagers(admin1);
         addManagers(admin2);
         addDevelopers(admin3);
-        addDevelopers(admin3);
         addSellers(admin4);
     }
 

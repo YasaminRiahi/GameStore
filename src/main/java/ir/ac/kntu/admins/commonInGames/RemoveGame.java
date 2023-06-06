@@ -1,5 +1,6 @@
 package ir.ac.kntu.admins.commonInGames;
 
+import ir.ac.kntu.admins.developers.DeveloperGamePage;
 import ir.ac.kntu.admins.managers.ManagerGamePage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
@@ -148,7 +149,8 @@ public class RemoveGame {
             ManagerGamePage managerGamePage = new ManagerGamePage(dataBase);
             managerGamePage.gamesPage(whichUser);
         } else if (typeOfAdmin.equals("DEVELOPER")) {
-            ;
+            DeveloperGamePage developerGamePage = new DeveloperGamePage(dataBase);
+            developerGamePage.gamesPage(whichUser);
         }
     }
 

@@ -1,14 +1,18 @@
-package ir.ac.kntu.admins.sellers;
+package ir.ac.kntu.admins.developers;
 
-public enum SellerOption {
+public enum DeveloperOptions {
 
     PROFILE("1"),
-    ACCESSORIES("2");
+    GAMES("2"),
+    CHECK_INBOX("3"),
+    SCHEDULED_EVENTS("4"),
+    VIEW_FEEDBACK("5"),
+    ADD_DEVELOPERS("6");
 
 
     private String value;
 
-    SellerOption(String value) {
+    DeveloperOptions(String value) {
         this.value = value;
     }
 

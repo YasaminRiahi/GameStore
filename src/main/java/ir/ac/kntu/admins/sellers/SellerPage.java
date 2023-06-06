@@ -3,9 +3,6 @@ package ir.ac.kntu.admins.sellers;
 import ir.ac.kntu.admins.AdminPage;
 import ir.ac.kntu.admins.AdminProfile;
 import ir.ac.kntu.admins.commonInAccessories.AccessoriesPage;
-import ir.ac.kntu.admins.managers.ManagerGamePage;
-import ir.ac.kntu.admins.managers.ManagerOptions;
-import ir.ac.kntu.admins.managers.ManagerUserPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -16,7 +13,7 @@ public class SellerPage {
 
     private DataBase dataBase;
 
-    private SellerOption sellerOption;
+    private SellerOptions sellerOption;
 
     public SellerPage(DataBase dataBase) {
         this.dataBase = dataBase;
@@ -41,7 +38,7 @@ public class SellerPage {
     }
 
     public void showSellerOptions(int whichSeller) {
-        for (SellerOption sellerOption1 : sellerOption.values()) {
+        for (SellerOptions sellerOption1 : sellerOption.values()) {
             System.out.print(sellerOption1.getValue() + ")");
             System.out.println(sellerOption1);
         }
@@ -49,7 +46,7 @@ public class SellerPage {
     }
 
     public void fromValue(String value, int whichSeller) {
-        for (SellerOption e : SellerOption.values()) {
+        for (SellerOptions e : SellerOptions.values()) {
             if (e.getValue().equals(value)) {
                 this.sellerOption = e;
                 goToOptions(whichSeller);
@@ -60,7 +57,7 @@ public class SellerPage {
     }
 
     public void goToOptions(int whichSeller) {
-        if (sellerOption == SellerOption.PROFILE) {
+        if (sellerOption == SellerOptions.PROFILE) {
             AdminProfile adminProfile = new AdminProfile(dataBase);
             adminProfile.profile(whichSeller, dataBase.getSellers(), "SELLER");
         } else {

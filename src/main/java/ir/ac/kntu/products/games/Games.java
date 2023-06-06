@@ -132,6 +132,7 @@ public class Games extends Product {
     public Games() {
         super();
         usersRate = new HashMap<>();
+        developers = new ArrayList<>();
     }
 
 

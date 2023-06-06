@@ -1,5 +1,6 @@
 package ir.ac.kntu.admins.commonInGames;
 
+import ir.ac.kntu.admins.developers.DeveloperGamePage;
 import ir.ac.kntu.admins.developers.DeveloperPage;
 import ir.ac.kntu.admins.managers.ManagerGamePage;
 import ir.ac.kntu.admins.managers.ManagerPage;
@@ -33,6 +34,7 @@ public class AddAGame {
                 dataBase.addGames(scanGames());
                 dataBase.getGames().get(dataBase.getGames().size()-1).addDeveloper(dataBase.getDevelopers().get(whichUser));
             }
+            toAddGames(whichUser,typeOfAdmin);
         } else if (nextChoose.equals("2")) {
             goBack(whichUser,typeOfAdmin);
         } else if (nextChoose.equals("3")) {
@@ -49,7 +51,8 @@ public class AddAGame {
             ManagerGamePage managerGamePage = new ManagerGamePage(dataBase);
             managerGamePage.gamesPage(whichUser);
         } else if (typeOfAdmin.equals("DEVELOPER")) {
-            ;
+            DeveloperGamePage developerGamePage = new DeveloperGamePage(dataBase);
+            developerGamePage.gamesPage(whichUser);
         }
     }
 }
