@@ -63,7 +63,8 @@ public class RegularUserPage {
 
     public void goToOptions(int whichUser, Stopwatch1 stopwatch1) {
         if (userOptions == UserOptions.PROFILE) {
-            ;
+            UserProfile userProfile = new UserProfile(dataBase);
+            userProfile.profile(whichUser,stopwatch1);
         } else if (userOptions == UserOptions.STORE) {
             ;
         } else if (userOptions == UserOptions.LIBRARY) {
