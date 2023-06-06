@@ -5,6 +5,8 @@ import ir.ac.kntu.products.accessories.gamePad.GamePad;
 import ir.ac.kntu.products.accessories.monitorGaming.MonitorGaming;
 import ir.ac.kntu.store.DataBase;
 
+import java.util.ArrayList;
+
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.Scan.*;
 
@@ -60,7 +62,7 @@ public class UserFriend {
         if (userFriendOptions == UserFriendOptions.LIST_OF_FRIENDS) {
             listOfFriends(whichUser, stopwatch1);
         } else if (userFriendOptions == UserFriendOptions.SEARCH_FRIENDS) {
-            ;
+            searchInFriends(whichUser,stopwatch1);
         } else if (userFriendOptions == UserFriendOptions.FIND_FRIENDS) {
             ;
         } else {
@@ -92,6 +94,58 @@ public class UserFriend {
         } else {
             incorrect();
             listOfFriends(userIndex, stopwatch1);
+        }
+    }
+
+    public void searchInFriends(int userIndex, Stopwatch1 stopwatch1) {
+        drawingLines();
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( SEARCH IN LIST OF FRIENDS )******" + ConsoleColors.RESET);
+        String nextChoose = whereToGo();
+        if (nextChoose.equals("1")) {
+            System.out.println("Enter friend username :");
+            ArrayList<Integer> foundFriends = searchByUsername(scanString(),dataBase.getRegularUsers().get(userIndex).getFriends());
+            if (foundFriends.size() == 0) {
+                System.out.println(ConsoleColors.RED + "No result!Try again" + ConsoleColors.RESET);
+                searchInFriends(userIndex,stopwatch1);
+            } else {
+                showFoundUsers(foundFriends,dataBase.getRegularUsers().get(userIndex).getFriends());
+                String whichGame = scanString();
+                if (Integer.parseInt(whichGame) - 1 >= foundFriends.size() || Integer.parseInt(whichGame) - 1 < 0) {
+                    incorrect();
+                    searchInFriends(userIndex,stopwatch1);
+                } else {
+                    int friendIndex = foundFriends.get(Integer.parseInt(whichGame) - 1);
+                    showFriendProducts(userIndex,friendIndex);
+                    friend(userIndex,stopwatch1);
+                }
+            }
+        } else if (nextChoose.equals("2")) {
+            friend(userIndex,stopwatch1);
+        } else if (nextChoose.equals("3")) {
+            drawingLines();
+            exit();
+        } else {
+            incorrect();
+            searchInFriends(userIndex,stopwatch1);
+        }
+    }
+
+    public ArrayList searchByUsername(String name,ArrayList<RegularUser> list) {
+        ArrayList<Integer> indexes = new ArrayList<Integer>();;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getUserName().toLowerCase().startsWith(name.toLowerCase())) {
+                indexes.add(i);
+            }
+        }
+        return indexes;
+    }
+
+    public void showFoundUsers(ArrayList<Integer> foundUsers,ArrayList<RegularUser> list) {
+        System.out.println("Choose one of these users!");
+        int j = 1;
+        for (int i = 0; i < foundUsers.size(); i++) {
+            System.out.println(+j + ")" + list.get(foundUsers.get(i)).getUserName());
+            j++;
         }
     }
 
