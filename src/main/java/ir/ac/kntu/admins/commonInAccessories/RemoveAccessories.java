@@ -65,7 +65,7 @@ public class RemoveAccessories {
 
     public void removeMonitorGaming(int whichUser, String typeOfAdmin) {
         drawingLines();
-        System.out.println(ConsoleColors.BLUE_BOLD + "******( Change Monitor Gaming )******" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( REMOVE MONITOR GAMING)******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             showMonitorGaming();
@@ -98,7 +98,7 @@ public class RemoveAccessories {
 
     public void removeGamePad(int whichUser, String typeOfAdmin) {
         drawingLines();
-        System.out.println(ConsoleColors.BLUE_BOLD + "******( CHANGE GAME PAD )******" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( REMOVE GAME PAD )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             showGamePads();

@@ -67,7 +67,7 @@ public class ChangeAccessories {
 
     public void changeMonitorGaming(int whichUser, String typeOfAdmin) {
         drawingLines();
-        System.out.println(ConsoleColors.BLUE_BOLD + "******( Change Monitor Gaming )******" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( CHANGE MONITOR GAMING )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             showMonitorGaming();
