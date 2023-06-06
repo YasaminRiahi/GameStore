@@ -1,12 +1,17 @@
 package ir.ac.kntu.helpers;
 
 
+import ir.ac.kntu.products.accessories.gamePad.ConnectionType;
+import ir.ac.kntu.products.accessories.gamePad.DeviceType;
+import ir.ac.kntu.products.accessories.gamePad.GamePad;
 import ir.ac.kntu.products.accessories.monitorGaming.MonitorGaming;
 import ir.ac.kntu.products.games.Games;
 import ir.ac.kntu.products.games.GamesLevel;
 import ir.ac.kntu.regularUsers.RegularUser;
 import ir.ac.kntu.store.DataBase;
+
 import java.util.Scanner;
+
 import static ir.ac.kntu.helpers.TextTypings.getNumberFromOptions;
 
 
@@ -132,7 +137,7 @@ public class Scan {
         showGamesLevel(newGame);
         System.out.println("Is beta version ? true / false");
         String isBeta = scanString();
-        if (isBeta.equals("true")){
+        if (isBeta.equals("true")) {
             newGame.setBeta(true);
         } else {
             newGame.setBeta(false);
@@ -161,18 +166,68 @@ public class Scan {
         return monitorGaming;
     }
 
+    public static GamePad scanGamePad() {
+        GamePad gamePad = new GamePad();
+        System.out.println("Enter game pad name :");
+        gamePad.setName(scanString());
+        System.out.println("Add some description :");
+        gamePad.setDescription(scanString());
+        System.out.println("Enter game pad cost :");
+        gamePad.setCost(scanDouble());
+        System.out.println("Enter number of this game pad :");
+        gamePad.setNumber(scanInt());
+        System.out.println("Choose connection type :");
+        showGamePadConnections(gamePad);
+        System.out.println("Choose device type :");
+        showGamePadDevices(gamePad);
+        System.out.println("Game pad added successfully!");
+        return gamePad;
+    }
+
     public static void showGamesLevel(Games newGame) {
         for (GamesLevel gamesLevel1 : GamesLevel.values()) {
             System.out.print(gamesLevel1.getValue() + ")");
             System.out.println(gamesLevel1);
         }
-        fromValue(getNumberFromOptions(), newGame);
+        fromValueLevel(getNumberFromOptions(), newGame);
     }
 
-    public static void fromValue(String value, Games newGame) {
+    public static void fromValueLevel(String value, Games newGame) {
         for (GamesLevel e : GamesLevel.values()) {
             if (e.getValue().equals(value)) {
                 newGame.setGamesLevel(e);
+            }
+        }
+    }
+
+    public static void showGamePadConnections(GamePad gamePad) {
+        for (ConnectionType connectionType : ConnectionType.values()) {
+            System.out.print(connectionType.getValue() + ")");
+            System.out.println(connectionType);
+        }
+        fromValueConnections(getNumberFromOptions(), gamePad);
+    }
+
+    public static void fromValueConnections(String value, GamePad gamePad) {
+        for (ConnectionType e : ConnectionType.values()) {
+            if (e.getValue().equals(value)) {
+                gamePad.setConnectionType(e);
+            }
+        }
+    }
+
+    public static void showGamePadDevices(GamePad gamePad) {
+        for (DeviceType deviceType : DeviceType.values()) {
+            System.out.print(deviceType.getValue() + ")");
+            System.out.println(deviceType);
+        }
+        fromValueDevices(getNumberFromOptions(), gamePad);
+    }
+
+    public static void fromValueDevices(String value, GamePad gamePad) {
+        for (DeviceType e : DeviceType.values()) {
+            if (e.getValue().equals(value)) {
+                gamePad.setDeviceType(e);
             }
         }
     }

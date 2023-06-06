@@ -4,6 +4,7 @@ import ir.ac.kntu.admins.managers.ManagerPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
+import static ir.ac.kntu.helpers.Scan.scanGamePad;
 import static ir.ac.kntu.helpers.Scan.scanMonitorGaming;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
@@ -23,16 +24,16 @@ public class AddAccessories {
         System.out.println(ConsoleColors.BLUE_BOLD + "******( ADD ACCESSORIES )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
-            showAccessoriesOption(whichUser,typeOfAdmin);
+            showAccessoriesOption(whichUser, typeOfAdmin);
         } else if (nextChoose.equals("2")) {
             AccessoriesPage accessoriesPage = new AccessoriesPage(dataBase);
-            accessoriesPage.goToAccessoriesPage(whichUser,typeOfAdmin);
+            accessoriesPage.goToAccessoriesPage(whichUser, typeOfAdmin);
         } else if (nextChoose.equals("3")) {
             drawingLines();
             exit();
         } else {
             incorrect();
-            addAccessories(whichUser,typeOfAdmin);
+            addAccessories(whichUser, typeOfAdmin);
         }
 
     }
@@ -58,32 +59,53 @@ public class AddAccessories {
 
     public void goToOptions(int whichUser, String typeOfAdmin) {
         if (accessoriesOption == AccessoriesOption.MONITOR_GAMING) {
-            addMonitorGaming(whichUser,typeOfAdmin);
+            addMonitorGaming(whichUser, typeOfAdmin);
         } else {
-            ;
+            addGamePad(whichUser, typeOfAdmin);
         }
     }
 
     public void addMonitorGaming(int whichUser, String typeOfAdmin) {
         drawingLines();
-        System.out.println(ConsoleColors.BLUE_BOLD + "******( ADD MonitorGaming )******" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( ADD Monitor Gaming )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             dataBase.addMonitorGaming(scanMonitorGaming());
-            if (typeOfAdmin.equals("SELLER")){
-                dataBase.getMonitorGaming().get(dataBase.getMonitorGaming().size()-1).addSellers(dataBase.getSellers().
+            if (typeOfAdmin.equals("SELLER")) {
+                dataBase.getMonitorGaming().get(dataBase.getMonitorGaming().size() - 1).addSellers(dataBase.getSellers().
                         get(whichUser));
             }
-            addMonitorGaming(whichUser,typeOfAdmin);
+            addMonitorGaming(whichUser, typeOfAdmin);
         } else if (nextChoose.equals("2")) {
-            AccessoriesPage accessoriesPage = new AccessoriesPage(dataBase);
-            accessoriesPage.goToAccessoriesPage(whichUser,typeOfAdmin);
+            addAccessories(whichUser, typeOfAdmin);
         } else if (nextChoose.equals("3")) {
             drawingLines();
             exit();
         } else {
             incorrect();
-            addAccessories(whichUser,typeOfAdmin);
+            addAccessories(whichUser, typeOfAdmin);
+        }
+    }
+
+    public void addGamePad(int whichUser, String typeOfAdmin) {
+        drawingLines();
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( ADD Game Pad )******" + ConsoleColors.RESET);
+        String nextChoose = whereToGo();
+        if (nextChoose.equals("1")) {
+            dataBase.addGamePad(scanGamePad());
+            if (typeOfAdmin.equals("SELLER")) {
+                dataBase.getGamePads().get(dataBase.getGamePads().size() - 1).addSellers(dataBase.getSellers().
+                        get(whichUser));
+            }
+            addGamePad(whichUser, typeOfAdmin);
+        } else if (nextChoose.equals("2")) {
+            addAccessories(whichUser, typeOfAdmin);
+        } else if (nextChoose.equals("3")) {
+            drawingLines();
+            exit();
+        } else {
+            incorrect();
+            addAccessories(whichUser, typeOfAdmin);
         }
     }
 }
