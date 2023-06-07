@@ -66,7 +66,8 @@ public class UserStore {
         } else if (userStoreOptions == UserStoreOptions.SHOW_PRODUCTS_BY_FILTERING_COST) {
             ;
         } else if (userStoreOptions == UserStoreOptions.SHOW_BEST_SELLING_PRODUCTS) {
-            ;
+            BestSellingProducts bestSellingProducts = new BestSellingProducts(dataBase);
+            bestSellingProducts.bestSelling(whichUser,stopwatch1);
         } else {
             ;
         }

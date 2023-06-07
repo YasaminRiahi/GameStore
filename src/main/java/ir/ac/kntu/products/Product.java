@@ -1,8 +1,10 @@
 package ir.ac.kntu.products;
 
+import ir.ac.kntu.regularUsers.RegularUser;
+
 import java.util.ArrayList;
 
-public class Product {
+public class Product implements Comparable<Product>{
 
     private String name;
 
@@ -76,5 +78,14 @@ public class Product {
         this.community = new ArrayList<>();
         this.feedback = new ArrayList<>();
         this.numberOfSoldItems = 0;
+    }
+
+    @Override
+    public int compareTo(Product other) {
+        int scoreComparisonResult = other.numberOfSoldItems - numberOfSoldItems;
+        if (scoreComparisonResult != 0) {
+            return scoreComparisonResult;
+        }
+        return other.getName().compareTo(this.getName());
     }
 }
