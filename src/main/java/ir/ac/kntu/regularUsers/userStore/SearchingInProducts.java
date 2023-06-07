@@ -6,16 +6,16 @@ import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
 
-import static ir.ac.kntu.helpers.Scan.scanString;
+import static ir.ac.kntu.helpers.Scanner.scanString;
 import static ir.ac.kntu.helpers.TextTypings.*;
 
-public class SearchInProducts {
+public class SearchingInProducts {
 
     private DataBase dataBase;
 
     private ProductSearchOptions productSearchOptions;
 
-    public SearchInProducts(DataBase dataBase) {
+    public SearchingInProducts(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 

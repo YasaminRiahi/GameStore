@@ -4,8 +4,8 @@ import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.store.DataBase;
 
-import static ir.ac.kntu.helpers.Scan.scanString;
-import static ir.ac.kntu.helpers.Scan.scanUsers;
+import static ir.ac.kntu.helpers.Scanner.scanString;
+import static ir.ac.kntu.helpers.Scanner.scanUsers;
 import static ir.ac.kntu.helpers.TextTypings.*;
 
 public class SigningInOrSigningUp {

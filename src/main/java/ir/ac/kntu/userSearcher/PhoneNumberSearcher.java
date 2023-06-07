@@ -1,14 +1,14 @@
 package ir.ac.kntu.userSearcher;
 
-import ir.ac.kntu.admins.managers.ChangeUserInformation;
+import ir.ac.kntu.admins.managers.ChangingUserInformation;
 import ir.ac.kntu.admins.managers.ManagerUserPage;
-import ir.ac.kntu.admins.managers.ViewUserInformation;
+import ir.ac.kntu.admins.managers.ViewingUserInformation;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
 
-import static ir.ac.kntu.helpers.Scan.scanString;
+import static ir.ac.kntu.helpers.Scanner.scanString;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
@@ -60,12 +60,12 @@ public class PhoneNumberSearcher {
                 searchPhoneNumbers(goBack, whichUser);
             } else {
                 if (goBack.equals("VIEW_USER_INFORMATION")) {
-                    ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
+                    ViewingUserInformation viewUserInformation = new ViewingUserInformation(dataBase);
                     viewUserInformation.showUser(foundUsers.get(Integer.parseInt(whichOne) - 1));
                     ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
                     managerUserPage.usersPage(whichUser);
                 } else if (goBack.equals("CHANGE_A_USER_INFORMATION")) {
-                    ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
+                    ChangingUserInformation changeUserInformation = new ChangingUserInformation(dataBase);
                     changeUserInformation.toChange(foundUsers.get(Integer.parseInt(whichOne) - 1), whichUser);
                     ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
                     managerUserPage.usersPage(whichUser);

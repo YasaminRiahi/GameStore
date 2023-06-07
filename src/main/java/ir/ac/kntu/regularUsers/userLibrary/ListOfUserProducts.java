@@ -8,8 +8,8 @@ import ir.ac.kntu.regularUsers.Stopwatch1;
 import ir.ac.kntu.regularUsers.userStore.UserStore;
 import ir.ac.kntu.store.DataBase;
 
-import static ir.ac.kntu.helpers.Scan.scanDouble;
-import static ir.ac.kntu.helpers.Scan.scanString;
+import static ir.ac.kntu.helpers.Scanner.scanDouble;
+import static ir.ac.kntu.helpers.Scanner.scanString;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 

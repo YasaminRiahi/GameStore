@@ -3,17 +3,17 @@ package ir.ac.kntu.admins.commonInAccessories;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
-import static ir.ac.kntu.helpers.Scan.*;
+import static ir.ac.kntu.helpers.Scanner.*;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
-public class ChangeAccessories {
+public class ChangingAccessories {
 
     private DataBase dataBase;
 
     private AccessoriesOption accessoriesOption;
 
-    public ChangeAccessories(DataBase dataBase) {
+    public ChangingAccessories(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 

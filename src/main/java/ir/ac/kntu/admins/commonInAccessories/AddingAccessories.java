@@ -3,18 +3,18 @@ package ir.ac.kntu.admins.commonInAccessories;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
-import static ir.ac.kntu.helpers.Scan.scanGamePad;
-import static ir.ac.kntu.helpers.Scan.scanMonitorGaming;
+import static ir.ac.kntu.helpers.Scanner.scanGamePad;
+import static ir.ac.kntu.helpers.Scanner.scanMonitorGaming;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
-public class AddAccessories {
+public class AddingAccessories {
 
     private DataBase dataBase;
 
     private AccessoriesOption accessoriesOption;
 
-    public AddAccessories(DataBase dataBase) {
+    public AddingAccessories(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 

@@ -57,19 +57,19 @@ public class ManagerUserPage {
 
     public void goToOptions(int whichManager) {
         if (managerUsersOption == ManagerUsersOptions.VIEW_USER_INFORMATION) {
-            ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
+            ViewingUserInformation viewUserInformation = new ViewingUserInformation(dataBase);
             viewUserInformation.viewUsersInformation(whichManager);
         } else if (managerUsersOption == ManagerUsersOptions.ADD_A_USER) {
-            AddAUser addAUser = new AddAUser(dataBase);
+            AddingAUser addAUser = new AddingAUser(dataBase);
             addAUser.toAddUsers(whichManager);
         } else if (managerUsersOption == ManagerUsersOptions.CHANGE_A_USER_INFORMATION) {
-            ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
+            ChangingUserInformation changeUserInformation = new ChangingUserInformation(dataBase);
             changeUserInformation.changeAUserInformation(whichManager);
         } else if (managerUsersOption == ManagerUsersOptions.REMOVE_A_USER) {
-            RemoveAUser removeAUser = new RemoveAUser(dataBase);
+            RemovingAUser removeAUser = new RemovingAUser(dataBase);
             removeAUser.toRemoveUsers(whichManager);
         } else {
-            ViewTheMostActiveUsers viewTheMostActiveUsers = new ViewTheMostActiveUsers(dataBase);
+            ViewingTheMostActiveUsers viewTheMostActiveUsers = new ViewingTheMostActiveUsers(dataBase);
             viewTheMostActiveUsers.showActiveUsers(whichManager);
         }
     }

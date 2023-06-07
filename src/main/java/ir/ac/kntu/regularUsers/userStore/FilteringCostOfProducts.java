@@ -6,7 +6,7 @@ import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
 
-import static ir.ac.kntu.helpers.Scan.scanDouble;
+import static ir.ac.kntu.helpers.Scanner.scanDouble;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
@@ -62,19 +62,19 @@ public class FilteringCostOfProducts {
 
     public void goToOptions(int whichUser, Stopwatch1 stopwatch1) {
         if (productSearchOptions == ProductSearchOptions.SEARCH_IN_ALL_PRODUCTS) {
-            filteringAllProducts(whichUser, stopwatch1, new SearchInProducts(dataBase));
+            filteringAllProducts(whichUser, stopwatch1, new SearchingInProducts(dataBase));
         } else if (productSearchOptions == ProductSearchOptions.SEARCH_IN_ALL_ACCESSORIES) {
-            filteringAllAccessories(whichUser, stopwatch1, new SearchInProducts(dataBase));
+            filteringAllAccessories(whichUser, stopwatch1, new SearchingInProducts(dataBase));
         } else if (productSearchOptions == ProductSearchOptions.SEARCH_IN_GAMES) {
-            filteringGames(whichUser, stopwatch1, new SearchInProducts(dataBase));
+            filteringGames(whichUser, stopwatch1, new SearchingInProducts(dataBase));
         } else if (productSearchOptions == ProductSearchOptions.SEARCH_IN_GAMING_MONITORS) {
-            filteringMonitors(whichUser, stopwatch1, new SearchInProducts(dataBase));
+            filteringMonitors(whichUser, stopwatch1, new SearchingInProducts(dataBase));
         } else {
-            filteringPads(whichUser, stopwatch1, new SearchInProducts(dataBase));
+            filteringPads(whichUser, stopwatch1, new SearchingInProducts(dataBase));
         }
     }
 
-    public void filteringAllProducts(int whichUser, Stopwatch1 stopwatch1, SearchInProducts searchInProducts) {
+    public void filteringAllProducts(int whichUser, Stopwatch1 stopwatch1, SearchingInProducts searchInProducts) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( FILTERING All PRODUCTS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
@@ -101,7 +101,7 @@ public class FilteringCostOfProducts {
         }
     }
 
-    public void filteringAllAccessories(int whichUser, Stopwatch1 stopwatch1, SearchInProducts searchInProducts) {
+    public void filteringAllAccessories(int whichUser, Stopwatch1 stopwatch1, SearchingInProducts searchInProducts) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( Filtering All ACCESSORIES )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
@@ -128,7 +128,7 @@ public class FilteringCostOfProducts {
         }
     }
 
-    public void filteringGames(int whichUser, Stopwatch1 stopwatch1, SearchInProducts searchInProducts) {
+    public void filteringGames(int whichUser, Stopwatch1 stopwatch1, SearchingInProducts searchInProducts) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( FILTERING GAMES )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
@@ -155,7 +155,7 @@ public class FilteringCostOfProducts {
         }
     }
 
-    public void filteringMonitors(int whichUser, Stopwatch1 stopwatch1, SearchInProducts searchInProducts) {
+    public void filteringMonitors(int whichUser, Stopwatch1 stopwatch1, SearchingInProducts searchInProducts) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( FILTERING GAMING MONITORS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
@@ -182,7 +182,7 @@ public class FilteringCostOfProducts {
         }
     }
 
-    public void filteringPads(int whichUser, Stopwatch1 stopwatch1, SearchInProducts searchInProducts) {
+    public void filteringPads(int whichUser, Stopwatch1 stopwatch1, SearchingInProducts searchInProducts) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( FILTERING GAME PADS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();

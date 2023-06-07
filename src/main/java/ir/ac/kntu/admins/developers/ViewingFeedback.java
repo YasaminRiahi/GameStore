@@ -6,11 +6,11 @@ import ir.ac.kntu.store.DataBase;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
-public class ViewFeedback {
+public class ViewingFeedback {
 
     private DataBase dataBase;
 
-    public ViewFeedback(DataBase dataBase) {
+    public ViewingFeedback(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 

@@ -10,15 +10,13 @@ import ir.ac.kntu.products.games.GamesLevel;
 import ir.ac.kntu.regularUsers.RegularUser;
 import ir.ac.kntu.store.DataBase;
 
-import java.util.Scanner;
-
 import static ir.ac.kntu.helpers.TextTypings.getNumberFromOptions;
 
 
-public class Scan {
+public class Scanner {
 
     public static String scanString() {
-        Scanner scanner = new Scanner(System.in);
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
         return scanner.nextLine();
     }
 

@@ -68,13 +68,13 @@ public class AccessoriesPage {
 
     public void goToOptions(int whichUser, String typeOfAdmin) {
         if (accessoriesPageOptions == AccessoriesPageOptions.ADD_ACCESSORIES) {
-            AddAccessories addAccessories = new AddAccessories(dataBase);
+            AddingAccessories addAccessories = new AddingAccessories(dataBase);
             addAccessories.addAccessories(whichUser, typeOfAdmin);
         } else if (accessoriesPageOptions == AccessoriesPageOptions.CHANGE_ACCESSORIES) {
-            ChangeAccessories changeAccessories = new ChangeAccessories(dataBase);
+            ChangingAccessories changeAccessories = new ChangingAccessories(dataBase);
             changeAccessories.changeAccessories(whichUser, typeOfAdmin);
         } else {
-            RemoveAccessories removeAccessories = new RemoveAccessories(dataBase);
+            RemovingAccessories removeAccessories = new RemovingAccessories(dataBase);
             removeAccessories.removeAccessories(whichUser, typeOfAdmin);
         }
     }

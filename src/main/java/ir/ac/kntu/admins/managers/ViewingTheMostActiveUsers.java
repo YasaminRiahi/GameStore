@@ -4,33 +4,35 @@ import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.regularUsers.RegularUser;
 import ir.ac.kntu.store.DataBase;
 
-import static ir.ac.kntu.helpers.Scan.scanUsers;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
-public class AddAUser {
+public class ViewingTheMostActiveUsers {
 
     private DataBase dataBase;
 
-    public AddAUser(DataBase dataBase) {
+
+    public ViewingTheMostActiveUsers(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 
-    public void toAddUsers(int whichManager) {
+    public void showActiveUsers(int whichUser) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( ADD USERS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         switch (nextChoose) {
             case "1" -> {
-                RegularUser newUser = scanUsers(dataBase);
-                dataBase.getRegularUsers().add(newUser);
-                System.out.println("User added successfully!");
+                dataBase.getRegularUsers().sort(RegularUser::compareTo);
+                for (int i = 0; i < dataBase.getRegularUsers().size(); i++) {
+                    System.out.println(i + 1 + ")" + dataBase.getRegularUsers().get(i).getUserName() + " (score : " +
+                            dataBase.getRegularUsers().get(i).getScore() + ") ");
+                }
                 ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
-                managerUserPage.usersPage(whichManager);
+                managerUserPage.usersPage(whichUser);
             }
             case "2" -> {
                 ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
-                managerUserPage.usersPage(whichManager);
+                managerUserPage.usersPage(whichUser);
             }
             case "3" -> {
                 drawingLines();
@@ -38,7 +40,7 @@ public class AddAUser {
             }
             default -> {
                 incorrect();
-                toAddUsers(whichManager);
+                showActiveUsers(whichUser);
             }
         }
     }

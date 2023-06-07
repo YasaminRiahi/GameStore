@@ -4,15 +4,15 @@ import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 import ir.ac.kntu.userSearcher.UserSearcher;
 
-import static ir.ac.kntu.helpers.Scan.*;
+import static ir.ac.kntu.helpers.Scanner.*;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
-public class ChangeUserInformation {
+public class ChangingUserInformation {
 
     private DataBase dataBase;
 
-    public ChangeUserInformation(DataBase dataBase) {
+    public ChangingUserInformation(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 

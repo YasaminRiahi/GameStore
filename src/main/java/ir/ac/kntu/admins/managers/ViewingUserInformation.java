@@ -8,11 +8,11 @@ import ir.ac.kntu.userSearcher.UserSearcher;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
 
-public class ViewUserInformation {
+public class ViewingUserInformation {
 
     private DataBase dataBase;
 
-    public ViewUserInformation(DataBase dataBase) {
+    public ViewingUserInformation(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 

@@ -6,15 +6,15 @@ import ir.ac.kntu.store.DataBase;
 
 import java.util.Collections;
 
-import static ir.ac.kntu.helpers.Scan.scanString;
+import static ir.ac.kntu.helpers.Scanner.scanString;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
-public class CheckInbox {
+public class CheckingInbox {
 
     private DataBase dataBase;
 
-    public CheckInbox(DataBase dataBase) {
+    public CheckingInbox(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 

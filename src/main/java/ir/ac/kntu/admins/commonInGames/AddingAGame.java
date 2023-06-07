@@ -5,15 +5,15 @@ import ir.ac.kntu.admins.managers.ManagerGamePage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
-import static ir.ac.kntu.helpers.Scan.scanGames;
+import static ir.ac.kntu.helpers.Scanner.scanGames;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
-public class AddAGame {
+public class AddingAGame {
 
     private DataBase dataBase;
 
-    public AddAGame(DataBase dataBase) {
+    public AddingAGame(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 

@@ -1,8 +1,8 @@
 package ir.ac.kntu.admins.managers;
 
-import ir.ac.kntu.admins.commonInGames.AddAGame;
-import ir.ac.kntu.admins.commonInGames.ChangeGameInformation;
-import ir.ac.kntu.admins.commonInGames.RemoveGame;
+import ir.ac.kntu.admins.commonInGames.AddingAGame;
+import ir.ac.kntu.admins.commonInGames.ChangingGameInformation;
+import ir.ac.kntu.admins.commonInGames.RemovingGame;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -61,13 +61,13 @@ public class ManagerGamePage {
 
     public void goToOptions(int whichManager) {
         if (managerGamesOption == ManagerGamesOptions.ADD_A_GAME) {
-            AddAGame addAGame = new AddAGame(dataBase);
+            AddingAGame addAGame = new AddingAGame(dataBase);
             addAGame.toAddGames(whichManager,"MANAGER");
         } else if (managerGamesOption == ManagerGamesOptions.CHANGE_GAMES_INFORMATION) {
-            ChangeGameInformation changeGameInformation = new ChangeGameInformation(dataBase);
+            ChangingGameInformation changeGameInformation = new ChangingGameInformation(dataBase);
             changeGameInformation.changeGamesInformation(whichManager,"MANAGER");
         } else if (managerGamesOption == ManagerGamesOptions.REMOVE_A_GAME) {
-            RemoveGame removeGame =  new RemoveGame(dataBase);
+            RemovingGame removeGame =  new RemovingGame(dataBase);
             removeGame.removeGames(whichManager,"MANAGER");
         } else {
             GameCrashReport gameCrashReport = new GameCrashReport(dataBase);

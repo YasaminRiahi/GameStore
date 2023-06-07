@@ -4,7 +4,7 @@ import ir.ac.kntu.helpers.ConsoleColors;
 
 import java.util.ArrayList;
 
-import static ir.ac.kntu.helpers.Scan.*;
+import static ir.ac.kntu.helpers.Scanner.*;
 import static ir.ac.kntu.helpers.TextTypings.drawingLines;
 import static ir.ac.kntu.helpers.TextTypings.noAccount;
 

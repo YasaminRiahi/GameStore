@@ -1,12 +1,12 @@
 package ir.ac.kntu.regularUsers.profile;
 
-import ir.ac.kntu.admins.managers.ViewUserInformation;
+import ir.ac.kntu.admins.managers.ViewingUserInformation;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.regularUsers.RegularUserPage;
 import ir.ac.kntu.regularUsers.Stopwatch1;
 import ir.ac.kntu.store.DataBase;
 
-import static ir.ac.kntu.helpers.Scan.*;
+import static ir.ac.kntu.helpers.Scanner.*;
 import static ir.ac.kntu.helpers.TextTypings.*;
 
 public class UserProfile {
@@ -23,7 +23,7 @@ public class UserProfile {
         String nextChoose = whereToGo();
         switch (nextChoose) {
             case "1" -> {
-                ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
+                ViewingUserInformation viewUserInformation = new ViewingUserInformation(dataBase);
                 viewUserInformation.showUser(userIndex);
                 System.out.println("Do you want to change your information?");
                 System.out.println("1)Yes");

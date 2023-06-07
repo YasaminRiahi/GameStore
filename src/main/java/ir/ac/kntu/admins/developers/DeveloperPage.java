@@ -66,16 +66,16 @@ public class DeveloperPage {
             DeveloperGamePage developerGamePage = new DeveloperGamePage(dataBase);
             developerGamePage.gamesPage(whichDeveloper);
         } else if (developerOptions == DeveloperOptions.CHECK_INBOX) {
-            CheckInbox checkInbox = new CheckInbox(dataBase);
+            CheckingInbox checkInbox = new CheckingInbox(dataBase);
             checkInbox.checkInbox(whichDeveloper);
         } else if (developerOptions == DeveloperOptions.SCHEDULED_EVENTS) {
             ScheduledEvents scheduledEvents = new ScheduledEvents(dataBase);
             scheduledEvents.events(whichDeveloper);
         } else if (developerOptions == DeveloperOptions.VIEW_FEEDBACK) {
-            ViewFeedback viewFeedback = new ViewFeedback(dataBase);
+            ViewingFeedback viewFeedback = new ViewingFeedback(dataBase);
             viewFeedback.viewFeedback(whichDeveloper);
         } else {
-            AddDevelopersToGame addDevelopersToGame = new AddDevelopersToGame(dataBase);
+            AddingDevelopersToGame addDevelopersToGame = new AddingDevelopersToGame(dataBase);
             addDevelopersToGame.addDevelopers(whichDeveloper);
         }
     }

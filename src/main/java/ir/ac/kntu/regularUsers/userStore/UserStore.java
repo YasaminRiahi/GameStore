@@ -64,7 +64,7 @@ public class UserStore {
             ListOfProducts listOfProducts = new ListOfProducts(dataBase);
             listOfProducts.listOfProducts(whichUser, stopwatch1);
         } else if (userStoreOptions == UserStoreOptions.SEARCH_IN_PRODUCTS) {
-            SearchInProducts searchInProducts = new SearchInProducts(dataBase);
+            SearchingInProducts searchInProducts = new SearchingInProducts(dataBase);
             searchInProducts.searchInProducts(whichUser,stopwatch1);
         } else if (userStoreOptions == UserStoreOptions.SHOW_PRODUCTS_BY_FILTERING_COST) {
             FilteringCostOfProducts filteringCostOfProducts = new FilteringCostOfProducts(dataBase);

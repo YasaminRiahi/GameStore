@@ -1,8 +1,8 @@
 package ir.ac.kntu.userSearcher;
 
-import ir.ac.kntu.admins.managers.ChangeUserInformation;
-import ir.ac.kntu.admins.managers.RemoveAUser;
-import ir.ac.kntu.admins.managers.ViewUserInformation;
+import ir.ac.kntu.admins.managers.ChangingUserInformation;
+import ir.ac.kntu.admins.managers.RemovingAUser;
+import ir.ac.kntu.admins.managers.ViewingUserInformation;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.TextTypings.getNumberFromOptions;
@@ -30,13 +30,13 @@ public class UserSearcher {
             case "1" -> showSearchOptions(goBack, whichUser);
             case "2" -> {
                 if (goBack.equals("VIEW_USER_INFORMATION")) {
-                    ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
+                    ViewingUserInformation viewUserInformation = new ViewingUserInformation(dataBase);
                     viewUserInformation.viewUsersInformation(whichUser);
                 } else if (goBack.equals("CHANGE_A_USER_INFORMATION")) {
-                    ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
+                    ChangingUserInformation changeUserInformation = new ChangingUserInformation(dataBase);
                     changeUserInformation.changeAUserInformation(whichUser);
                 } else {
-                    RemoveAUser removeAUser = new RemoveAUser(dataBase);
+                    RemovingAUser removeAUser = new RemovingAUser(dataBase);
                     removeAUser.toRemoveUsers(whichUser);
                 }
             }

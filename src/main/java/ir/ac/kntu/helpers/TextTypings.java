@@ -4,7 +4,7 @@ import ir.ac.kntu.admins.Admin;
 
 import java.util.ArrayList;
 
-import static ir.ac.kntu.helpers.Scan.*;
+import static ir.ac.kntu.helpers.Scanner.*;
 
 public class TextTypings {
 

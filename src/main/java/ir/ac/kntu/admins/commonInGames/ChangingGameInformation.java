@@ -7,16 +7,16 @@ import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
 
-import static ir.ac.kntu.helpers.Scan.*;
+import static ir.ac.kntu.helpers.Scanner.*;
 import static ir.ac.kntu.helpers.TextTypings.*;
 
-public class ChangeGameInformation {
+public class ChangingGameInformation {
 
     private DataBase dataBase;
 
     private EditingGamesOptions editingGameOptions;
 
-    public ChangeGameInformation(DataBase dataBase) {
+    public ChangingGameInformation(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 
