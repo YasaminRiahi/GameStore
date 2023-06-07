@@ -7,6 +7,7 @@ import ir.ac.kntu.products.games.Games;
 import ir.ac.kntu.regularUsers.Stopwatch1;
 import ir.ac.kntu.regularUsers.userStore.UserStore;
 import ir.ac.kntu.store.DataBase;
+
 import static ir.ac.kntu.helpers.Scan.scanDouble;
 import static ir.ac.kntu.helpers.Scan.scanString;
 import static ir.ac.kntu.helpers.TextTypings.*;
@@ -47,8 +48,7 @@ public class ListOfUserProducts {
                 int length = 5 + dataBase.getRegularUsers().get(whichUser).getMyGames().get(i).getName().length();
                 drawForGames(length);
                 System.out.print(ConsoleColors.BLUE + "*" + ConsoleColors.RESET);
-                System.out.print(+j + ")");
-                System.out.print(dataBase.getRegularUsers().get(whichUser).getMyGames().get(i).getName());
+                System.out.print(+j + ")"+dataBase.getRegularUsers().get(whichUser).getMyGames().get(i).getName());
                 System.out.println(ConsoleColors.BLUE + "*" + ConsoleColors.RESET);
                 drawForGames(length);
                 j++;
@@ -62,8 +62,7 @@ public class ListOfUserProducts {
                 int length = 5 + monitorGaming[i].getName().length();
                 drawForAccessories(length);
                 System.out.print(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
-                System.out.print(+j + ")");
-                System.out.print(monitorGaming[i].getName());
+                System.out.print(+j + ")"+monitorGaming[i].getName());
                 System.out.println(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
                 drawForGames(length);
                 j++;
@@ -77,8 +76,7 @@ public class ListOfUserProducts {
                 int length = 5 + gamePads[i].getName().length();
                 drawForAccessories(length);
                 System.out.print(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
-                System.out.print(+j + ")");
-                System.out.print(gamePads[i].getName());
+                System.out.print(+j + ")"+gamePads[i].getName());
                 System.out.println(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
                 drawForGames(length);
                 j++;
@@ -98,9 +96,9 @@ public class ListOfUserProducts {
                 System.out.println("Which game?");
                 int whichGame = Integer.parseInt(scanString()) - 1;
                 userLibrary.showGameByDetails(whichUser, whichGame);
-                if (dataBase.getRegularUsers().get(whichUser).getMyGames().get(whichGame).isBeta()){
-                    addFeedbackOrRate(whichUser,whichGame,stopwatch1);
-                }else {
+                if (dataBase.getRegularUsers().get(whichUser).getMyGames().get(whichGame).isBeta()) {
+                    addFeedbackOrRate(whichUser, whichGame, stopwatch1);
+                } else {
                     addCommunityOrRate(whichUser, whichGame, stopwatch1);
                 }
                 listOfProducts(whichUser, stopwatch1);
@@ -110,8 +108,8 @@ public class ListOfUserProducts {
                 int whichMonitor = Integer.parseInt(scanString()) - 1;
                 userLibrary.showMonitorGamingByDetails(whichMonitor, dataBase.getRegularUsers().get(whichUser).
                         getMonitorGaming().keySet().toArray(new MonitorGaming[0]));
-                addCommunityOrReportMonitor(whichUser,dataBase.getRegularUsers().get(whichUser).
-                        getMonitorGaming().keySet().toArray(new MonitorGaming[0])[whichMonitor],stopwatch1);
+                addCommunityOrReportMonitor(whichUser, dataBase.getRegularUsers().get(whichUser).
+                        getMonitorGaming().keySet().toArray(new MonitorGaming[0])[whichMonitor], stopwatch1);
                 listOfProducts(whichUser, stopwatch1);
                 break;
             case "3":
@@ -119,8 +117,8 @@ public class ListOfUserProducts {
                 int whichPad = Integer.parseInt(scanString()) - 1;
                 userLibrary.showGamePadByDetails(whichPad, dataBase.getRegularUsers().get(whichUser).getGamePad().
                         keySet().toArray(new GamePad[0]));
-                addCommunityOrReportPad(whichUser,dataBase.getRegularUsers().get(whichUser).getGamePad().
-                        keySet().toArray(new GamePad[0])[whichPad] , stopwatch1);
+                addCommunityOrReportPad(whichUser, dataBase.getRegularUsers().get(whichUser).getGamePad().
+                        keySet().toArray(new GamePad[0])[whichPad], stopwatch1);
                 listOfProducts(whichUser, stopwatch1);
                 break;
             default:
@@ -150,7 +148,7 @@ public class ListOfUserProducts {
     public void addFeedbackOrRate(int whichUser, int whichGame, Stopwatch1 stopwatch1) {
         switch (feedbackOrRate()) {
             case "1":
-                gameFeedback(whichUser,whichGame,stopwatch1);
+                gameFeedback(whichUser, whichGame, stopwatch1);
                 break;
             case "2":
                 rateGame(whichUser, whichGame, stopwatch1);
@@ -202,7 +200,7 @@ public class ListOfUserProducts {
             exit();
         } else {
             incorrect();
-            gameFeedback(userIndex,gameIndex,stopwatch1);
+            gameFeedback(userIndex, gameIndex, stopwatch1);
         }
     }
 
@@ -228,13 +226,13 @@ public class ListOfUserProducts {
         }
     }
 
-    public void addCommunityOrReportPad(int whichUser , GamePad gamePad , Stopwatch1 stopwatch1){
+    public void addCommunityOrReportPad(int whichUser, GamePad gamePad, Stopwatch1 stopwatch1) {
         switch (communityOrReport()) {
             case "1":
-                gamePadCommunity(whichUser,gamePad,stopwatch1);
+                gamePadCommunity(whichUser, gamePad, stopwatch1);
                 break;
             case "2":
-                gamePadReport(whichUser,gamePad,stopwatch1);
+                gamePadReport(whichUser, gamePad, stopwatch1);
                 break;
             case "3":
                 listOfProducts(whichUser, stopwatch1);
@@ -245,7 +243,7 @@ public class ListOfUserProducts {
         }
     }
 
-    public void gamePadCommunity(int whichUser , GamePad gamePad , Stopwatch1 stopwatch1){
+    public void gamePadCommunity(int whichUser, GamePad gamePad, Stopwatch1 stopwatch1) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( GAME PAD COMMUNITY )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
@@ -261,11 +259,11 @@ public class ListOfUserProducts {
             exit();
         } else {
             incorrect();
-            gamePadCommunity(whichUser,gamePad,stopwatch1);
+            gamePadCommunity(whichUser, gamePad, stopwatch1);
         }
     }
 
-    public void gamePadReport(int whichUser , GamePad gamePad , Stopwatch1 stopwatch1){
+    public void gamePadReport(int whichUser, GamePad gamePad, Stopwatch1 stopwatch1) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( GAME PAD REPORT )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
@@ -281,17 +279,17 @@ public class ListOfUserProducts {
             exit();
         } else {
             incorrect();
-            gamePadReport(whichUser,gamePad,stopwatch1);
+            gamePadReport(whichUser, gamePad, stopwatch1);
         }
     }
 
-    public void addCommunityOrReportMonitor(int whichUser , MonitorGaming monitorGaming , Stopwatch1 stopwatch1){
+    public void addCommunityOrReportMonitor(int whichUser, MonitorGaming monitorGaming, Stopwatch1 stopwatch1) {
         switch (communityOrReport()) {
             case "1":
-                monitorCommunity(whichUser,monitorGaming,stopwatch1);
+                monitorCommunity(whichUser, monitorGaming, stopwatch1);
                 break;
             case "2":
-                monitorReport(whichUser,monitorGaming,stopwatch1);
+                monitorReport(whichUser, monitorGaming, stopwatch1);
                 break;
             case "3":
                 listOfProducts(whichUser, stopwatch1);
@@ -302,7 +300,7 @@ public class ListOfUserProducts {
         }
     }
 
-    public void monitorCommunity(int whichUser , MonitorGaming monitorGaming , Stopwatch1 stopwatch1){
+    public void monitorCommunity(int whichUser, MonitorGaming monitorGaming, Stopwatch1 stopwatch1) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( MONITOR GAMING COMMUNITY )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
@@ -318,11 +316,11 @@ public class ListOfUserProducts {
             exit();
         } else {
             incorrect();
-            monitorCommunity(whichUser,monitorGaming,stopwatch1);
+            monitorCommunity(whichUser, monitorGaming, stopwatch1);
         }
     }
 
-    public void monitorReport(int whichUser , MonitorGaming monitorGaming , Stopwatch1 stopwatch1){
+    public void monitorReport(int whichUser, MonitorGaming monitorGaming, Stopwatch1 stopwatch1) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( MONITOR GAMING REPORT )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
@@ -338,7 +336,7 @@ public class ListOfUserProducts {
             exit();
         } else {
             incorrect();
-            monitorReport(whichUser,monitorGaming,stopwatch1);
+            monitorReport(whichUser, monitorGaming, stopwatch1);
         }
     }
 }

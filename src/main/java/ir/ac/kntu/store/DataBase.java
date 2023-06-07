@@ -157,8 +157,9 @@ public class DataBase {
         Games game1 = new Games("Legend Of Zelda",description1,60,"Action-Adventure",9.1,
                 768,GamesLevel.LEVEL_3);
         game1.setCommunity(community1);
-        game1.setBeta(false);
+        game1.setBeta(true);
         game1.addDeveloper(developers.get(0));
+        developers.get(0).getDeveloperGame().add(game1);
         games.add(game1);
         String description2 = "Hawk's back - with new technology, new pros and new tricks! THPS2, the legend rides on!…";
         ArrayList<String> community2 = new ArrayList<>();
@@ -168,6 +169,7 @@ public class DataBase {
         game2.setCommunity(community2);
         game2.setBeta(true);
         game2.addDeveloper(developers.get(1));
+        developers.get(1).getDeveloperGame().add(game2);
         games.add(game2);
         String description3 = "Step into the Dark... As Carrington Institute's most promising new Agent..";;
         ArrayList<String> community3 = new ArrayList<>();
@@ -177,6 +179,7 @@ public class DataBase {
         game3.setCommunity(community3);
         game3.setBeta(false);
         game3.addDeveloper(developers.get(1));
+        developers.get(1).getDeveloperGame().add(game3);
         games.add(game3);
     }
 
@@ -221,6 +224,7 @@ public class DataBase {
         monitorGaming1.setRefreshRate(240);
         monitorGaming1.setResponseTime(0.03);
         monitorGaming1.setNumber(100);
+        monitorGaming1.addSellers(sellers.get(0));
         ArrayList<String> community1 = new ArrayList<>();
         community1.add("It's really cool!");
         monitorGaming1.setCommunity(community1);
@@ -234,6 +238,7 @@ public class DataBase {
         monitorGaming2.setRefreshRate(120);
         monitorGaming2.setResponseTime(0.1);
         monitorGaming2.setNumber(101);
+        monitorGaming2.addSellers(sellers.get(1));
         ArrayList<String> community2 = new ArrayList<>();
         community2.add("Awesome but expensive");
         monitorGaming2.setCommunity(community2);

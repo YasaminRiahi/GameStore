@@ -68,8 +68,9 @@ public class DeveloperPage {
             ;
         } else if (developerOptions == DeveloperOptions.SCHEDULED_EVENTS) {
             ;
-        } else if (developerOptions == DeveloperOptions.SCHEDULED_EVENTS) {
-            ;
+        } else if (developerOptions == DeveloperOptions.VIEW_FEEDBACK) {
+            ViewFeedback viewFeedback = new ViewFeedback(dataBase);
+            viewFeedback.viewFeedback(whichDeveloper);
         } else {
             AddDevelopersToGame addDevelopersToGame = new AddDevelopersToGame(dataBase);
             addDevelopersToGame.addDevelopers(whichDeveloper);

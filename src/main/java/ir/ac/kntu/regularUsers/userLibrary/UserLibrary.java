@@ -25,7 +25,7 @@ public class UserLibrary {
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             ListOfUserProducts listOfUserProducts = new ListOfUserProducts(dataBase);
-            listOfUserProducts.listOfProducts(userIndex,stopwatch1);
+            listOfUserProducts.listOfProducts(userIndex, stopwatch1);
         } else if (nextChoose.equals("2")) {
             RegularUserPage regularUserPage = new RegularUserPage(dataBase);
             regularUserPage.userAccess(userIndex, stopwatch1);
@@ -39,7 +39,7 @@ public class UserLibrary {
     }
 
 
-    public void showGameByDetails(int userIndex , int gameIndex) {
+    public void showGameByDetails(int userIndex, int gameIndex) {
         System.out.println("1)Name : " + dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex).getName());
         System.out.println("2)Genre : " + dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex).getGenre());
         System.out.println("3)Description : " + dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex).getDescription());
@@ -47,7 +47,7 @@ public class UserLibrary {
         System.out.println("5)Number of rates : " + dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex).getNumberOfRates());
         System.out.println("6)Cost :" + dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex).getCost());
         System.out.println("7)Level :" + dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex).getGamesLevel());
-        if (!dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex).isBeta()){
+        if (!dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex).isBeta()) {
             System.out.println("7)Community :");
             int j = 1;
             for (int i = 0; i < dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex).getCommunity().size(); i++) {
@@ -59,7 +59,7 @@ public class UserLibrary {
 
     public void showMonitorGamingByDetails(int index, MonitorGaming[] monitorGaming) {
         System.out.println("1)Name : " + monitorGaming[index].getName());
-        System.out.println("2)Description : " +monitorGaming[index].getDescription());
+        System.out.println("2)Description : " + monitorGaming[index].getDescription());
         System.out.println("3)Cost : " + monitorGaming[index].getCost());
         System.out.println("4)Number : " + monitorGaming[index].getNumber());
         System.out.println("5)Screen size : " + monitorGaming[index].getScreenSize());
@@ -73,7 +73,7 @@ public class UserLibrary {
         }
     }
 
-    public void showGamePadByDetails(int index , GamePad[] gamePads) {
+    public void showGamePadByDetails(int index, GamePad[] gamePads) {
         System.out.println("1)Name : " + gamePads[index].getName());
         System.out.println("2)Description : " + gamePads[index].getDescription());
         System.out.println("3)Cost : " + gamePads[index].getCost());
