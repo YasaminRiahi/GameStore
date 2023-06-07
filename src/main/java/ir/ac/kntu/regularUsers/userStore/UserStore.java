@@ -70,7 +70,8 @@ public class UserStore {
             BestSellingProducts bestSellingProducts = new BestSellingProducts(dataBase);
             bestSellingProducts.bestSelling(whichUser,stopwatch1);
         } else {
-            ;
+            CostOfAList costOfAList = new CostOfAList(dataBase);
+            costOfAList.listCost(whichUser,stopwatch1);
         }
     }
 

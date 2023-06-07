@@ -37,7 +37,6 @@ public class ListOfProducts {
     }
 
     public void showProducts() {
-        System.out.println("Choose one of these products:");
         System.out.println(ConsoleColors.PURPLE_BOLD + "GAMES:" + ConsoleColors.RESET);
         int j = 1;
         for (int i = 0; i < dataBase.getGames().size(); i++) {

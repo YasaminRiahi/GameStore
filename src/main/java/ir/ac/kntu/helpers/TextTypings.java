@@ -113,4 +113,11 @@ public class TextTypings {
         }
         System.out.println();
     }
+
+    public static String continueOrNo(){
+        System.out.println("Do you want to choose anything else?");
+        System.out.println("1)Yes");
+        System.out.println("2)No");
+        return scanString();
+    }
 }
