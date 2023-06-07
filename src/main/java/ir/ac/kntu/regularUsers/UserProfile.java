@@ -68,7 +68,6 @@ public class UserProfile {
                 dataBase.getRegularUsers().get(userIndex).setEmail(scanString());
                 break;
             case 5:
-                toChangeWhat("wallet balance");
                 chargeWallet(userIndex);
                 break;
             default:
@@ -89,7 +88,6 @@ public class UserProfile {
     }
 
     public void chargeWallet(int userIndex) {
-        drawingLines();
         double currentBalance = dataBase.getRegularUsers().get(userIndex).getWallet();
         System.out.println("Current wallet balance : " + currentBalance);
         System.out.println("How much do you want to charge your wallet?");

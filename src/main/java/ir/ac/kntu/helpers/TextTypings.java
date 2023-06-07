@@ -60,7 +60,7 @@ public class TextTypings {
     }
 
     public static String wantBuy() {
-        System.out.println("You don't have this product ,Do you want to buy it?");
+        System.out.println("Do you want to buy this product?");
         System.out.println("1)Yes");
         System.out.println("2)No");
         return scanString();

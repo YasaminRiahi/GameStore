@@ -106,6 +106,19 @@ public class UserStore {
         return 0;
     }
 
+    public int checkHavingMonitor(int userIndex, int monitorIndex) {
+        if (dataBase.getRegularUsers().get(userIndex).getMonitorGaming().containsKey(dataBase.getMonitorGaming().get(monitorIndex))) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public int checkHavingPad(int userIndex, int padIndex) {
+        if (dataBase.getRegularUsers().get(userIndex).getGamePad().containsKey(dataBase.getGamePads().get(padIndex))) {
+            return 1;
+        }
+        return 0;
+    }
 
     public void buyGame(int userIndex, int gameIndex) {
         if (wantBuy().equals("1")) {
@@ -118,6 +131,7 @@ public class UserStore {
                 } else {
                     dataBase.getRegularUsers().get(userIndex).getMyGames().add(dataBase.getGames().get(gameIndex));
                     dataBase.getRegularUsers().get(userIndex).setWallet(currentBalance - cost);
+                    dataBase.getGames().get(userIndex).setNumberOfSoldItems(dataBase.getGames().get(userIndex).getNumberOfSoldItems() + 1);
                     System.out.println("Game bought successfully!");
                 }
             } else {
@@ -150,6 +164,28 @@ public class UserStore {
             return 20;
         }
         return 30;
+    }
+
+    public void buyMonitor(int userIndex, int index) {
+        if (wantBuy().equals("1")) {
+            double currentBalance = dataBase.getRegularUsers().get(userIndex).getWallet();
+            double cost = dataBase.getMonitorGaming().get(index).getCost();
+            if (currentBalance < cost) {
+                System.out.println(ConsoleColors.RED + "Your balance is not enough!" + ConsoleColors.RESET);
+            } else {
+                if (checkHavingMonitor(userIndex, index) == 1) {
+                    int number = dataBase.getRegularUsers().get(userIndex).getMonitorGaming().
+                            get(dataBase.getMonitorGaming().get(index)).intValue();
+                    dataBase.getRegularUsers().get(userIndex).getMonitorGaming().
+                            put(dataBase.getMonitorGaming().get(index), number + 1);
+                } else {
+                    dataBase.getRegularUsers().get(userIndex).getMonitorGaming().
+                            put(dataBase.getMonitorGaming().get(index), 1);
+                }
+                dataBase.getMonitorGaming().get(index).setNumberOfSoldItems(dataBase.getMonitorGaming().get(index).getNumberOfSoldItems() + 1);
+                System.out.println("Gaming monitor bought successfully!");
+            }
+        }
     }
 //    public void searchInGames(Store store, int userIndex) {
 //        drawingLines();

@@ -95,7 +95,7 @@ public class ListOfProducts {
                 System.out.println("Which monitor gaming?");
                 int whichMonitor = Integer.parseInt(scanString()) - 1;
                 userStore.showMonitorGamingByDetails(whichMonitor);
-
+                userStore.buyMonitor(whichUser,whichMonitor);
                 listOfProducts(whichUser,stopwatch1);
                 break;
             case "3":
