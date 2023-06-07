@@ -84,19 +84,31 @@ public class ListOfProducts {
         switch (whichProduct) {
             case "1":
                 System.out.println("Which game?");
-                userStore.showGameByDetails(Integer.parseInt(scanString()) - 1);
+                int whichGame = Integer.parseInt(scanString()) - 1;
+                userStore.showGameByDetails(whichGame);
+                if (userStore.checkHavingGame(whichUser, whichGame) == 0) {
+                    userStore.buyGame(whichUser, whichGame);
+                }
+                listOfProducts(whichUser,stopwatch1);
                 break;
             case "2":
                 System.out.println("Which monitor gaming?");
-                userStore.showMonitorGamingByDetails(Integer.parseInt(scanString()) - 1);
+                int whichMonitor = Integer.parseInt(scanString()) - 1;
+                userStore.showMonitorGamingByDetails(whichMonitor);
+
+                listOfProducts(whichUser,stopwatch1);
                 break;
             case "3":
                 System.out.println("Which game pad?");
-                userStore.showGamePadByDetails(Integer.parseInt(scanString()) - 1);
+                int whichPad = Integer.parseInt(scanString()) - 1;
+                userStore.showGamePadByDetails(whichPad);
+
+                listOfProducts(whichUser,stopwatch1);
                 break;
             default:
                 incorrect();
                 showProducts();
+                break;
         }
     }
 

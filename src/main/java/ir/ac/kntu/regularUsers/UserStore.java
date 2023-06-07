@@ -1,13 +1,11 @@
 package ir.ac.kntu.regularUsers;
 
 import ir.ac.kntu.helpers.ConsoleColors;
-import ir.ac.kntu.products.accessories.gamePad.DeviceType;
+import ir.ac.kntu.products.games.Games;
+import ir.ac.kntu.products.games.GamesLevel;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
-
-import java.util.ArrayList;
-
 import static ir.ac.kntu.helpers.TextTypings.drawingLines;
 
 public class UserStore {
@@ -101,6 +99,58 @@ public class UserStore {
         System.out.println("6)Device type :" + dataBase.getGamePads().get(index).getDeviceType());
     }
 
+    public int checkHavingGame(int userIndex, int gameIndex) {
+        if (dataBase.getRegularUsers().get(userIndex).getMyGames().contains(dataBase.getGames().get(gameIndex))) {
+            return 1;
+        }
+        return 0;
+    }
+
+
+    public void buyGame(int userIndex, int gameIndex) {
+        if (wantBuy().equals("1")) {
+            double currentBalance = dataBase.getRegularUsers().get(userIndex).getWallet();
+            double cost = dataBase.getGames().get(gameIndex).getCost();
+            if (canBuy(userIndex, gameIndex) == 0) {
+                cost = cost - ((discount(gameIndex) / 100) * cost);
+                if (currentBalance < cost) {
+                    System.out.println(ConsoleColors.RED + "Your balance is not enough!" + ConsoleColors.RESET);
+                } else {
+                    dataBase.getRegularUsers().get(userIndex).getMyGames().add(dataBase.getGames().get(gameIndex));
+                    dataBase.getRegularUsers().get(userIndex).setWallet(currentBalance - cost);
+                    System.out.println("Game bought successfully!");
+                }
+            } else {
+                System.out.println(ConsoleColors.RED + "You can't buy this game because of game level and your score!"
+                        + ConsoleColors.RESET);
+            }
+        }
+    }
+
+    public int canBuy(int userIndex, int gameIndex) {
+        Games game = dataBase.getGames().get(gameIndex);
+        RegularUser user = dataBase.getRegularUsers().get(userIndex);
+        if (game.getGamesLevel() == GamesLevel.LEVEL_2 && user.getScore() < 20) {
+            return 1;
+        } else if (game.getGamesLevel() == GamesLevel.LEVEL_3 && user.getScore() < 50) {
+            return 1;
+        } else if (game.getGamesLevel() == GamesLevel.LEVEL_4 && user.getScore() < 100) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public int discount(int gameIndex) {
+        Games game = dataBase.getGames().get(gameIndex);
+        if (game.getGamesLevel() == GamesLevel.LEVEL_1) {
+            return 0;
+        } else if (game.getGamesLevel() == GamesLevel.LEVEL_2) {
+            return 10;
+        } else if (game.getGamesLevel() == GamesLevel.LEVEL_3) {
+            return 20;
+        }
+        return 30;
+    }
 //    public void searchInGames(Store store, int userIndex) {
 //        drawingLines();
 //        System.out.println(ConsoleColors.BLUE_BOLD + "******( SEARCH IN GAMES )******" + ConsoleColors.RESET);
@@ -200,62 +250,6 @@ public class UserStore {
 //
 
 //
-//    public void showGameByDetails(Store store, int gameIndex, int userIndex, int goBack) {
-//        drawingLines();
-//        System.out.println(ConsoleColors.BLUE_BOLD + "******( SHOW GAMES BY DETAILS )******" + ConsoleColors.RESET);
-//        String nextChoose = whereToGo();
-//        if (nextChoose.equals("1")) {
-//            System.out.println("1)Name : " + store.getGames().get(gameIndex).getName());
-//            System.out.println("2)Genre : " + store.getGames().get(gameIndex).getGenre());
-//            System.out.println("3)Description : " + store.getGames().get(gameIndex).getDescription());
-//            System.out.println("4)Rating : " + store.getGames().get(gameIndex).getRating());
-//            System.out.println("5)Number of rates : " + store.getGames().get(gameIndex).getNumberOfRates());
-//            System.out.println("6)Cost :" + store.getGames().get(gameIndex).getCost());
-//            System.out.println("7)Community :");
-//            int j = 1;
-//            for (int i = 0; i < store.getGames().get(gameIndex).getCommunity().size(); i++) {
-//                System.out.println("    " + j + ")" + store.getGames().get(gameIndex).getCommunity().get(i));
-//                j++;
-//            }
-//        } else if (nextChoose.equals("2")) {
-//            if (goBack == 1) {
-//                listOfGames(store, userIndex);
-//            } else if (goBack == 2) {
-//                searchInGames(store, userIndex);
-//            } else {
-//                showGamesByFilteringCost(store, userIndex);
-//            }
-//        } else if (nextChoose.equals("3")) {
-//            System.out.println("Finish!");
-//            drawingLines();
-//            exit();
-//        } else {
-//            incorrect();
-//            showGameByDetails(store, gameIndex, userIndex, goBack);
-//        }
-//    }
-//
-//    public int checkHaving(Store store, int userIndex, int gameIndex) {
-//        for (int i = 0; i < store.getUsers().get(userIndex).getMyGames().size(); i++) {
-//            if (store.getUsers().get(userIndex).getMyGames().get(i) == store.getGames().get(gameIndex)) {
-//                return 1;
-//            }
-//        }
-//        return 0;
-//    }
-//
-//    public void buyGame(Store store, int userIndex, int gameIndex) {
-//        double currentBalance = store.getUsers().get(userIndex).getWallet();
-//        double cost = store.getGames().get(gameIndex).getCost();
-//        if (currentBalance < cost) {
-//            System.out.println(ConsoleColors.RED + "Your balance is not enough!" + ConsoleColors.RESET);
-//        } else {
-//            store.getUsers().get(userIndex).getMyGames().add(store.getGames().get(gameIndex));
-//            store.getUsers().get(userIndex).setWallet(currentBalance - cost);
-//            System.out.println("Game bought successfully!");
-//        }
-//        userStore(store, userIndex);
-//    }
 //
 //    public ArrayList searchGameByName(String name, Store store) {
 //        ArrayList<Integer> indexes = new ArrayList<Integer>();
