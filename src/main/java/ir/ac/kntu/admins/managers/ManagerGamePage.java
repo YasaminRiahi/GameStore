@@ -67,7 +67,8 @@ public class ManagerGamePage {
             RemoveGame removeGame =  new RemoveGame(dataBase);
             removeGame.removeGames(whichManager,"MANAGER");
         } else {
-            ;
+            GameCrashReport gameCrashReport = new GameCrashReport(dataBase);
+            gameCrashReport.gameReport(whichManager);
         }
     }
 }

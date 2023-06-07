@@ -1,11 +1,12 @@
 package ir.ac.kntu.admins;
 
 import ir.ac.kntu.products.games.Games;
+import ir.ac.kntu.regularUsers.RegularUser;
 import ir.ac.kntu.store.User;
 
 import java.util.ArrayList;
 
-public class Admin extends User {
+public class Admin extends User implements Comparable<Admin>{
 
     private TypeOfAdmins typeOfAdmins;
 
@@ -63,5 +64,14 @@ public class Admin extends User {
 
     public void setReportMassage(ArrayList<String> reportMassage) {
         this.reportMassage = reportMassage;
+    }
+
+    @Override
+    public int compareTo(Admin other) {
+        int scoreComparisonResult = other.getScheduledEvents().size() - scheduledEvents.size();
+        if (scoreComparisonResult != 0) {
+            return scoreComparisonResult;
+        }
+        return other.getUserName().compareTo(this.getUserName());
     }
 }

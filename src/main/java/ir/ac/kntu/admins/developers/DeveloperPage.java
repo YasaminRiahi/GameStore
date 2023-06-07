@@ -65,9 +65,11 @@ public class DeveloperPage {
             DeveloperGamePage developerGamePage = new DeveloperGamePage(dataBase);
             developerGamePage.gamesPage(whichDeveloper);
         } else if (developerOptions == DeveloperOptions.CHECK_INBOX) {
-            ;
+            CheckInbox checkInbox = new CheckInbox(dataBase);
+            checkInbox.checkInbox(whichDeveloper);
         } else if (developerOptions == DeveloperOptions.SCHEDULED_EVENTS) {
-            ;
+            ScheduledEvents scheduledEvents = new ScheduledEvents(dataBase);
+            scheduledEvents.events(whichDeveloper);
         } else if (developerOptions == DeveloperOptions.VIEW_FEEDBACK) {
             ViewFeedback viewFeedback = new ViewFeedback(dataBase);
             viewFeedback.viewFeedback(whichDeveloper);

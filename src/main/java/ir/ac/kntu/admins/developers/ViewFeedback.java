@@ -37,11 +37,12 @@ public class ViewFeedback {
     public void showFeedBack(int whichDeveloper) {
         if (dataBase.getDevelopers().get(whichDeveloper).getDeveloperGame().size() != 0) {
             for (int i = 0; i < dataBase.getDevelopers().get(whichDeveloper).getDeveloperGame().size(); i++) {
-                System.out.println(ConsoleColors.BLUE + "Game name : " + dataBase.getDevelopers().get(whichDeveloper).
-                        getDeveloperGame().get(i).getName() + ConsoleColors.RESET);
-                System.out.println("Game feedback : ");
+                System.out.println("Game name : " + dataBase.getDevelopers().get(whichDeveloper).
+                        getDeveloperGame().get(i).getName());
+                System.out.println("    Game feedback : ");
                 for (int j = 0; j < dataBase.getDevelopers().get(whichDeveloper).getDeveloperGame().get(i).getFeedback().size(); j++) {
-                    System.out.println(dataBase.getDevelopers().get(whichDeveloper).getDeveloperGame().get(i).getFeedback().get(j));
+                    System.out.println("    " + dataBase.getDevelopers().get(whichDeveloper).getDeveloperGame()
+                            .get(i).getFeedback().get(j));
                 }
             }
         }
