@@ -3,6 +3,7 @@ package ir.ac.kntu.regularUsers;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.regularUsers.profile.UserProfile;
 import ir.ac.kntu.regularUsers.userFriend.UserFriend;
+import ir.ac.kntu.regularUsers.userLibrary.UserLibrary;
 import ir.ac.kntu.regularUsers.userStore.UserStore;
 import ir.ac.kntu.store.DataBase;
 
@@ -68,7 +69,8 @@ public class RegularUserPage {
             UserStore userStore = new UserStore(dataBase);
             userStore.userStore(whichUser,stopwatch1);
         } else if (userOptions == UserOptions.LIBRARY) {
-            ;
+            UserLibrary userLibrary = new UserLibrary(dataBase);
+            userLibrary.userLibrary(whichUser,stopwatch1);
         } else {
             UserFriend userFriend = new UserFriend(dataBase);
             userFriend.friend(whichUser,stopwatch1);
