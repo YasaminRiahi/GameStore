@@ -88,15 +88,29 @@ public class TextTypings {
         return scanString();
     }
 
-    public static void notDeveloper(){
+    public static void notDeveloper() {
         System.out.println(ConsoleColors.RED + "You're not the developer of this game!" + ConsoleColors.RESET);
     }
 
-    public static void notSeller(){
+    public static void notSeller() {
         System.out.println(ConsoleColors.RED + "You're not the seller of this accessory!" + ConsoleColors.RESET);
     }
 
     public static void exit() {
         System.exit(0);
+    }
+
+    public static void drawForGames(int length) {
+        for (int i = 0; i < length; i++) {
+            System.out.print(ConsoleColors.BLUE + "*" + ConsoleColors.RESET);
+        }
+        System.out.println();
+    }
+
+    public static void drawForAccessories(int length) {
+        for (int i = 0; i < length; i++) {
+            System.out.print(ConsoleColors.BLUE + "-" + ConsoleColors.RESET);
+        }
+        System.out.println();
     }
 }

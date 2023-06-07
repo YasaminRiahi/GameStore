@@ -1,6 +1,7 @@
 package ir.ac.kntu.regularUsers;
 
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.products.accessories.gamePad.DeviceType;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
@@ -58,7 +59,8 @@ public class UserStore {
 
     public void goToOptions(int whichUser, Stopwatch1 stopwatch1) {
         if (userStoreOptions == UserStoreOptions.LIST_OF_PRODUCTS) {
-            ;
+            ListOfProducts listOfProducts = new ListOfProducts(dataBase);
+            listOfProducts.listOfProducts(whichUser, stopwatch1);
         } else if (userStoreOptions == UserStoreOptions.SEARCH_IN_PRODUCTS) {
             ;
         } else if (userStoreOptions == UserStoreOptions.SHOW_PRODUCTS_BY_FILTERING_COST) {
@@ -70,55 +72,35 @@ public class UserStore {
         }
     }
 
-//    public String whichOption() {
-//        System.out.println("Choose what you want?");
-//        System.out.println("1)List of games");
-//        System.out.println("2)Search in games");
-//        System.out.println("3)Show games by filtering cost");
-//        return scanString();
-//    }
-//
-//    public void listOfGames(Store store, int userIndex) {
-//        drawingLines();
-//        System.out.println(ConsoleColors.BLUE_BOLD + "******( LIST OF GAMES )******" + ConsoleColors.RESET);
-//        String nextChoose = whereToGo();
-//        if (nextChoose.equals("1")) {
-//            showGames(store);
-//            String whichGame = scanString();
-//            if (Integer.parseInt(whichGame) - 1 >= store.getGames().size() || Integer.parseInt(whichGame) - 1 < 0) {
-//                incorrect();
-//                listOfGames(store, userIndex);
-//            } else {
-//                int gameIndex = Integer.parseInt(whichGame) - 1;
-//                showGameByDetails(store, gameIndex, userIndex, 1);
-//                if (checkHaving(store, userIndex, gameIndex) == 0) {
-//                    switch (wantBuy()) {
-//                        case "1":
-//                            buyGame(store, userIndex, gameIndex);
-//                            break;
-//                        case "2":
-//                            listOfGames(store, userIndex);
-//                            break;
-//                        default:
-//                            incorrect();
-//                            listOfGames(store, userIndex);
-//                    }
-//                } else {
-//                    userStore(store, userIndex);
-//                }
-//            }
-//        } else if (nextChoose.equals("2")) {
-//            userStore(store, userIndex);
-//        } else if (nextChoose.equals("3")) {
-//            System.out.println("Finish!");
-//            drawingLines();
-//            exit();
-//        } else {
-//            incorrect();
-//            listOfGames(store, userIndex);
-//        }
-//    }
-//
+    public void showGameByDetails(int gameIndex) {
+        System.out.println("1)Name : " + dataBase.getGames().get(gameIndex).getName());
+        System.out.println("2)Genre : " + dataBase.getGames().get(gameIndex).getGenre());
+        System.out.println("3)Description : " + dataBase.getGames().get(gameIndex).getDescription());
+        System.out.println("4)Rating : " + dataBase.getGames().get(gameIndex).getRating());
+        System.out.println("5)Number of rates : " + dataBase.getGames().get(gameIndex).getNumberOfRates());
+        System.out.println("6)Cost :" + dataBase.getGames().get(gameIndex).getCost());
+        System.out.println("7)Level :" + dataBase.getGames().get(gameIndex).getGamesLevel());
+    }
+
+    public void showMonitorGamingByDetails(int index) {
+        System.out.println("1)Name : " + dataBase.getMonitorGaming().get(index).getName());
+        System.out.println("2)Description : " + dataBase.getMonitorGaming().get(index).getDescription());
+        System.out.println("3)Cost : " + dataBase.getMonitorGaming().get(index).getCost());
+        System.out.println("4)Number : " + dataBase.getMonitorGaming().get(index).getNumber());
+        System.out.println("5)Screen size : " + dataBase.getMonitorGaming().get(index).getScreenSize());
+        System.out.println("6)Refresh rate :" + dataBase.getMonitorGaming().get(index).getRefreshRate());
+        System.out.println("7)Response time :" + dataBase.getMonitorGaming().get(index).getResponseTime());
+    }
+
+    public void showGamePadByDetails(int index) {
+        System.out.println("1)Name : " + dataBase.getGamePads().get(index).getName());
+        System.out.println("2)Description : " + dataBase.getGamePads().get(index).getDescription());
+        System.out.println("3)Cost : " + dataBase.getGamePads().get(index).getCost());
+        System.out.println("4)Number : " + dataBase.getGamePads().get(index).getNumber());
+        System.out.println("5)Connection type : " + dataBase.getGamePads().get(index).getConnectionType());
+        System.out.println("6)Device type :" + dataBase.getGamePads().get(index).getDeviceType());
+    }
+
 //    public void searchInGames(Store store, int userIndex) {
 //        drawingLines();
 //        System.out.println(ConsoleColors.BLUE_BOLD + "******( SEARCH IN GAMES )******" + ConsoleColors.RESET);
@@ -216,15 +198,7 @@ public class UserStore {
 //        }
 //    }
 //
-//    public void showGames(Store store) {
-//        System.out.println("Choose a game:");
-//        int j = 1;
-//        for (int i = 0; i < store.getGames().size(); i++) {
-//            System.out.print(+j + ")");
-//            System.out.println(store.getGames().get(i).getName());
-//            j++;
-//        }
-//    }
+
 //
 //    public void showGameByDetails(Store store, int gameIndex, int userIndex, int goBack) {
 //        drawingLines();
