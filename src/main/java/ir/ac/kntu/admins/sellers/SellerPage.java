@@ -63,9 +63,12 @@ public class SellerPage {
         if (sellerOption == SellerOptions.PROFILE) {
             AdminProfile adminProfile = new AdminProfile(dataBase);
             adminProfile.profile(whichSeller, dataBase.getSellers(), "SELLER");
-        } else {
+        } else if (sellerOption == SellerOptions.ACCESSORIES){
             AccessoriesPage accessoriesPage = new AccessoriesPage(dataBase);
             accessoriesPage.goToAccessoriesPage(whichSeller, "SELLER");
+        } else {
+            ViewingReportMassages viewingReportMassages = new ViewingReportMassages(dataBase);
+            viewingReportMassages.viewReportMassage(whichSeller);
         }
     }
 }

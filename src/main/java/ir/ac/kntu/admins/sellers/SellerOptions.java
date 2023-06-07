@@ -3,7 +3,8 @@ package ir.ac.kntu.admins.sellers;
 public enum SellerOptions {
 
     PROFILE("1"),
-    ACCESSORIES("2");
+    ACCESSORIES("2"),
+    VIEW_REPORT_MASSAGE("3");
 
     private String value;
 

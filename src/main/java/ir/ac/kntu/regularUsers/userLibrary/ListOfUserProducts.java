@@ -272,7 +272,7 @@ public class ListOfUserProducts {
         switch (nextChoose) {
             case "1" -> {
                 System.out.println("Enter your report massage:");
-                gamePad.getSellers().get(0).getReportMassage().add(scanString());
+                gamePad.getSellers().get(0).getReportMassage().add(gamePad.getName() + "  ->  "+scanString());
                 System.out.println("Your massage sent successfully!");
                 listOfProducts(whichUser, stopwatch1);
             }
@@ -330,7 +330,7 @@ public class ListOfUserProducts {
         switch (nextChoose) {
             case "1" -> {
                 System.out.println("Enter your report massage:");
-                monitorGaming.getSellers().get(0).getReportMassage().add(scanString());
+                monitorGaming.getSellers().get(0).getReportMassage().add(monitorGaming.getName() +"  ->  "+ scanString());
                 System.out.println("Your massage sent successfully!");
                 listOfProducts(whichUser, stopwatch1);
             }
