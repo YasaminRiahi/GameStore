@@ -272,13 +272,18 @@ public class DataBase {
         user3Games.add(games.get(1));
         regularUsers.get(2).setMyGames(user3Games);
         HashMap<GamePad, Integer> user1GamePad = new HashMap<>();
-        user1GamePad.put(gamePads.get(0), 1);
+        user1GamePad.put(gamePads.get(0), 2);
         gamePads.get(0).setNumber(gamePads.get(0).getNumber() - 1);
         regularUsers.get(0).setGamePad(user1GamePad);
         HashMap<MonitorGaming, Integer> user3MonitorGaming = new HashMap<>();
-        user3MonitorGaming.put(monitorGaming.get(1), 1);
+        user3MonitorGaming.put(monitorGaming.get(1), 3);
         monitorGaming.get(1).setNumber(monitorGaming.get(1).getNumber() - 1);
         regularUsers.get(2).setMonitorGaming(user3MonitorGaming);
+        games.get(0).setNumberOfSoldItems(2);
+        games.get(1).setNumberOfSoldItems(2);
+        games.get(2).setNumberOfSoldItems(1);
+        gamePads.get(0).setNumberOfSoldItems(2);
+        monitorGaming.get(1).setNumberOfSoldItems(3);
     }
 
     public void addDefaultFriends() {

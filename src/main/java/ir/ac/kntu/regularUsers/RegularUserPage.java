@@ -62,7 +62,8 @@ public class RegularUserPage {
             UserProfile userProfile = new UserProfile(dataBase);
             userProfile.profile(whichUser,stopwatch1);
         } else if (userOptions == UserOptions.STORE) {
-            ;
+            UserStore userStore = new UserStore(dataBase);
+            userStore.userStore(whichUser,stopwatch1);
         } else if (userOptions == UserOptions.LIBRARY) {
             ;
         } else {

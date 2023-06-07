@@ -14,6 +14,8 @@ public class Product {
 
     private ArrayList<String> feedback;
 
+    private int numberOfSoldItems;
+
     public String getName() {
         return name;
     }
@@ -54,6 +56,14 @@ public class Product {
         this.feedback = feedback;
     }
 
+    public int getNumberOfSoldItems() {
+        return numberOfSoldItems;
+    }
+
+    public void setNumberOfSoldItems(int numberOfSoldItems) {
+        this.numberOfSoldItems = numberOfSoldItems;
+    }
+
     public Product() {
         this.community = new ArrayList<>();
         this.feedback = new ArrayList<>();
@@ -65,5 +75,6 @@ public class Product {
         this.cost = cost;
         this.community = new ArrayList<>();
         this.feedback = new ArrayList<>();
+        this.numberOfSoldItems = 0;
     }
 }
