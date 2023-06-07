@@ -89,21 +89,21 @@ public class ListOfProducts {
                 if (userStore.checkHavingGame(whichUser, whichGame) == 0) {
                     userStore.buyGame(whichUser, whichGame);
                 }
-                listOfProducts(whichUser,stopwatch1);
+                listOfProducts(whichUser, stopwatch1);
                 break;
             case "2":
                 System.out.println("Which monitor gaming?");
                 int whichMonitor = Integer.parseInt(scanString()) - 1;
                 userStore.showMonitorGamingByDetails(whichMonitor);
-                userStore.buyMonitor(whichUser,whichMonitor);
-                listOfProducts(whichUser,stopwatch1);
+                userStore.buyMonitor(whichUser, whichMonitor);
+                listOfProducts(whichUser, stopwatch1);
                 break;
             case "3":
                 System.out.println("Which game pad?");
                 int whichPad = Integer.parseInt(scanString()) - 1;
                 userStore.showGamePadByDetails(whichPad);
-
-                listOfProducts(whichUser,stopwatch1);
+                userStore.buyPad(whichUser, whichPad);
+                listOfProducts(whichUser, stopwatch1);
                 break;
             default:
                 incorrect();
@@ -111,6 +111,4 @@ public class ListOfProducts {
                 break;
         }
     }
-
-
 }

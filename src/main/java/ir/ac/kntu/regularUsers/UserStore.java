@@ -187,6 +187,28 @@ public class UserStore {
             }
         }
     }
+
+    public void buyPad(int userIndex, int index) {
+        if (wantBuy().equals("1")) {
+            double currentBalance = dataBase.getRegularUsers().get(userIndex).getWallet();
+            double cost = dataBase.getGamePads().get(index).getCost();
+            if (currentBalance < cost) {
+                System.out.println(ConsoleColors.RED + "Your balance is not enough!" + ConsoleColors.RESET);
+            } else {
+                if (checkHavingPad(userIndex, index) == 1) {
+                    int number = dataBase.getRegularUsers().get(userIndex).getGamePad().
+                            get(dataBase.getGamePads().get(index)).intValue();
+                    dataBase.getRegularUsers().get(userIndex).getGamePad().
+                            put(dataBase.getGamePads().get(index), number + 1);
+                } else {
+                    dataBase.getRegularUsers().get(userIndex).getGamePad().
+                            put(dataBase.getGamePads().get(index), 1);
+                }
+                dataBase.getMonitorGaming().get(index).setNumberOfSoldItems(dataBase.getMonitorGaming().get(index).getNumberOfSoldItems() + 1);
+                System.out.println("Game pad bought successfully!");
+            }
+        }
+    }
 //    public void searchInGames(Store store, int userIndex) {
 //        drawingLines();
 //        System.out.println(ConsoleColors.BLUE_BOLD + "******( SEARCH IN GAMES )******" + ConsoleColors.RESET);
