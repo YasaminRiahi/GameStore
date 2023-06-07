@@ -58,7 +58,8 @@ public class UserLibrary {
 
     public void goToOptions(int whichUser, Stopwatch1 stopwatch1) {
         if (userLibraryOptions == UserLibraryOptions.LIST_OF_YOUR_PRODUCTS) {
-            ;
+            ListOfUserProducts listOfUserProducts = new ListOfUserProducts(dataBase);
+            listOfUserProducts.listOfProducts(whichUser,stopwatch1);
         } else if (userLibraryOptions == UserLibraryOptions.SEARCH_IN_YOUR_PRODUCTS) {
             ;
         } else {
