@@ -5,7 +5,6 @@ import ir.ac.kntu.products.accessories.gamePad.GamePad;
 import ir.ac.kntu.products.accessories.monitorGaming.MonitorGaming;
 import ir.ac.kntu.regularUsers.RegularUserPage;
 import ir.ac.kntu.regularUsers.Stopwatch1;
-import ir.ac.kntu.regularUsers.userStore.*;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
@@ -23,18 +22,23 @@ public class UserLibrary {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( LIBRARY )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            ListOfUserProducts listOfUserProducts = new ListOfUserProducts(dataBase);
-            listOfUserProducts.listOfProducts(userIndex, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            RegularUserPage regularUserPage = new RegularUserPage(dataBase);
-            regularUserPage.userAccess(userIndex, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            userLibrary(userIndex, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> {
+                ListOfUserProducts listOfUserProducts = new ListOfUserProducts(dataBase);
+                listOfUserProducts.listOfProducts(userIndex, stopwatch1);
+            }
+            case "2" -> {
+                RegularUserPage regularUserPage = new RegularUserPage(dataBase);
+                regularUserPage.userAccess(userIndex, stopwatch1);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                userLibrary(userIndex, stopwatch1);
+            }
         }
     }
 

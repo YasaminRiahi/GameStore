@@ -23,17 +23,20 @@ public class UserStore {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( STORE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showUserStoreOptions(userIndex, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            RegularUserPage regularUserPage = new RegularUserPage(dataBase);
-            regularUserPage.userAccess(userIndex, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            userStore(userIndex, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> showUserStoreOptions(userIndex, stopwatch1);
+            case "2" -> {
+                RegularUserPage regularUserPage = new RegularUserPage(dataBase);
+                regularUserPage.userAccess(userIndex, stopwatch1);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                userStore(userIndex, stopwatch1);
+            }
         }
     }
 
@@ -200,7 +203,7 @@ public class UserStore {
             } else {
                 if (checkHavingMonitor(userIndex, index) == 1) {
                     int number = dataBase.getRegularUsers().get(userIndex).getMonitorGaming().
-                            get(dataBase.getMonitorGaming().get(index)).intValue();
+                            get(dataBase.getMonitorGaming().get(index));
                     dataBase.getRegularUsers().get(userIndex).getMonitorGaming().
                             put(dataBase.getMonitorGaming().get(index), number + 1);
                 } else {
@@ -223,7 +226,7 @@ public class UserStore {
             } else {
                 if (checkHavingPad(userIndex, index) == 1) {
                     int number = dataBase.getRegularUsers().get(userIndex).getGamePad().
-                            get(dataBase.getGamePads().get(index)).intValue();
+                            get(dataBase.getGamePads().get(index));
                     dataBase.getRegularUsers().get(userIndex).getGamePad().
                             put(dataBase.getGamePads().get(index), number + 1);
                 } else {

@@ -21,19 +21,21 @@ public class RemoveAccessories {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( REMOVE ACCESSORIES )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showAccessoriesOption(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("2")) {
-            AccessoriesPage accessoriesPage = new AccessoriesPage(dataBase);
-            accessoriesPage.goToAccessoriesPage(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            removeAccessories(whichUser,typeOfAdmin);
+        switch (nextChoose) {
+            case "1" -> showAccessoriesOption(whichUser, typeOfAdmin);
+            case "2" -> {
+                AccessoriesPage accessoriesPage = new AccessoriesPage(dataBase);
+                accessoriesPage.goToAccessoriesPage(whichUser, typeOfAdmin);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                removeAccessories(whichUser, typeOfAdmin);
+            }
         }
-
     }
 
     public void showAccessoriesOption(int whichUser, String typeOfAdmin) {
@@ -57,9 +59,9 @@ public class RemoveAccessories {
 
     public void goToAccessoriesOptions(int whichUser, String typeOfAdmin) {
         if (accessoriesOption == AccessoriesOption.MONITOR_GAMING) {
-            removeMonitorGaming(whichUser,typeOfAdmin);
+            removeMonitorGaming(whichUser, typeOfAdmin);
         } else {
-            removeGamePad(whichUser,typeOfAdmin);
+            removeGamePad(whichUser, typeOfAdmin);
         }
     }
 
@@ -67,32 +69,35 @@ public class RemoveAccessories {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( REMOVE MONITOR GAMING)******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showMonitorGaming();
-            String whichOne = scanString();
-            if (Integer.parseInt(whichOne) - 1 >= dataBase.getMonitorGaming().size() || Integer.parseInt(whichOne) - 1 < 0) {
-                incorrect();
-                removeMonitorGaming(whichUser,typeOfAdmin);
-            } else {
-                if (typeOfAdmin.equals("SELLER")) {
-                    if (!dataBase.getMonitorGaming().get(Integer.parseInt(whichOne) - 1).getSellers().
-                            contains(dataBase.getSellers().get(whichUser))) {
-                        notSeller();
-                        removeMonitorGaming(whichUser,typeOfAdmin);
+        switch (nextChoose) {
+            case "1" -> {
+                showMonitorGaming();
+                String whichOne = scanString();
+                if (Integer.parseInt(whichOne) - 1 >= dataBase.getMonitorGaming().size() || Integer.parseInt(whichOne) - 1 < 0) {
+                    incorrect();
+                    removeMonitorGaming(whichUser, typeOfAdmin);
+                } else {
+                    if (typeOfAdmin.equals("SELLER")) {
+                        if (!dataBase.getMonitorGaming().get(Integer.parseInt(whichOne) - 1).getSellers().
+                                contains(dataBase.getSellers().get(whichUser))) {
+                            notSeller();
+                            removeMonitorGaming(whichUser, typeOfAdmin);
+                        }
                     }
+                    dataBase.getMonitorGaming().remove(dataBase.getMonitorGaming().get(Integer.parseInt(whichOne) - 1));
+                    System.out.println("Monitor gaming removed successfully!");
+                    removeAccessories(whichUser, typeOfAdmin);
                 }
-                dataBase.getMonitorGaming().remove(dataBase.getMonitorGaming().get(Integer.parseInt(whichOne) - 1));
-                System.out.println("Monitor gaming removed successfully!");
-                removeAccessories(whichUser,typeOfAdmin);
             }
-        } else if (nextChoose.equals("2")) {
-            removeAccessories(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            removeMonitorGaming(whichUser,typeOfAdmin);
+            case "2" -> removeAccessories(whichUser, typeOfAdmin);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                removeMonitorGaming(whichUser, typeOfAdmin);
+            }
         }
     }
 
@@ -100,32 +105,35 @@ public class RemoveAccessories {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( REMOVE GAME PAD )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showGamePads();
-            String whichOne = scanString();
-            if (Integer.parseInt(whichOne) - 1 >= dataBase.getGamePads().size() || Integer.parseInt(whichOne) - 1 < 0) {
-                incorrect();
-                removeGamePad(whichUser,typeOfAdmin);
-            } else {
-                if (typeOfAdmin.equals("SELLER")) {
-                    if (!dataBase.getGamePads().get(Integer.parseInt(whichOne) - 1).getSellers().
-                            contains(dataBase.getSellers().get(whichUser))) {
-                        notSeller();
-                        removeGamePad(whichUser,typeOfAdmin);
+        switch (nextChoose) {
+            case "1" -> {
+                showGamePads();
+                String whichOne = scanString();
+                if (Integer.parseInt(whichOne) - 1 >= dataBase.getGamePads().size() || Integer.parseInt(whichOne) - 1 < 0) {
+                    incorrect();
+                    removeGamePad(whichUser, typeOfAdmin);
+                } else {
+                    if (typeOfAdmin.equals("SELLER")) {
+                        if (!dataBase.getGamePads().get(Integer.parseInt(whichOne) - 1).getSellers().
+                                contains(dataBase.getSellers().get(whichUser))) {
+                            notSeller();
+                            removeGamePad(whichUser, typeOfAdmin);
+                        }
                     }
+                    dataBase.getGamePads().remove(dataBase.getGamePads().get(Integer.parseInt(whichOne) - 1));
+                    System.out.println("Game pad removed successfully!");
+                    removeAccessories(whichUser, typeOfAdmin);
                 }
-                dataBase.getGamePads().remove(dataBase.getGamePads().get(Integer.parseInt(whichOne) - 1));
-                System.out.println("Game pad removed successfully!");
-                removeAccessories(whichUser,typeOfAdmin);
             }
-        } else if (nextChoose.equals("2")) {
-            removeAccessories(whichUser,typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            removeGamePad(whichUser,typeOfAdmin);
+            case "2" -> removeAccessories(whichUser, typeOfAdmin);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                removeGamePad(whichUser, typeOfAdmin);
+            }
         }
     }
 

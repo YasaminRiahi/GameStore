@@ -9,7 +9,7 @@ public enum ManagerGamesOptions {
 
     String value;
 
-    ManagerGamesOptions(String value){
+    ManagerGamesOptions(String value) {
         this.value = value;
     }
 

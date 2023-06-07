@@ -7,7 +7,7 @@ public enum AccessoriesOption {
 
     private String value;
 
-    AccessoriesOption(String value){
+    AccessoriesOption(String value) {
         this.value = value;
     }
 

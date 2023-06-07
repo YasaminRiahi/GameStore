@@ -2,7 +2,6 @@ package ir.ac.kntu.regularUsers.userStore;
 
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.regularUsers.Stopwatch1;
-import ir.ac.kntu.regularUsers.userStore.UserStore;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scan.scanString;
@@ -21,18 +20,23 @@ public class ListOfProducts {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( LIST OF PRODUCTS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showProducts();
-            choose(whichUser, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            UserStore userStore = new UserStore(dataBase);
-            userStore.userStore(whichUser, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            listOfProducts(whichUser, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> {
+                showProducts();
+                choose(whichUser, stopwatch1);
+            }
+            case "2" -> {
+                UserStore userStore = new UserStore(dataBase);
+                userStore.userStore(whichUser, stopwatch1);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                listOfProducts(whichUser, stopwatch1);
+            }
         }
     }
 
@@ -43,7 +47,7 @@ public class ListOfProducts {
             int length = 5 + dataBase.getGames().get(i).getName().length();
             drawForGames(length);
             System.out.print(ConsoleColors.BLUE + "*" + ConsoleColors.RESET);
-            System.out.print(+j + ")");
+            System.out.print(j + ")");
             System.out.print(dataBase.getGames().get(i).getName());
             System.out.println(ConsoleColors.BLUE + "*" + ConsoleColors.RESET);
             drawForGames(length);
@@ -55,7 +59,7 @@ public class ListOfProducts {
             int length = 5 + dataBase.getMonitorGaming().get(i).getName().length();
             drawForAccessories(length);
             System.out.print(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
-            System.out.print(+j + ")");
+            System.out.print(j + ")");
             System.out.print(dataBase.getMonitorGaming().get(i).getName());
             System.out.println(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
             drawForAccessories(length);
@@ -67,7 +71,7 @@ public class ListOfProducts {
             int length = 5 + dataBase.getGamePads().get(i).getName().length();
             drawForAccessories(length);
             System.out.print(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
-            System.out.print(+j + ")");
+            System.out.print(j + ")");
             System.out.print(dataBase.getGamePads().get(i).getName());
             System.out.println(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
             drawForAccessories(length);
@@ -83,7 +87,7 @@ public class ListOfProducts {
         String whichProduct = scanString();
         UserStore userStore = new UserStore(dataBase);
         switch (whichProduct) {
-            case "1":
+            case "1" -> {
                 System.out.println("Which game?");
                 int whichGame = Integer.parseInt(scanString()) - 1;
                 userStore.showGameByDetails(whichGame);
@@ -91,25 +95,25 @@ public class ListOfProducts {
                     userStore.buyGame(whichUser, whichGame);
                 }
                 listOfProducts(whichUser, stopwatch1);
-                break;
-            case "2":
+            }
+            case "2" -> {
                 System.out.println("Which monitor gaming?");
                 int whichMonitor = Integer.parseInt(scanString()) - 1;
                 userStore.showMonitorGamingByDetails(whichMonitor);
                 userStore.buyMonitor(whichUser, whichMonitor);
                 listOfProducts(whichUser, stopwatch1);
-                break;
-            case "3":
+            }
+            case "3" -> {
                 System.out.println("Which game pad?");
                 int whichPad = Integer.parseInt(scanString()) - 1;
                 userStore.showGamePadByDetails(whichPad);
                 userStore.buyPad(whichUser, whichPad);
                 listOfProducts(whichUser, stopwatch1);
-                break;
-            default:
+            }
+            default -> {
                 incorrect();
                 showProducts();
-                break;
+            }
         }
     }
 }

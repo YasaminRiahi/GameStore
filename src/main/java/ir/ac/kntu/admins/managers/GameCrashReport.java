@@ -1,6 +1,5 @@
 package ir.ac.kntu.admins.managers;
 
-import ir.ac.kntu.admins.AdminPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.products.games.Games;
 import ir.ac.kntu.store.DataBase;
@@ -23,19 +22,24 @@ public class GameCrashReport {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( REPORT PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showGames();
-            sendMassage(chooseGame());
-            gameReport(whichManager);
-        } else if (nextChoose.equals("2")) {
-            ManagerGamePage managerGamePage = new ManagerGamePage(dataBase);
-            managerGamePage.gamesPage(whichManager);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            gameReport(whichManager);
+        switch (nextChoose) {
+            case "1" -> {
+                showGames();
+                sendMassage(chooseGame());
+                gameReport(whichManager);
+            }
+            case "2" -> {
+                ManagerGamePage managerGamePage = new ManagerGamePage(dataBase);
+                managerGamePage.gamesPage(whichManager);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                gameReport(whichManager);
+            }
         }
     }
 

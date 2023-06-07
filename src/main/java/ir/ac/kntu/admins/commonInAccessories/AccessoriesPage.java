@@ -1,10 +1,9 @@
 package ir.ac.kntu.admins.commonInAccessories;
 
 import ir.ac.kntu.admins.managers.ManagerPage;
+import ir.ac.kntu.admins.sellers.SellerPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
-
-import java.util.IllegalFormatCodePointException;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
@@ -23,16 +22,17 @@ public class AccessoriesPage {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( ACCESSORIES PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showAccessoriesPageOption(whichUser,typeOfAdmin);
-        } else if (nextChoose.equals("2")) {
-            goBack(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            goToAccessoriesPage(whichUser,typeOfAdmin);
+        switch (nextChoose) {
+            case "1" -> showAccessoriesPageOption(whichUser, typeOfAdmin);
+            case "2" -> goBack(whichUser, typeOfAdmin);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                goToAccessoriesPage(whichUser, typeOfAdmin);
+            }
         }
 
     }
@@ -42,7 +42,8 @@ public class AccessoriesPage {
             ManagerPage managerPage = new ManagerPage(dataBase);
             managerPage.goToManagerPage(whichUser);
         } else if (typeOfAdmin.equals("SELLER")) {
-            ;
+            SellerPage sellerPage = new SellerPage(dataBase);
+            sellerPage.goToSellerPage(whichUser);
         }
     }
 
@@ -68,13 +69,13 @@ public class AccessoriesPage {
     public void goToOptions(int whichUser, String typeOfAdmin) {
         if (accessoriesPageOptions == AccessoriesPageOptions.ADD_ACCESSORIES) {
             AddAccessories addAccessories = new AddAccessories(dataBase);
-            addAccessories.addAccessories(whichUser,typeOfAdmin);
-        } else if (accessoriesPageOptions == AccessoriesPageOptions.CHANGE_ACCESSORIES){
+            addAccessories.addAccessories(whichUser, typeOfAdmin);
+        } else if (accessoriesPageOptions == AccessoriesPageOptions.CHANGE_ACCESSORIES) {
             ChangeAccessories changeAccessories = new ChangeAccessories(dataBase);
-            changeAccessories.changeAccessories(whichUser,typeOfAdmin);
+            changeAccessories.changeAccessories(whichUser, typeOfAdmin);
         } else {
             RemoveAccessories removeAccessories = new RemoveAccessories(dataBase);
-            removeAccessories.removeAccessories(whichUser,typeOfAdmin);
+            removeAccessories.removeAccessories(whichUser, typeOfAdmin);
         }
     }
 }

@@ -8,7 +8,7 @@ public enum GamesLevel {
 
     String value;
 
-    GamesLevel(String value){
+    GamesLevel(String value) {
         this.value = value;
     }
 

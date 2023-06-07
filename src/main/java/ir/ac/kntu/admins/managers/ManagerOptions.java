@@ -7,7 +7,6 @@ public enum ManagerOptions {
     GAMES("3"),
     ACCESSORIES("4");
 
-
     private String value;
 
     ManagerOptions(String value) {

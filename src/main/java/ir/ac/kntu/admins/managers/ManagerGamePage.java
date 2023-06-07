@@ -23,17 +23,20 @@ public class ManagerGamePage {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( MANAGERS GAMES PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showManagerGamesOptions(whichManager);
-        } else if (nextChoose.equals("2")) {
-            ManagerPage managerPage = new ManagerPage(dataBase);
-            managerPage.goToManagerPage(whichManager);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            gamesPage(whichManager);
+        switch (nextChoose) {
+            case "1" -> showManagerGamesOptions(whichManager);
+            case "2" -> {
+                ManagerPage managerPage = new ManagerPage(dataBase);
+                managerPage.goToManagerPage(whichManager);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                gamesPage(whichManager);
+            }
         }
     }
 

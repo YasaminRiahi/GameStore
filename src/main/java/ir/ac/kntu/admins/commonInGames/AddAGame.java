@@ -1,11 +1,7 @@
 package ir.ac.kntu.admins.commonInGames;
 
 import ir.ac.kntu.admins.developers.DeveloperGamePage;
-import ir.ac.kntu.admins.developers.DeveloperPage;
 import ir.ac.kntu.admins.managers.ManagerGamePage;
-import ir.ac.kntu.admins.managers.ManagerPage;
-import ir.ac.kntu.admins.managers.ManagerUserPage;
-import ir.ac.kntu.admins.sellers.SellerPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -25,26 +21,29 @@ public class AddAGame {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( ADD GAMES )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            if (typeOfAdmin.equals("MANAGER")) {
-                dataBase.addGames(scanGames());
-                ManagerGamePage managerGamePage = new ManagerGamePage(dataBase);
-                managerGamePage.gamesPage(whichUser);
-            } else {
-                dataBase.addGames(scanGames());
-                dataBase.getGames().get(dataBase.getGames().size()-1).addDeveloper(dataBase.getDevelopers().get(whichUser));
-                dataBase.getDevelopers().get(whichUser).getDeveloperGame().
-                        add(dataBase.getGames().get(dataBase.getGames().size()-1));
+        switch (nextChoose) {
+            case "1" -> {
+                if (typeOfAdmin.equals("MANAGER")) {
+                    dataBase.addGames(scanGames());
+                    ManagerGamePage managerGamePage = new ManagerGamePage(dataBase);
+                    managerGamePage.gamesPage(whichUser);
+                } else {
+                    dataBase.addGames(scanGames());
+                    dataBase.getGames().get(dataBase.getGames().size() - 1).addDeveloper(dataBase.getDevelopers().get(whichUser));
+                    dataBase.getDevelopers().get(whichUser).getDeveloperGame().
+                            add(dataBase.getGames().get(dataBase.getGames().size() - 1));
+                }
+                toAddGames(whichUser, typeOfAdmin);
             }
-            toAddGames(whichUser,typeOfAdmin);
-        } else if (nextChoose.equals("2")) {
-            goBack(whichUser,typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            toAddGames(whichUser, typeOfAdmin);
+            case "2" -> goBack(whichUser, typeOfAdmin);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                toAddGames(whichUser, typeOfAdmin);
+            }
         }
     }
 

@@ -8,7 +8,7 @@ public enum AccessoriesPageOptions {
 
     private String value;
 
-    AccessoriesPageOptions(String value){
+    AccessoriesPageOptions(String value) {
         this.value = value;
     }
 

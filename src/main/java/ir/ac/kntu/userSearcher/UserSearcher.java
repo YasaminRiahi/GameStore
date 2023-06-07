@@ -26,25 +26,28 @@ public class UserSearcher {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( SHOW OPTIONS TO SEARCH )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showSearchOptions(goBack, whichUser);
-        } else if (nextChoose.equals("2")) {
-            if (goBack.equals("VIEW_USER_INFORMATION")) {
-                ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
-                viewUserInformation.viewUsersInformation(whichUser);
-            } else if (goBack.equals("CHANGE_A_USER_INFORMATION")) {
-                ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
-                changeUserInformation.changeAUserInformation(whichUser);
-            } else {
-                RemoveAUser removeAUser = new RemoveAUser(dataBase);
-                removeAUser.toRemoveUsers(whichUser);
+        switch (nextChoose) {
+            case "1" -> showSearchOptions(goBack, whichUser);
+            case "2" -> {
+                if (goBack.equals("VIEW_USER_INFORMATION")) {
+                    ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
+                    viewUserInformation.viewUsersInformation(whichUser);
+                } else if (goBack.equals("CHANGE_A_USER_INFORMATION")) {
+                    ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
+                    changeUserInformation.changeAUserInformation(whichUser);
+                } else {
+                    RemoveAUser removeAUser = new RemoveAUser(dataBase);
+                    removeAUser.toRemoveUsers(whichUser);
+                }
             }
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            howToSearch(goBack, whichUser);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                howToSearch(goBack, whichUser);
+            }
         }
     }
 

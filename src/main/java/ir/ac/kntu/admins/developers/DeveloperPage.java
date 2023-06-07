@@ -2,8 +2,6 @@ package ir.ac.kntu.admins.developers;
 
 import ir.ac.kntu.admins.AdminPage;
 import ir.ac.kntu.admins.AdminProfile;
-import ir.ac.kntu.admins.commonInAccessories.AccessoriesPage;
-import ir.ac.kntu.admins.sellers.SellerOptions;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -24,17 +22,20 @@ public class DeveloperPage {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( DEVELOPER PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showDeveloperOptions(whichDeveloper);
-        } else if (nextChoose.equals("2")) {
-            AdminPage adminPage = new AdminPage(dataBase);
-            adminPage.goToAdminPage();
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            goToDeveloperPage(whichDeveloper);
+        switch (nextChoose) {
+            case "1" -> showDeveloperOptions(whichDeveloper);
+            case "2" -> {
+                AdminPage adminPage = new AdminPage(dataBase);
+                adminPage.goToAdminPage();
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                goToDeveloperPage(whichDeveloper);
+            }
         }
     }
 

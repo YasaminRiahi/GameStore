@@ -19,17 +19,20 @@ public class ManagerUserPage {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( MANAGERS USERS PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showManagerUsersOptions(whichManager);
-        } else if (nextChoose.equals("2")) {
-            ManagerPage managerPage = new ManagerPage(dataBase);
-            managerPage.goToManagerPage(whichManager);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            usersPage(whichManager);
+        switch (nextChoose) {
+            case "1" -> showManagerUsersOptions(whichManager);
+            case "2" -> {
+                ManagerPage managerPage = new ManagerPage(dataBase);
+                managerPage.goToManagerPage(whichManager);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                usersPage(whichManager);
+            }
         }
     }
 
@@ -62,7 +65,7 @@ public class ManagerUserPage {
         } else if (managerUsersOption == ManagerUsersOptions.CHANGE_A_USER_INFORMATION) {
             ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
             changeUserInformation.changeAUserInformation(whichManager);
-        } else if (managerUsersOption == ManagerUsersOptions.REMOVE_A_USER){
+        } else if (managerUsersOption == ManagerUsersOptions.REMOVE_A_USER) {
             RemoveAUser removeAUser = new RemoveAUser(dataBase);
             removeAUser.toRemoveUsers(whichManager);
         } else {

@@ -23,18 +23,23 @@ public class BestSellingProducts {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( BEST-SELLING PRODUCTS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showBests();
-            bestSelling(whichUser, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            UserStore userStore = new UserStore(dataBase);
-            userStore.userStore(whichUser, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            bestSelling(whichUser, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> {
+                showBests();
+                bestSelling(whichUser, stopwatch1);
+            }
+            case "2" -> {
+                UserStore userStore = new UserStore(dataBase);
+                userStore.userStore(whichUser, stopwatch1);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                bestSelling(whichUser, stopwatch1);
+            }
         }
     }
 
@@ -50,9 +55,9 @@ public class BestSellingProducts {
             products.add(dataBase.getGamePads().get(i));
         }
         Collections.sort(products);
-        for (int i = 0; i < products.size(); i++) {
-            System.out.println(products.get(i).getClass().getSimpleName() + "  ->  " + products.get(i).getName() + "  (number :"
-                    + products.get(i).getNumberOfSoldItems() + ")");
+        for (Product product : products) {
+            System.out.println(product.getClass().getSimpleName() + "  ->  " + product.getName() + "  (number :"
+                    + product.getNumberOfSoldItems() + ")");
         }
     }
 }

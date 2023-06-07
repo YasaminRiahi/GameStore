@@ -25,18 +25,23 @@ public class ListOfUserProducts {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( LIST OF USER PRODUCTS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showProducts(whichUser);
-            choose(whichUser, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            UserStore userStore = new UserStore(dataBase);
-            userStore.userStore(whichUser, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            listOfProducts(whichUser, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> {
+                showProducts(whichUser);
+                choose(whichUser, stopwatch1);
+            }
+            case "2" -> {
+                UserStore userStore = new UserStore(dataBase);
+                userStore.userStore(whichUser, stopwatch1);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                listOfProducts(whichUser, stopwatch1);
+            }
         }
     }
 
@@ -48,7 +53,7 @@ public class ListOfUserProducts {
                 int length = 5 + dataBase.getRegularUsers().get(whichUser).getMyGames().get(i).getName().length();
                 drawForGames(length);
                 System.out.print(ConsoleColors.BLUE + "*" + ConsoleColors.RESET);
-                System.out.print(+j + ")"+dataBase.getRegularUsers().get(whichUser).getMyGames().get(i).getName());
+                System.out.print(j + ")"+dataBase.getRegularUsers().get(whichUser).getMyGames().get(i).getName());
                 System.out.println(ConsoleColors.BLUE + "*" + ConsoleColors.RESET);
                 drawForGames(length);
                 j++;
@@ -58,11 +63,11 @@ public class ListOfUserProducts {
             int j = 1;
             System.out.println(ConsoleColors.PURPLE_BOLD + "GAMING MONITORS:" + ConsoleColors.RESET);
             MonitorGaming[] monitorGaming = dataBase.getRegularUsers().get(whichUser).getMonitorGaming().keySet().toArray(new MonitorGaming[0]);
-            for (int i = 0; i < monitorGaming.length; i++) {
-                int length = 5 + monitorGaming[i].getName().length();
+            for (MonitorGaming gaming : monitorGaming) {
+                int length = 5 + gaming.getName().length();
                 drawForAccessories(length);
                 System.out.print(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
-                System.out.print(+j + ")"+monitorGaming[i].getName());
+                System.out.print(j + ")" + gaming.getName());
                 System.out.println(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
                 drawForGames(length);
                 j++;
@@ -72,11 +77,11 @@ public class ListOfUserProducts {
             int j = 1;
             System.out.println(ConsoleColors.PURPLE_BOLD + "GAME PADS:" + ConsoleColors.RESET);
             GamePad[] gamePads = dataBase.getRegularUsers().get(whichUser).getGamePad().keySet().toArray(new GamePad[0]);
-            for (int i = 0; i < gamePads.length; i++) {
-                int length = 5 + gamePads[i].getName().length();
+            for (GamePad gamePad : gamePads) {
+                int length = 5 + gamePad.getName().length();
                 drawForAccessories(length);
                 System.out.print(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
-                System.out.print(+j + ")"+gamePads[i].getName());
+                System.out.print(j + ")" + gamePad.getName());
                 System.out.println(ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
                 drawForGames(length);
                 j++;
@@ -92,7 +97,7 @@ public class ListOfUserProducts {
         String whichProduct = scanString();
         UserLibrary userLibrary = new UserLibrary(dataBase);
         switch (whichProduct) {
-            case "1":
+            case "1" -> {
                 System.out.println("Which game?");
                 int whichGame = Integer.parseInt(scanString()) - 1;
                 userLibrary.showGameByDetails(whichUser, whichGame);
@@ -102,8 +107,8 @@ public class ListOfUserProducts {
                     addCommunityOrRate(whichUser, whichGame, stopwatch1);
                 }
                 listOfProducts(whichUser, stopwatch1);
-                break;
-            case "2":
+            }
+            case "2" -> {
                 System.out.println("Which monitor gaming?");
                 int whichMonitor = Integer.parseInt(scanString()) - 1;
                 userLibrary.showMonitorGamingByDetails(whichMonitor, dataBase.getRegularUsers().get(whichUser).
@@ -111,8 +116,8 @@ public class ListOfUserProducts {
                 addCommunityOrReportMonitor(whichUser, dataBase.getRegularUsers().get(whichUser).
                         getMonitorGaming().keySet().toArray(new MonitorGaming[0])[whichMonitor], stopwatch1);
                 listOfProducts(whichUser, stopwatch1);
-                break;
-            case "3":
+            }
+            case "3" -> {
                 System.out.println("Which game pad?");
                 int whichPad = Integer.parseInt(scanString()) - 1;
                 userLibrary.showGamePadByDetails(whichPad, dataBase.getRegularUsers().get(whichUser).getGamePad().
@@ -120,45 +125,35 @@ public class ListOfUserProducts {
                 addCommunityOrReportPad(whichUser, dataBase.getRegularUsers().get(whichUser).getGamePad().
                         keySet().toArray(new GamePad[0])[whichPad], stopwatch1);
                 listOfProducts(whichUser, stopwatch1);
-                break;
-            default:
+            }
+            default -> {
                 incorrect();
                 showProducts(whichUser);
-                break;
+            }
         }
     }
 
     public void addCommunityOrRate(int whichUser, int whichGame, Stopwatch1 stopwatch1) {
         switch (communityOrRate()) {
-            case "1":
-                gameCommunity(whichUser, whichGame, stopwatch1);
-                break;
-            case "2":
-                rateGame(whichUser, whichGame, stopwatch1);
-                break;
-            case "3":
-                listOfProducts(whichUser, stopwatch1);
-                break;
-            default:
+            case "1" -> gameCommunity(whichUser, whichGame, stopwatch1);
+            case "2" -> rateGame(whichUser, whichGame, stopwatch1);
+            case "3" -> listOfProducts(whichUser, stopwatch1);
+            default -> {
                 incorrect();
                 listOfProducts(whichUser, stopwatch1);
+            }
         }
     }
 
     public void addFeedbackOrRate(int whichUser, int whichGame, Stopwatch1 stopwatch1) {
         switch (feedbackOrRate()) {
-            case "1":
-                gameFeedback(whichUser, whichGame, stopwatch1);
-                break;
-            case "2":
-                rateGame(whichUser, whichGame, stopwatch1);
-                break;
-            case "3":
-                listOfProducts(whichUser, stopwatch1);
-                break;
-            default:
+            case "1" -> gameFeedback(whichUser, whichGame, stopwatch1);
+            case "2" -> rateGame(whichUser, whichGame, stopwatch1);
+            case "3" -> listOfProducts(whichUser, stopwatch1);
+            default -> {
                 incorrect();
                 listOfProducts(whichUser, stopwatch1);
+            }
         }
     }
 
@@ -167,19 +162,22 @@ public class ListOfUserProducts {
         System.out.println(ConsoleColors.BLUE_BOLD + "******( GAME COMMUNITY )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         Games game = dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex);
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter your idea:");
-            game.getCommunity().add(scanString());
-            System.out.println("Your idea added successfully!");
-            listOfProducts(userIndex, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            listOfProducts(userIndex, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            gameCommunity(gameIndex, userIndex, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter your idea:");
+                game.getCommunity().add(scanString());
+                System.out.println("Your idea added successfully!");
+                listOfProducts(userIndex, stopwatch1);
+            }
+            case "2" -> listOfProducts(userIndex, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                gameCommunity(gameIndex, userIndex, stopwatch1);
+            }
         }
     }
 
@@ -188,19 +186,22 @@ public class ListOfUserProducts {
         System.out.println(ConsoleColors.BLUE_BOLD + "******( GAME FEEDBACK )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         Games game = dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex);
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter your idea:");
-            game.getFeedback().add(scanString());
-            System.out.println("Your idea added successfully!");
-            listOfProducts(userIndex, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            listOfProducts(userIndex, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            gameFeedback(userIndex, gameIndex, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter your idea:");
+                game.getFeedback().add(scanString());
+                System.out.println("Your idea added successfully!");
+                listOfProducts(userIndex, stopwatch1);
+            }
+            case "2" -> listOfProducts(userIndex, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                gameFeedback(userIndex, gameIndex, stopwatch1);
+            }
         }
     }
 
@@ -209,37 +210,35 @@ public class ListOfUserProducts {
         System.out.println(ConsoleColors.BLUE_BOLD + "******( SET YOUR RATE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         Games game = dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex);
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter your rate:");
-            game.addRate(dataBase.getRegularUsers().get(userIndex), scanDouble());
-            game.updateRate();
-            System.out.println("You rated successfully!");
-            listOfProducts(userIndex, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            listOfProducts(userIndex, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            rateGame(gameIndex, userIndex, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter your rate:");
+                game.addRate(dataBase.getRegularUsers().get(userIndex), scanDouble());
+                game.updateRate();
+                System.out.println("You rated successfully!");
+                listOfProducts(userIndex, stopwatch1);
+            }
+            case "2" -> listOfProducts(userIndex, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                rateGame(gameIndex, userIndex, stopwatch1);
+            }
         }
     }
 
     public void addCommunityOrReportPad(int whichUser, GamePad gamePad, Stopwatch1 stopwatch1) {
         switch (communityOrReport()) {
-            case "1":
-                gamePadCommunity(whichUser, gamePad, stopwatch1);
-                break;
-            case "2":
-                gamePadReport(whichUser, gamePad, stopwatch1);
-                break;
-            case "3":
-                listOfProducts(whichUser, stopwatch1);
-                break;
-            default:
+            case "1" -> gamePadCommunity(whichUser, gamePad, stopwatch1);
+            case "2" -> gamePadReport(whichUser, gamePad, stopwatch1);
+            case "3" -> listOfProducts(whichUser, stopwatch1);
+            default -> {
                 incorrect();
                 listOfProducts(whichUser, stopwatch1);
+            }
         }
     }
 
@@ -247,19 +246,22 @@ public class ListOfUserProducts {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( GAME PAD COMMUNITY )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter your idea:");
-            gamePad.getCommunity().add(scanString());
-            System.out.println("Your idea added successfully!");
-            listOfProducts(whichUser, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            listOfProducts(whichUser, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            gamePadCommunity(whichUser, gamePad, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter your idea:");
+                gamePad.getCommunity().add(scanString());
+                System.out.println("Your idea added successfully!");
+                listOfProducts(whichUser, stopwatch1);
+            }
+            case "2" -> listOfProducts(whichUser, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                gamePadCommunity(whichUser, gamePad, stopwatch1);
+            }
         }
     }
 
@@ -267,36 +269,34 @@ public class ListOfUserProducts {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( GAME PAD REPORT )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter your report massage:");
-            gamePad.getSellers().get(0).getReportMassage().add(scanString());
-            System.out.println("Your massage sent successfully!");
-            listOfProducts(whichUser, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            listOfProducts(whichUser, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            gamePadReport(whichUser, gamePad, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter your report massage:");
+                gamePad.getSellers().get(0).getReportMassage().add(scanString());
+                System.out.println("Your massage sent successfully!");
+                listOfProducts(whichUser, stopwatch1);
+            }
+            case "2" -> listOfProducts(whichUser, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                gamePadReport(whichUser, gamePad, stopwatch1);
+            }
         }
     }
 
     public void addCommunityOrReportMonitor(int whichUser, MonitorGaming monitorGaming, Stopwatch1 stopwatch1) {
         switch (communityOrReport()) {
-            case "1":
-                monitorCommunity(whichUser, monitorGaming, stopwatch1);
-                break;
-            case "2":
-                monitorReport(whichUser, monitorGaming, stopwatch1);
-                break;
-            case "3":
-                listOfProducts(whichUser, stopwatch1);
-                break;
-            default:
+            case "1" -> monitorCommunity(whichUser, monitorGaming, stopwatch1);
+            case "2" -> monitorReport(whichUser, monitorGaming, stopwatch1);
+            case "3" -> listOfProducts(whichUser, stopwatch1);
+            default -> {
                 incorrect();
                 listOfProducts(whichUser, stopwatch1);
+            }
         }
     }
 
@@ -304,19 +304,22 @@ public class ListOfUserProducts {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( MONITOR GAMING COMMUNITY )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter your idea:");
-            monitorGaming.getCommunity().add(scanString());
-            System.out.println("Your idea added successfully!");
-            listOfProducts(whichUser, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            listOfProducts(whichUser, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            monitorCommunity(whichUser, monitorGaming, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter your idea:");
+                monitorGaming.getCommunity().add(scanString());
+                System.out.println("Your idea added successfully!");
+                listOfProducts(whichUser, stopwatch1);
+            }
+            case "2" -> listOfProducts(whichUser, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                monitorCommunity(whichUser, monitorGaming, stopwatch1);
+            }
         }
     }
 
@@ -324,19 +327,22 @@ public class ListOfUserProducts {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( MONITOR GAMING REPORT )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter your report massage:");
-            monitorGaming.getSellers().get(0).getReportMassage().add(scanString());
-            System.out.println("Your massage sent successfully!");
-            listOfProducts(whichUser, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            listOfProducts(whichUser, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            monitorReport(whichUser, monitorGaming, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter your report massage:");
+                monitorGaming.getSellers().get(0).getReportMassage().add(scanString());
+                System.out.println("Your massage sent successfully!");
+                listOfProducts(whichUser, stopwatch1);
+            }
+            case "2" -> listOfProducts(whichUser, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                monitorReport(whichUser, monitorGaming, stopwatch1);
+            }
         }
     }
 }

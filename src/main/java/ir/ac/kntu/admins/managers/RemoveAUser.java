@@ -11,7 +11,7 @@ public class RemoveAUser {
 
     private DataBase dataBase;
 
-    public RemoveAUser(DataBase dataBase){
+    public RemoveAUser(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 
@@ -19,18 +19,23 @@ public class RemoveAUser {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( REMOVE USERS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            UserSearcher userSearcher = new UserSearcher(dataBase);
-            userSearcher.howToSearch("REMOVE_A_USER",whichManager);
-        } else if (nextChoose.equals("2")) {
-            ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
-            managerUserPage.usersPage(whichManager);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            toRemoveUsers(whichManager);
+        switch (nextChoose) {
+            case "1" -> {
+                UserSearcher userSearcher = new UserSearcher(dataBase);
+                userSearcher.howToSearch("REMOVE_A_USER", whichManager);
+            }
+            case "2" -> {
+                ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
+                managerUserPage.usersPage(whichManager);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                toRemoveUsers(whichManager);
+            }
         }
     }
 }

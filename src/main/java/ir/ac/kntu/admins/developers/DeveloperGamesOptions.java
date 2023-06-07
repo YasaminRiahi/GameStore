@@ -8,7 +8,7 @@ public enum DeveloperGamesOptions {
 
     String value;
 
-    DeveloperGamesOptions(String value){
+    DeveloperGamesOptions(String value) {
         this.value = value;
     }
 

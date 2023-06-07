@@ -1,6 +1,5 @@
 package ir.ac.kntu.products.accessories.gamePad;
 
-import ir.ac.kntu.products.Product;
 import ir.ac.kntu.products.accessories.Accessories;
 
 public class GamePad extends Accessories {
@@ -13,8 +12,8 @@ public class GamePad extends Accessories {
         super();
     }
 
-    public GamePad(String name, String description, double cost,int number, ConnectionType connectionType, DeviceType deviceType) {
-        super(name, description, cost,number);
+    public GamePad(String name, String description, double cost, int number, ConnectionType connectionType, DeviceType deviceType) {
+        super(name, description, cost, number);
         this.connectionType = connectionType;
         this.deviceType = deviceType;
     }
@@ -34,6 +33,4 @@ public class GamePad extends Accessories {
     public void setDeviceType(DeviceType deviceType) {
         this.deviceType = deviceType;
     }
-
-
 }

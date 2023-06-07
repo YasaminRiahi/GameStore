@@ -9,7 +9,6 @@ public enum DeveloperOptions {
     VIEW_FEEDBACK("5"),
     ADD_DEVELOPERS("6");
 
-
     private String value;
 
     DeveloperOptions(String value) {

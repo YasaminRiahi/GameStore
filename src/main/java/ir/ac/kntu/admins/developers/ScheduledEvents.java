@@ -10,7 +10,6 @@ import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
 public class ScheduledEvents {
 
-
     private DataBase dataBase;
 
     public ScheduledEvents(DataBase dataBase) {
@@ -21,18 +20,23 @@ public class ScheduledEvents {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( SCHEDULED EVENTS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            checkEvents(whichDeveloper);
-            events(whichDeveloper);
-        } else if (nextChoose.equals("2")) {
-            DeveloperPage developerPage = new DeveloperPage(dataBase);
-            developerPage.goToDeveloperPage(whichDeveloper);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            events(whichDeveloper);
+        switch (nextChoose) {
+            case "1" -> {
+                checkEvents(whichDeveloper);
+                events(whichDeveloper);
+            }
+            case "2" -> {
+                DeveloperPage developerPage = new DeveloperPage(dataBase);
+                developerPage.goToDeveloperPage(whichDeveloper);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                events(whichDeveloper);
+            }
         }
     }
 
@@ -57,15 +61,12 @@ public class ScheduledEvents {
         System.out.println("1)You fix it");
         System.out.println("3)Go to previous page");
         switch (scanString()) {
-            case "1":
-                dataBase.getDevelopers().get(whichDeveloper).getScheduledEvents().remove(games);
-                break;
-            case "2":
-                events(whichDeveloper);
-                break;
-            default:
+            case "1" -> dataBase.getDevelopers().get(whichDeveloper).getScheduledEvents().remove(games);
+            case "2" -> events(whichDeveloper);
+            default -> {
                 incorrect();
                 fixOrNo(games, whichDeveloper);
+            }
         }
     }
 }

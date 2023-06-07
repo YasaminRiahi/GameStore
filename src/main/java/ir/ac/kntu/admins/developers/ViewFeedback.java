@@ -1,6 +1,5 @@
 package ir.ac.kntu.admins.developers;
 
-import ir.ac.kntu.admins.AdminPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -19,18 +18,23 @@ public class ViewFeedback {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( FEEDBACK )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showFeedBack(whichDeveloper);
-            viewFeedback(whichDeveloper);
-        } else if (nextChoose.equals("2")) {
-            DeveloperPage developerPage = new DeveloperPage(dataBase);
-            developerPage.goToDeveloperPage(whichDeveloper);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            viewFeedback(whichDeveloper);
+        switch (nextChoose) {
+            case "1" -> {
+                showFeedBack(whichDeveloper);
+                viewFeedback(whichDeveloper);
+            }
+            case "2" -> {
+                DeveloperPage developerPage = new DeveloperPage(dataBase);
+                developerPage.goToDeveloperPage(whichDeveloper);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                viewFeedback(whichDeveloper);
+            }
         }
     }
 

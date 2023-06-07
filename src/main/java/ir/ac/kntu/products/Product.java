@@ -1,10 +1,8 @@
 package ir.ac.kntu.products;
 
-import ir.ac.kntu.regularUsers.RegularUser;
-
 import java.util.ArrayList;
 
-public class Product implements Comparable<Product>{
+public class Product implements Comparable<Product> {
 
     private String name;
 
@@ -52,10 +50,6 @@ public class Product implements Comparable<Product>{
 
     public ArrayList<String> getFeedback() {
         return feedback;
-    }
-
-    public void setFeedback(ArrayList<String> feedback) {
-        this.feedback = feedback;
     }
 
     public int getNumberOfSoldItems() {

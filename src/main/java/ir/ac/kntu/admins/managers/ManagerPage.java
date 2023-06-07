@@ -23,17 +23,20 @@ public class ManagerPage {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( MANAGER PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showManagerOptions(whichManager);
-        } else if (nextChoose.equals("2")) {
-            AdminPage adminPage = new AdminPage(dataBase);
-            adminPage.goToAdminPage();
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            goToManagerPage(whichManager);
+        switch (nextChoose) {
+            case "1" -> showManagerOptions(whichManager);
+            case "2" -> {
+                AdminPage adminPage = new AdminPage(dataBase);
+                adminPage.goToAdminPage();
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                goToManagerPage(whichManager);
+            }
         }
     }
 
@@ -68,7 +71,7 @@ public class ManagerPage {
             managerGamePage.gamesPage(whichManager);
         } else {
             AccessoriesPage accessoriesPage = new AccessoriesPage(dataBase);
-            accessoriesPage.goToAccessoriesPage(whichManager,"MANAGER");
+            accessoriesPage.goToAccessoriesPage(whichManager, "MANAGER");
         }
     }
 }

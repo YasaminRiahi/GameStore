@@ -23,28 +23,31 @@ public class AdminProfile {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( " + typeOfAdmin + " PROFILE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showAdmins(index, admins);
-            System.out.println("Do you want to change your information?");
-            System.out.println("1)Yes");
-            System.out.println("2)No");
-            String changeOrNo = scanString();
-            if (changeOrNo.equals("1")) {
-                changeItems(index, admins, typeOfAdmin);
-            } else if (changeOrNo.equals("2")) {
-                profile(index, admins, typeOfAdmin);
-            } else {
+        switch (nextChoose) {
+            case "1" -> {
+                showAdmins(index, admins);
+                System.out.println("Do you want to change your information?");
+                System.out.println("1)Yes");
+                System.out.println("2)No");
+                String changeOrNo = scanString();
+                if (changeOrNo.equals("1")) {
+                    changeItems(index, admins, typeOfAdmin);
+                } else if (changeOrNo.equals("2")) {
+                    profile(index, admins, typeOfAdmin);
+                } else {
+                    incorrect();
+                    profile(index, admins, typeOfAdmin);
+                }
+            }
+            case "2" -> goBack(index, typeOfAdmin);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
                 incorrect();
                 profile(index, admins, typeOfAdmin);
             }
-        } else if (nextChoose.equals("2")) {
-            goBack(index, typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            profile(index, admins, typeOfAdmin);
         }
     }
 
@@ -65,22 +68,23 @@ public class AdminProfile {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( CHANGE PROFILE ITEMS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            changeWhat(index, admins, typeOfAdmin);
-        } else if (nextChoose.equals("2")) {
-            profile(index, admins, typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            changeItems(index, admins, typeOfAdmin);
+        switch (nextChoose) {
+            case "1" -> changeWhat(index, admins, typeOfAdmin);
+            case "2" -> profile(index, admins, typeOfAdmin);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                changeItems(index, admins, typeOfAdmin);
+            }
         }
     }
 
     public void changeWhat(int index, ArrayList<Admin> admins, String typeOfAdmin) {
         switch (whichItem()) {
-            case "1":
+            case "1" -> {
                 System.out.println("Enter new username:");
                 String newUsername = scanString();
                 while (duplicateUsername(newUsername, index) == 1) {
@@ -91,8 +95,8 @@ public class AdminProfile {
                 admins.get(index).setUserName(newUsername);
                 changedSuccessfully();
                 changeItems(index, admins, typeOfAdmin);
-                break;
-            case "2":
+            }
+            case "2" -> {
                 System.out.println("Enter new password:");
                 String newPassword = scanString();
                 while (checkPassword(newPassword) == 1) {
@@ -102,23 +106,23 @@ public class AdminProfile {
                 admins.get(index).setPassword(newPassword);
                 changedSuccessfully();
                 changeItems(index, admins, typeOfAdmin);
-                break;
-            case "3":
+            }
+            case "3" -> {
                 System.out.println("Enter new phone number:");
                 admins.get(index).setPhoneNumber(scanString());
                 changedSuccessfully();
                 changeItems(index, admins, typeOfAdmin);
-                break;
-            case "4":
+            }
+            case "4" -> {
                 System.out.println("Enter new Email:");
                 admins.get(index).setEmail(scanString());
                 changedSuccessfully();
                 changeItems(index, admins, typeOfAdmin);
-                break;
-            default:
+            }
+            default -> {
                 incorrect();
                 changeItems(index, admins, typeOfAdmin);
-                break;
+            }
         }
     }
 
@@ -154,7 +158,7 @@ public class AdminProfile {
         if (!password.matches(".*" + "[A-Z]+" + ".*") ||
                 !password.matches(".*" + "[a-z]+" + ".*") ||
                 !password.matches(".*" + "[0-9]+" + ".*")) {
-            System.out.println("Password must include at least 1 numbers , 1 captal and \n" +
+            System.out.println("Password must include at least 1 numbers , 1 capital and \n" +
                     "1 small letter!");
             return 1;
         } else {

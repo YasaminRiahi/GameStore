@@ -1,6 +1,5 @@
 package ir.ac.kntu.regularUsers.profile;
 
-import ir.ac.kntu.admins.managers.ChangeUserInformation;
 import ir.ac.kntu.admins.managers.ViewUserInformation;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.regularUsers.RegularUserPage;
@@ -22,30 +21,35 @@ public class UserProfile {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( PROFILE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
-            viewUserInformation.showUser(userIndex);
-            System.out.println("Do you want to change your information?");
-            System.out.println("1)Yes");
-            System.out.println("2)No");
-            String changeOrNo = scanString();
-            if (changeOrNo.equals("1")) {
-                toChange(userIndex, stopwatch1);
-            } else if (changeOrNo.equals("2")) {
-                profile(userIndex, stopwatch1);
-            } else {
+        switch (nextChoose) {
+            case "1" -> {
+                ViewUserInformation viewUserInformation = new ViewUserInformation(dataBase);
+                viewUserInformation.showUser(userIndex);
+                System.out.println("Do you want to change your information?");
+                System.out.println("1)Yes");
+                System.out.println("2)No");
+                String changeOrNo = scanString();
+                if (changeOrNo.equals("1")) {
+                    toChange(userIndex, stopwatch1);
+                } else if (changeOrNo.equals("2")) {
+                    profile(userIndex, stopwatch1);
+                } else {
+                    incorrect();
+                    profile(userIndex, stopwatch1);
+                }
+            }
+            case "2" -> {
+                RegularUserPage regularUserPage = new RegularUserPage(dataBase);
+                regularUserPage.userAccess(userIndex, stopwatch1);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
                 incorrect();
                 profile(userIndex, stopwatch1);
             }
-        } else if (nextChoose.equals("2")) {
-            RegularUserPage regularUserPage = new RegularUserPage(dataBase);
-            regularUserPage.userAccess(userIndex, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            profile(userIndex, stopwatch1);
         }
     }
 
@@ -53,28 +57,27 @@ public class UserProfile {
         whichOption();
         String which = scanString();
         switch (Integer.parseInt(which)) {
-            case 1:
+            case 1 -> {
                 toChangeWhat("username");
                 dataBase.getRegularUsers().get(userIndex).setUserName(scanNewName(dataBase, scanString()));
-                break;
-            case 2:
+            }
+            case 2 -> {
                 toChangeWhat("password");
-                dataBase.getRegularUsers().get(userIndex).setPassword(scanNewPass(dataBase, scanString()));
-                break;
-            case 3:
+                dataBase.getRegularUsers().get(userIndex).setPassword(scanNewPass(scanString()));
+            }
+            case 3 -> {
                 toChangeWhat("phone number");
                 dataBase.getRegularUsers().get(userIndex).setPhoneNumber(scanString());
-                break;
-            case 4:
+            }
+            case 4 -> {
                 toChangeWhat("email");
                 dataBase.getRegularUsers().get(userIndex).setEmail(scanString());
-                break;
-            case 5:
-                chargeWallet(userIndex);
-                break;
-            default:
+            }
+            case 5 -> chargeWallet(userIndex);
+            default -> {
                 incorrect();
                 toChange(userIndex, stopwatch1);
+            }
         }
         System.out.println("The change was successful!");
         profile(userIndex, stopwatch1);

@@ -19,12 +19,10 @@ public class Scan {
 
     public static String scanString() {
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        return input;
+        return scanner.nextLine();
     }
 
     public static Integer scanInt() {
-        Scanner scanner = new Scanner(System.in);
         int input;
         String isInput = scanString();
         if (isInput.matches("[0-9]+")) {
@@ -35,7 +33,6 @@ public class Scan {
     }
 
     public static Double scanDouble() {
-        Scanner scanner = new Scanner(System.in);
         double input;
         String isInput = scanString();
         if (isInput.matches("[0-9]+(.[0-9.])*")) {
@@ -85,7 +82,7 @@ public class Scan {
         if (!password.matches(".*" + "[A-Z]+" + ".*") ||
                 !password.matches(".*" + "[a-z]+" + ".*") ||
                 !password.matches(".*" + "[0-9]+" + ".*")) {
-            System.out.println(ConsoleColors.RED + "Password must include at least 1 numbers , 1 captal and \n" +
+            System.out.println(ConsoleColors.RED + "Password must include at least 1 numbers , 1 capital and \n" +
                     "1 small letter!" + ConsoleColors.RESET);
             return 1;
         } else {
@@ -107,7 +104,7 @@ public class Scan {
         return newUsername;
     }
 
-    public static String scanNewPass(DataBase dataBase, String newPassword) {
+    public static String scanNewPass(String newPassword) {
         while (checkPassword(newPassword) == 1) {
             System.out.println("Enter another password:");
             newPassword = scanString();
@@ -231,5 +228,4 @@ public class Scan {
             }
         }
     }
-
 }

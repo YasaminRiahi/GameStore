@@ -3,8 +3,6 @@ package ir.ac.kntu.admins.developers;
 import ir.ac.kntu.admins.commonInGames.AddAGame;
 import ir.ac.kntu.admins.commonInGames.ChangeGameInformation;
 import ir.ac.kntu.admins.commonInGames.RemoveGame;
-import ir.ac.kntu.admins.managers.ManagerGamesOptions;
-import ir.ac.kntu.admins.managers.ManagerPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
@@ -25,17 +23,20 @@ public class DeveloperGamePage {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( DEVELOPER GAMES PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showDeveloperGamesOptions(whichDeveloper);
-        } else if (nextChoose.equals("2")) {
-            DeveloperPage developerPage = new DeveloperPage(dataBase);
-            developerPage.goToDeveloperPage(whichDeveloper);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            gamesPage(whichDeveloper);
+        switch (nextChoose) {
+            case "1" -> showDeveloperGamesOptions(whichDeveloper);
+            case "2" -> {
+                DeveloperPage developerPage = new DeveloperPage(dataBase);
+                developerPage.goToDeveloperPage(whichDeveloper);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                gamesPage(whichDeveloper);
+            }
         }
     }
 
@@ -61,13 +62,13 @@ public class DeveloperGamePage {
     public void goToOptions(int whichDeveloper) {
         if (developerGamesOptions == DeveloperGamesOptions.ADD_A_GAME) {
             AddAGame addAGame = new AddAGame(dataBase);
-            addAGame.toAddGames(whichDeveloper,"DEVELOPER");
+            addAGame.toAddGames(whichDeveloper, "DEVELOPER");
         } else if (developerGamesOptions == DeveloperGamesOptions.CHANGE_GAMES_INFORMATION) {
             ChangeGameInformation changeGameInformation = new ChangeGameInformation(dataBase);
-            changeGameInformation.changeGamesInformation(whichDeveloper,"DEVELOPER");
+            changeGameInformation.changeGamesInformation(whichDeveloper, "DEVELOPER");
         } else {
-            RemoveGame removeGame =  new RemoveGame(dataBase);
-            removeGame.removeGames(whichDeveloper,"DEVELOPER");
+            RemoveGame removeGame = new RemoveGame(dataBase);
+            removeGame.removeGames(whichDeveloper, "DEVELOPER");
         }
     }
 }

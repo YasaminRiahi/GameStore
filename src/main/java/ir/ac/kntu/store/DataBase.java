@@ -68,10 +68,6 @@ public class DataBase {
         return sellers;
     }
 
-    public void setSellers(ArrayList<Admin> sellers) {
-        this.sellers = sellers;
-    }
-
     public void addSellers(Admin admin) {
         sellers.add(admin);
     }
@@ -88,16 +84,8 @@ public class DataBase {
         this.regularUsers.add(regularUser);
     }
 
-    public void removeRegularUser(RegularUser regularUser){
-        regularUsers.remove(regularUser);
-    }
-
     public ArrayList<GamePad> getGamePads() {
         return gamePads;
-    }
-
-    public void setGamePads(ArrayList<GamePad> gamePads) {
-        this.gamePads = gamePads;
     }
 
     public void addGamePad(GamePad gamePad) {
@@ -141,7 +129,7 @@ public class DataBase {
         Admin admin2 = new Admin("BaharOrak", "Bahar821017", "09160340853", "baharorak@gmail.com");
         Admin admin3 = new Admin("RaziehRiahi", "Razii78Riahi", "09167594761", "raziriahi@gmail.com");
         Admin admin4 = new Admin("ShakibaMirzadeh", "Shakiba1352", "09132135049", "ShMirzadeh8962");
-        Admin admin5 =new Admin("Hooman","Hooriahi49","091321899832","hooriahi@gmail.com");
+        Admin admin5 = new Admin("Hooman", "Hooriahi49", "091321899832", "hooriahi@gmail.com");
         addManagers(admin1);
         addManagers(admin2);
         addDevelopers(admin3);
@@ -154,8 +142,8 @@ public class DataBase {
         String description1 = "As a young boy, Link is tricked by Ganondorf, the King of the Gerudo Thieves...";
         ArrayList<String> community1 = new ArrayList<>();
         community1.add("Cool game!");
-        Games game1 = new Games("Legend Of Zelda",description1,60,"Action-Adventure",9.1,
-                768,GamesLevel.LEVEL_3);
+        Games game1 = new Games("Legend Of Zelda", description1, 60, "Action-Adventure", 9.1,
+                768, GamesLevel.LEVEL_3);
         game1.setCommunity(community1);
         game1.setBeta(true);
         game1.addDeveloper(developers.get(0));
@@ -164,17 +152,17 @@ public class DataBase {
         String description2 = "Hawk's back - with new technology, new pros and new tricks! THPS2, the legend rides on!…";
         ArrayList<String> community2 = new ArrayList<>();
         community2.add("Not exciting");
-        Games game2 = new Games("TONY HAWK'S PRO SKATER 2",description2,30,"Sports-Alternative",
-                6.6,116,GamesLevel.LEVEL_1);
+        Games game2 = new Games("TONY HAWK'S PRO SKATER 2", description2, 30, "Sports-Alternative",
+                6.6, 116, GamesLevel.LEVEL_1);
         game2.setCommunity(community2);
         game2.setBeta(true);
         game2.addDeveloper(developers.get(1));
         developers.get(1).getDeveloperGame().add(game2);
         games.add(game2);
-        String description3 = "Step into the Dark... As Carrington Institute's most promising new Agent..";;
+        String description3 = "Step into the Dark... As Carrington Institute's most promising new Agent..";
         ArrayList<String> community3 = new ArrayList<>();
         community3.add("I love it!");
-        Games game3 = new Games("PERFECT DARK",description3,50,"Action",8.8,511,
+        Games game3 = new Games("PERFECT DARK", description3, 50, "Action", 8.8, 511,
                 GamesLevel.LEVEL_2);
         game3.setCommunity(community3);
         game3.setBeta(false);
@@ -186,10 +174,11 @@ public class DataBase {
     public void addDefaultGamePad() {
         GamePad gamePad1 = new GamePad();
         gamePad1.setName("DualSense 5");
-        gamePad1.setDescription("Discover a deeper, highly immersive gaming experience that brings the action to life in\n" +
-                " the palms of your hands. The DualSense wireless controller offers immersive haptic feedback,\n" +
-                " dynamic adaptive triggers and a built-in microphone, all integrated into an iconic comfortable design.\n" +
-                " Compared to DUALSHOCK 4 wireless controller. Available when feature is supported by game.");
+        gamePad1.setDescription("""
+                Discover a deeper, highly immersive gaming experience that brings the action to life in
+                 the palms of your hands. The DualSense wireless controller offers immersive haptic feedback,
+                 dynamic adaptive triggers and a built-in microphone, all integrated into an iconic comfortable design.
+                 Compared to DUALSHOCK 4 wireless controller. Available when feature is supported by game.""");
         gamePad1.setCost(21.1);
         gamePad1.setConnectionType(ConnectionType.WIRELESS);
         gamePad1.setDeviceType(DeviceType.PLAY_STATION);
@@ -216,9 +205,10 @@ public class DataBase {
     public void addDefaultMonitorGaming() {
         MonitorGaming monitorGaming1 = new MonitorGaming();
         monitorGaming1.setName("LG UltraGear");
-        monitorGaming1.setDescription("Get wrapped up in the action with the 27” LG UltraGear™ monitor and the stunning \n" +
-                "picture quality of LG OLED technology. Gain a competitive advantage with an unprecedented 240Hz \n" +
-                "refresh rate and 0.03ms response time on an OLED gaming monitor.");
+        monitorGaming1.setDescription("""
+                Get wrapped up in the action with the 27” LG UltraGear™ monitor and the stunning\s
+                picture quality of LG OLED technology. Gain a competitive advantage with an unprecedented 240Hz\s
+                refresh rate and 0.03ms response time on an OLED gaming monitor.""");
         monitorGaming1.setCost(1000);
         monitorGaming1.setScreenSize(27);
         monitorGaming1.setRefreshRate(240);
@@ -230,9 +220,10 @@ public class DataBase {
         monitorGaming1.setCommunity(community1);
         MonitorGaming monitorGaming2 = new MonitorGaming();
         monitorGaming2.setName("48'' UltraGear");
-        monitorGaming2.setDescription("Console and PC gaming has never looked better. The 48GQ900 UltraGear OLED gaming \n" +
-                "monitor features a 16:9 aspect ratio with 4K UHD resolution and supports DisplayPort 1.4 and HDMI 2.1\n" +
-                " Switching between PC and console gaming is easy with the included remote.");
+        monitorGaming2.setDescription("""
+                Console and PC gaming has never looked better. The 48GQ900 UltraGear OLED gaming\s
+                monitor features a 16:9 aspect ratio with 4K UHD resolution and supports DisplayPort 1.4 and HDMI 2.1
+                 Switching between PC and console gaming is easy with the included remote.""");
         monitorGaming2.setCost(1500);
         monitorGaming2.setScreenSize(48);
         monitorGaming2.setRefreshRate(120);

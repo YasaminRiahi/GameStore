@@ -1,10 +1,8 @@
 package ir.ac.kntu.helpers;
 
 import ir.ac.kntu.admins.Admin;
-import ir.ac.kntu.store.User;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import static ir.ac.kntu.helpers.Scan.*;
 
@@ -23,8 +21,7 @@ public class TextTypings {
         System.out.println("1)Be in this page");
         System.out.println("2)Go to previous page");
         System.out.println("3)Exit");
-        String input = scanString();
-        return input;
+        return scanString();
     }
 
     public static void noAccount() {
@@ -43,14 +40,6 @@ public class TextTypings {
                 + ConsoleColors.RESET);
     }
 
-    public static String forWrongInputs() {
-        System.out.println(ConsoleColors.RED_BOLD + "Wrong input!" + ConsoleColors.RESET);
-        System.out.println("1)Retry");
-        System.out.println("2)Turn back");
-        String newInput = scanString();
-        return newInput;
-    }
-
     public static void incorrect() {
         System.out.println(ConsoleColors.RED + "Incorrect number!Enter again!" + ConsoleColors.RESET);
     }
@@ -63,20 +52,6 @@ public class TextTypings {
         System.out.println("Do you want to buy this product?");
         System.out.println("1)Yes");
         System.out.println("2)No");
-        return scanString();
-    }
-
-    public static String submitIdea() {
-        System.out.println("Do you want to submit your idea?");
-        System.out.println("1)Yes");
-        System.out.println("2)No");
-        return scanString();
-    }
-
-    public static String acceptOrDecline() {
-        System.out.println("Enter a number");
-        System.out.println("1)Choose a person to accept or decline");
-        System.out.println("2)Go to previous page");
         return scanString();
     }
 
@@ -106,14 +81,14 @@ public class TextTypings {
         System.out.println();
     }
 
-    public static String continueOrNo(){
+    public static String continueOrNo() {
         System.out.println("Do you want to choose anything else?");
         System.out.println("1)Yes");
         System.out.println("2)No");
         return scanString();
     }
 
-    public static String communityOrRate(){
+    public static String communityOrRate() {
         System.out.println("Enter a number");
         System.out.println("1)Add community");
         System.out.println("2)Rate this game");
@@ -121,7 +96,7 @@ public class TextTypings {
         return scanString();
     }
 
-    public static String communityOrReport(){
+    public static String communityOrReport() {
         System.out.println("Enter a number");
         System.out.println("1)Add community");
         System.out.println("2)Report a crash");
@@ -129,7 +104,7 @@ public class TextTypings {
         return scanString();
     }
 
-    public static String feedbackOrRate(){
+    public static String feedbackOrRate() {
         System.out.println("Enter a number");
         System.out.println("1)Add feedback");
         System.out.println("2)Rate this game");

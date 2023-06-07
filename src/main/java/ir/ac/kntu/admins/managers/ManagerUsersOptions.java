@@ -9,7 +9,7 @@ public enum ManagerUsersOptions {
 
     VIEW_THE_MOST_ACTIVE_USERS("5");
 
-    private String value;
+    private final String value;
 
     ManagerUsersOptions(String value) {
         this.value = value;

@@ -9,7 +9,7 @@ public enum UserFriendOptions {
 
     private String value;
 
-    UserFriendOptions(String value){
+    UserFriendOptions(String value) {
         this.value = value;
     }
 

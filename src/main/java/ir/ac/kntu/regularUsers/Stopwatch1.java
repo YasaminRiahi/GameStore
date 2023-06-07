@@ -1,13 +1,8 @@
 package ir.ac.kntu.regularUsers;
 
 public class Stopwatch1 {
-    private final long nanoSecondsPerMillisecond = 1000000;
 
     private final long nanoSecondsPerSecond = 1000000000;
-
-    private final long nanoSecondsPerMinute = 60000000000L;
-
-    private final long nanoSecondsPerHour = 3600000000000L;
 
     private long stopWatchStartTime = 0;
 
@@ -25,16 +20,6 @@ public class Stopwatch1 {
         this.stopWatchRunning = false;
     }
 
-    public long getElapsedMilliseconds() {
-        long elapsedTime;
-        if (stopWatchRunning) {
-            elapsedTime = (System.nanoTime() - stopWatchStartTime);
-        } else {
-            elapsedTime = (stopWatchStopTime - stopWatchStartTime);
-        }
-        return elapsedTime / nanoSecondsPerMillisecond;
-    }
-
     public long getElapsedSeconds() {
         long elapsedTime;
         if (stopWatchRunning) {
@@ -45,23 +30,4 @@ public class Stopwatch1 {
         return elapsedTime / nanoSecondsPerSecond;
     }
 
-    public long getElapsedMinutes() {
-        long elapsedTime;
-        if (stopWatchRunning) {
-            elapsedTime = (System.nanoTime() - stopWatchStartTime);
-        } else {
-            elapsedTime = (stopWatchStopTime - stopWatchStartTime);
-        }
-        return elapsedTime / nanoSecondsPerMinute;
-    }
-
-    public long getElapsedHours() {
-        long elapsedTime;
-        if (stopWatchRunning) {
-            elapsedTime = (System.nanoTime() - stopWatchStartTime);
-        } else {
-            elapsedTime = (stopWatchStopTime - stopWatchStartTime);
-        }
-        return elapsedTime / nanoSecondsPerHour;
-    }
 }

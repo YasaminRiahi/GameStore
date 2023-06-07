@@ -1,7 +1,5 @@
 package ir.ac.kntu.regularUsers.userStore;
 
-import java.util.PrimitiveIterator;
-
 public enum UserStoreOptions {
 
     LIST_OF_PRODUCTS("1"),

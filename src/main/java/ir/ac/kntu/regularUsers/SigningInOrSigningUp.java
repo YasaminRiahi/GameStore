@@ -20,28 +20,33 @@ public class SigningInOrSigningUp {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( SIGN UP / SIGN IN )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter a number!");
-            System.out.println("1)Sign in");
-            System.out.println("2)Sign up");
-            String whatToDo = scanString();
-            if (whatToDo.equals("1")) {
-                signIn();
-            } else if (whatToDo.equals("2")) {
-                signUp();
-            } else {
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter a number!");
+                System.out.println("1)Sign in");
+                System.out.println("2)Sign up");
+                String whatToDo = scanString();
+                if (whatToDo.equals("1")) {
+                    signIn();
+                } else if (whatToDo.equals("2")) {
+                    signUp();
+                } else {
+                    incorrect();
+                    signInOrUp();
+                }
+            }
+            case "2" -> {
+                MainMenu mainMenu = new MainMenu(dataBase);
+                mainMenu.showMenu();
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
                 incorrect();
                 signInOrUp();
             }
-        } else if (nextChoose.equals("2")) {
-            MainMenu mainMenu = new MainMenu(dataBase);
-            mainMenu.showMenu();
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            signInOrUp();
         }
     }
 
@@ -49,20 +54,23 @@ public class SigningInOrSigningUp {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( SIGN IN )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter your username:");
-            String username = scanString();
-            System.out.println("Enter your password:");
-            String password = scanString();
-            checkUsernameAndPassword(username, password);
-        } else if (nextChoose.equals("2")) {
-            signInOrUp();
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            signIn();
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter your username:");
+                String username = scanString();
+                System.out.println("Enter your password:");
+                String password = scanString();
+                checkUsernameAndPassword(username, password);
+            }
+            case "2" -> signInOrUp();
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                signIn();
+            }
         }
     }
 
@@ -86,16 +94,17 @@ public class SigningInOrSigningUp {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( SIGN UP )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            enterInformation();
-        } else if (nextChoose.equals("2")) {
-            signInOrUp();
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            signUp();
+        switch (nextChoose) {
+            case "1" -> enterInformation();
+            case "2" -> signInOrUp();
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                signUp();
+            }
         }
     }
 

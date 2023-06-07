@@ -1,8 +1,6 @@
 package ir.ac.kntu.admins;
 
 import ir.ac.kntu.helpers.ConsoleColors;
-import ir.ac.kntu.store.DataBase;
-import ir.ac.kntu.store.User;
 
 import java.util.ArrayList;
 

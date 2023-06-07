@@ -7,7 +7,6 @@ import ir.ac.kntu.store.DataBase;
 import java.util.ArrayList;
 
 import static ir.ac.kntu.helpers.Scan.scanDouble;
-import static ir.ac.kntu.helpers.Scan.scanString;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 
@@ -25,17 +24,20 @@ public class FilteringCostOfProducts {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( FILTERING COST OF PRODUCTS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showSearchOptions(userIndex, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            UserStore userStore = new UserStore(dataBase);
-            userStore.userStore(userIndex, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            filteringProducts(userIndex, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> showSearchOptions(userIndex, stopwatch1);
+            case "2" -> {
+                UserStore userStore = new UserStore(dataBase);
+                userStore.userStore(userIndex, stopwatch1);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                filteringProducts(userIndex, stopwatch1);
+            }
         }
     }
 
@@ -64,11 +66,11 @@ public class FilteringCostOfProducts {
         } else if (productSearchOptions == ProductSearchOptions.SEARCH_IN_ALL_ACCESSORIES) {
             filteringAllAccessories(whichUser, stopwatch1, new SearchInProducts(dataBase));
         } else if (productSearchOptions == ProductSearchOptions.SEARCH_IN_GAMES) {
-            filteringGames(whichUser,stopwatch1,new SearchInProducts(dataBase));
+            filteringGames(whichUser, stopwatch1, new SearchInProducts(dataBase));
         } else if (productSearchOptions == ProductSearchOptions.SEARCH_IN_GAMING_MONITORS) {
-            filteringMonitors(whichUser,stopwatch1,new SearchInProducts(dataBase));
+            filteringMonitors(whichUser, stopwatch1, new SearchInProducts(dataBase));
         } else {
-            filteringPads(whichUser,stopwatch1,new SearchInProducts(dataBase));
+            filteringPads(whichUser, stopwatch1, new SearchInProducts(dataBase));
         }
     }
 
@@ -76,23 +78,26 @@ public class FilteringCostOfProducts {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( FILTERING All PRODUCTS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter beginning cost and termination cost :");
-            double beginningCost = scanDouble();
-            double terminationCost = scanDouble();
-            searchInProducts.showFoundProducts(searchGameByFiltering(beginningCost, terminationCost),
-                    searchMonitorsByFiltering(beginningCost, terminationCost), searchPadsByFiltering(beginningCost, terminationCost));
-            searchInProducts.choose(whichUser, stopwatch1, searchGameByFiltering(beginningCost, terminationCost),
-                    searchMonitorsByFiltering(beginningCost, terminationCost), searchPadsByFiltering(beginningCost, terminationCost));
-            filteringProducts(whichUser,stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            filteringProducts(whichUser, stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            filteringAllProducts(whichUser, stopwatch1, searchInProducts);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter beginning cost and termination cost :");
+                double beginningCost = scanDouble();
+                double terminationCost = scanDouble();
+                searchInProducts.showFoundProducts(searchGameByFiltering(beginningCost, terminationCost),
+                        searchMonitorsByFiltering(beginningCost, terminationCost), searchPadsByFiltering(beginningCost, terminationCost));
+                searchInProducts.choose(whichUser, stopwatch1, searchGameByFiltering(beginningCost, terminationCost),
+                        searchMonitorsByFiltering(beginningCost, terminationCost), searchPadsByFiltering(beginningCost, terminationCost));
+                filteringProducts(whichUser, stopwatch1);
+            }
+            case "2" -> filteringProducts(whichUser, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                filteringAllProducts(whichUser, stopwatch1, searchInProducts);
+            }
         }
     }
 
@@ -100,23 +105,26 @@ public class FilteringCostOfProducts {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( Filtering All ACCESSORIES )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter beginning cost and termination cost :");
-            double beginningCost = scanDouble();
-            double terminationCost = scanDouble();
-            searchInProducts.showFoundProducts(new ArrayList<Integer>(), searchMonitorsByFiltering(beginningCost, terminationCost),
-                    searchPadsByFiltering(beginningCost, terminationCost));
-            searchInProducts.choose(whichUser, stopwatch1, new ArrayList<Integer>(), searchMonitorsByFiltering(beginningCost, terminationCost),
-                    searchPadsByFiltering(beginningCost, terminationCost));
-            filteringProducts(whichUser,stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            filteringProducts(whichUser,stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            filteringAllAccessories(whichUser,stopwatch1,searchInProducts);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter beginning cost and termination cost :");
+                double beginningCost = scanDouble();
+                double terminationCost = scanDouble();
+                searchInProducts.showFoundProducts(new ArrayList<Integer>(), searchMonitorsByFiltering(beginningCost, terminationCost),
+                        searchPadsByFiltering(beginningCost, terminationCost));
+                searchInProducts.choose(whichUser, stopwatch1, new ArrayList<Integer>(), searchMonitorsByFiltering(beginningCost, terminationCost),
+                        searchPadsByFiltering(beginningCost, terminationCost));
+                filteringProducts(whichUser, stopwatch1);
+            }
+            case "2" -> filteringProducts(whichUser, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                filteringAllAccessories(whichUser, stopwatch1, searchInProducts);
+            }
         }
     }
 
@@ -124,71 +132,80 @@ public class FilteringCostOfProducts {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( FILTERING GAMES )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter beginning cost and termination cost :");
-            double beginningCost = scanDouble();
-            double terminationCost = scanDouble();
-            searchInProducts.showFoundProducts(searchGameByFiltering(beginningCost,terminationCost), new ArrayList<Integer>(),
-                    new ArrayList<Integer>());
-            searchInProducts.choose(whichUser,stopwatch1,searchGameByFiltering(beginningCost,terminationCost), new ArrayList<Integer>(),
-                    new ArrayList<Integer>());
-            filteringProducts(whichUser,stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            filteringProducts(whichUser,stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            filteringGames(whichUser,stopwatch1,searchInProducts);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter beginning cost and termination cost :");
+                double beginningCost = scanDouble();
+                double terminationCost = scanDouble();
+                searchInProducts.showFoundProducts(searchGameByFiltering(beginningCost, terminationCost), new ArrayList<Integer>(),
+                        new ArrayList<Integer>());
+                searchInProducts.choose(whichUser, stopwatch1, searchGameByFiltering(beginningCost, terminationCost), new ArrayList<Integer>(),
+                        new ArrayList<Integer>());
+                filteringProducts(whichUser, stopwatch1);
+            }
+            case "2" -> filteringProducts(whichUser, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                filteringGames(whichUser, stopwatch1, searchInProducts);
+            }
         }
     }
 
-    public void filteringMonitors(int whichUser, Stopwatch1 stopwatch1,SearchInProducts searchInProducts) {
+    public void filteringMonitors(int whichUser, Stopwatch1 stopwatch1, SearchInProducts searchInProducts) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( FILTERING GAMING MONITORS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter beginning cost and termination cost :");
-            double beginningCost = scanDouble();
-            double terminationCost = scanDouble();
-            searchInProducts.showFoundProducts(searchGameByFiltering(beginningCost,terminationCost), new ArrayList<Integer>(),
-                    new ArrayList<Integer>());
-            searchInProducts.choose(whichUser,stopwatch1,searchGameByFiltering(beginningCost,terminationCost), new ArrayList<Integer>(),
-                    new ArrayList<Integer>());
-            filteringProducts(whichUser,stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            filteringProducts(whichUser,stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            filteringMonitors(whichUser,stopwatch1,searchInProducts);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter beginning cost and termination cost :");
+                double beginningCost = scanDouble();
+                double terminationCost = scanDouble();
+                searchInProducts.showFoundProducts(searchGameByFiltering(beginningCost, terminationCost), new ArrayList<Integer>(),
+                        new ArrayList<Integer>());
+                searchInProducts.choose(whichUser, stopwatch1, searchGameByFiltering(beginningCost, terminationCost), new ArrayList<Integer>(),
+                        new ArrayList<Integer>());
+                filteringProducts(whichUser, stopwatch1);
+            }
+            case "2" -> filteringProducts(whichUser, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                filteringMonitors(whichUser, stopwatch1, searchInProducts);
+            }
         }
     }
 
-    public void filteringPads(int whichUser, Stopwatch1 stopwatch1,SearchInProducts searchInProducts) {
+    public void filteringPads(int whichUser, Stopwatch1 stopwatch1, SearchInProducts searchInProducts) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( FILTERING GAME PADS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            System.out.println("Enter beginning cost and termination cost :");
-            double beginningCost = scanDouble();
-            double terminationCost = scanDouble();
-            searchInProducts.showFoundProducts(searchGameByFiltering(beginningCost,terminationCost), new ArrayList<Integer>(),
-                    new ArrayList<Integer>());
-            searchInProducts.choose(whichUser,stopwatch1,searchGameByFiltering(beginningCost,terminationCost), new ArrayList<Integer>(),
-                    new ArrayList<Integer>());
-            filteringProducts(whichUser,stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            filteringProducts(whichUser,stopwatch1);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            filteringPads(whichUser,stopwatch1,searchInProducts);
+        switch (nextChoose) {
+            case "1" -> {
+                System.out.println("Enter beginning cost and termination cost :");
+                double beginningCost = scanDouble();
+                double terminationCost = scanDouble();
+                searchInProducts.showFoundProducts(searchGameByFiltering(beginningCost, terminationCost), new ArrayList<Integer>(),
+                        new ArrayList<Integer>());
+                searchInProducts.choose(whichUser, stopwatch1, searchGameByFiltering(beginningCost, terminationCost), new ArrayList<Integer>(),
+                        new ArrayList<Integer>());
+                filteringProducts(whichUser, stopwatch1);
+            }
+            case "2" -> filteringProducts(whichUser, stopwatch1);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                filteringPads(whichUser, stopwatch1, searchInProducts);
+            }
         }
     }
 

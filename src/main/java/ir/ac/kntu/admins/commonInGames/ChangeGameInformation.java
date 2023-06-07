@@ -24,18 +24,18 @@ public class ChangeGameInformation {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( CHANGE GAMES INFORMATION )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showEditingGamesOptions(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("2")) {
-            goBack(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            changeGamesInformation(whichUser, typeOfAdmin);
+        switch (nextChoose) {
+            case "1" -> showEditingGamesOptions(whichUser, typeOfAdmin);
+            case "2" -> goBack(whichUser, typeOfAdmin);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                changeGamesInformation(whichUser, typeOfAdmin);
+            }
         }
-
     }
 
     public void showEditingGamesOptions(int whichUser, String typeOfAdmin) {
@@ -69,33 +69,36 @@ public class ChangeGameInformation {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( CHANGE INFORMATION BY LIST )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showGames();
-            String whichGame = scanString();
-            if (Integer.parseInt(whichGame) - 1 >= dataBase.getGames().size() || Integer.parseInt(whichGame) - 1 < 0) {
+        switch (nextChoose) {
+            case "1" -> {
+                showGames();
+                String whichGame = scanString();
+                if (Integer.parseInt(whichGame) - 1 >= dataBase.getGames().size() || Integer.parseInt(whichGame) - 1 < 0) {
+                    incorrect();
+                    changeByList(whichUser, typeOfAdmin);
+                } else {
+                    if (typeOfAdmin.equals("DEVELOPER")) {
+                        if (!dataBase.getGames().get(Integer.parseInt(whichGame) - 1).getDevelopers().
+                                contains(dataBase.getDevelopers().get(whichUser))) {
+                            notDeveloper();
+                            changeByList(whichUser, typeOfAdmin);
+                        }
+                    }
+                    whichOption();
+                    toChange(Integer.parseInt(whichGame) - 1);
+                    System.out.println("Game changed successfully!");
+                    changeGamesInformation(whichUser, typeOfAdmin);
+                }
+            }
+            case "2" -> changeGamesInformation(whichUser, typeOfAdmin);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
                 incorrect();
                 changeByList(whichUser, typeOfAdmin);
-            } else {
-                if (typeOfAdmin.equals("DEVELOPER")) {
-                    if (!dataBase.getGames().get(Integer.parseInt(whichGame) - 1).getDevelopers().
-                            contains(dataBase.getDevelopers().get(whichUser))) {
-                        notDeveloper();
-                        changeByList(whichUser, typeOfAdmin);
-                    }
-                }
-                whichOption();
-                toChange(Integer.parseInt(whichGame) - 1);
-                System.out.println("Game changed successfully!");
-                changeGamesInformation(whichUser, typeOfAdmin);
             }
-        } else if (nextChoose.equals("2")) {
-            changeGamesInformation(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            changeByList(whichUser, typeOfAdmin);
         }
     }
 
@@ -103,16 +106,17 @@ public class ChangeGameInformation {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( CHANGE INFORMATION BY SEARCH )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            searchOptionToChange(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("2")) {
-            changeGamesInformation(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            changBySearch(whichUser, typeOfAdmin);
+        switch (nextChoose) {
+            case "1" -> searchOptionToChange(whichUser, typeOfAdmin);
+            case "2" -> changeGamesInformation(whichUser, typeOfAdmin);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                changBySearch(whichUser, typeOfAdmin);
+            }
         }
     }
 
@@ -140,7 +144,7 @@ public class ChangeGameInformation {
                 whichOption();
                 toChange(Integer.parseInt(whichGame) - 1);
                 System.out.println("Game changed successfully!");
-                changeGamesInformation(whichUser,typeOfAdmin);
+                changeGamesInformation(whichUser, typeOfAdmin);
             }
         }
     }
@@ -158,37 +162,38 @@ public class ChangeGameInformation {
     public void toChange(int gameIndex) {
         String which = scanString();
         switch (Integer.parseInt(which)) {
-            case 1:
+            case 1 -> {
                 toChangeWhat("name");
                 dataBase.getGames().get(gameIndex).setName(scanString());
-                break;
-            case 2:
+            }
+            case 2 -> {
                 toChangeWhat("genre");
                 dataBase.getGames().get(gameIndex).setGenre(scanString());
-                break;
-            case 3:
+            }
+            case 3 -> {
                 toChangeWhat("description");
                 dataBase.getGames().get(gameIndex).setDescription(scanString());
-                break;
-            case 4:
+            }
+            case 4 -> {
                 toChangeWhat("rating");
                 double rating = scanDouble();
                 dataBase.getGames().get(gameIndex).setRating(rating);
                 dataBase.getGames().get(gameIndex).setBeginningRate(rating);
-                break;
-            case 5:
+            }
+            case 5 -> {
                 toChangeWhat("number of rates");
                 int numberOfRates = scanInt();
                 dataBase.getGames().get(gameIndex).setNumberOfRates(numberOfRates);
                 dataBase.getGames().get(gameIndex).setBeginningNumber(numberOfRates);
-                break;
-            case 6:
+            }
+            case 6 -> {
                 toChangeWhat("cost");
                 dataBase.getGames().get(gameIndex).setCost(scanDouble());
-                break;
-            default:
+            }
+            default -> {
                 incorrect();
                 toChange(gameIndex);
+            }
         }
     }
 
@@ -211,7 +216,7 @@ public class ChangeGameInformation {
     }
 
     public ArrayList searchGame(String name) {
-        ArrayList<Integer> indexes = new ArrayList<Integer>();
+        ArrayList<Integer> indexes = new ArrayList<>();
         for (int i = 0; i < dataBase.getGames().size(); i++) {
             if (dataBase.getGames().get(i).getName().toLowerCase().startsWith(name.toLowerCase())) {
                 indexes.add(i);
@@ -222,9 +227,9 @@ public class ChangeGameInformation {
 
     public void showFoundGames(ArrayList<Integer> foundGames) {
         int j = 1;
-        for (int i = 0; i < foundGames.size(); i++) {
-            System.out.print(+j + ")");
-            System.out.println(dataBase.getGames().get(foundGames.get(i)).getName());
+        for (Integer foundGame : foundGames) {
+            System.out.print(j + ")");
+            System.out.println(dataBase.getGames().get(foundGame).getName());
             j++;
         }
     }

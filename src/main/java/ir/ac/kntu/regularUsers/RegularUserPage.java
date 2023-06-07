@@ -23,22 +23,25 @@ public class RegularUserPage {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( USER PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showUserOptions(userIndex, stopwatch1);
-        } else if (nextChoose.equals("2")) {
-            stopwatch1.stop();
-            System.out.println("You signed out!");
-            int time = (int) stopwatch1.getElapsedSeconds() / 10;
-            int newScore = dataBase.getRegularUsers().get(userIndex).getScore() + time;
-            dataBase.getRegularUsers().get(userIndex).setScore(newScore);
-            SigningInOrSigningUp signingInOrSigningUp = new SigningInOrSigningUp(dataBase);
-            signingInOrSigningUp.signInOrUp();
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            userAccess(userIndex, stopwatch1);
+        switch (nextChoose) {
+            case "1" -> showUserOptions(userIndex, stopwatch1);
+            case "2" -> {
+                stopwatch1.stop();
+                System.out.println("You signed out!");
+                int time = (int) stopwatch1.getElapsedSeconds() / 10;
+                int newScore = dataBase.getRegularUsers().get(userIndex).getScore() + time;
+                dataBase.getRegularUsers().get(userIndex).setScore(newScore);
+                SigningInOrSigningUp signingInOrSigningUp = new SigningInOrSigningUp(dataBase);
+                signingInOrSigningUp.signInOrUp();
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                userAccess(userIndex, stopwatch1);
+            }
         }
     }
 

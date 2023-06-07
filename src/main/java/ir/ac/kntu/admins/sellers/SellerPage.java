@@ -23,22 +23,25 @@ public class SellerPage {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( SELLER PAGE )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showSellerOptions(whichSeller);
-        } else if (nextChoose.equals("2")) {
-            AdminPage adminPage = new AdminPage(dataBase);
-            adminPage.goToAdminPage();
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            goToSellerPage(whichSeller);
+        switch (nextChoose) {
+            case "1" -> showSellerOptions(whichSeller);
+            case "2" -> {
+                AdminPage adminPage = new AdminPage(dataBase);
+                adminPage.goToAdminPage();
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                goToSellerPage(whichSeller);
+            }
         }
     }
 
     public void showSellerOptions(int whichSeller) {
-        for (SellerOptions sellerOption1 : sellerOption.values()) {
+        for (SellerOptions sellerOption1 : SellerOptions.values()) {
             System.out.print(sellerOption1.getValue() + ")");
             System.out.println(sellerOption1);
         }
@@ -62,7 +65,7 @@ public class SellerPage {
             adminProfile.profile(whichSeller, dataBase.getSellers(), "SELLER");
         } else {
             AccessoriesPage accessoriesPage = new AccessoriesPage(dataBase);
-            accessoriesPage.goToAccessoriesPage(whichSeller,"SELLER");
+            accessoriesPage.goToAccessoriesPage(whichSeller, "SELLER");
         }
     }
 }

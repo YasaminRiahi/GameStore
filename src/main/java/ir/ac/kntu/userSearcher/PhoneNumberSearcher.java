@@ -4,9 +4,6 @@ import ir.ac.kntu.admins.managers.ChangeUserInformation;
 import ir.ac.kntu.admins.managers.ManagerUserPage;
 import ir.ac.kntu.admins.managers.ViewUserInformation;
 import ir.ac.kntu.helpers.ConsoleColors;
-import ir.ac.kntu.products.accessories.gamePad.GamePad;
-import ir.ac.kntu.products.accessories.monitorGaming.MonitorGaming;
-import ir.ac.kntu.regularUsers.RegularUser;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
@@ -27,19 +24,24 @@ public class PhoneNumberSearcher {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( SEARCH BY PHONE NUMBER )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            searchPhoneNumbers(goBack, whichUser);
-            ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
-            managerUserPage.usersPage(whichUser);
-        } else if (nextChoose.equals("2")) {
-            UserSearcher userSearcher = new UserSearcher(dataBase);
-            userSearcher.howToSearch(goBack, whichUser);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            searchByPhoneNumber(goBack, whichUser);
+        switch (nextChoose) {
+            case "1" -> {
+                searchPhoneNumbers(goBack, whichUser);
+                ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
+                managerUserPage.usersPage(whichUser);
+            }
+            case "2" -> {
+                UserSearcher userSearcher = new UserSearcher(dataBase);
+                userSearcher.howToSearch(goBack, whichUser);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                searchByPhoneNumber(goBack, whichUser);
+            }
         }
     }
 
@@ -62,9 +64,9 @@ public class PhoneNumberSearcher {
                     viewUserInformation.showUser(foundUsers.get(Integer.parseInt(whichOne) - 1));
                     ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
                     managerUserPage.usersPage(whichUser);
-                }else if (goBack.equals("CHANGE_A_USER_INFORMATION")) {
+                } else if (goBack.equals("CHANGE_A_USER_INFORMATION")) {
                     ChangeUserInformation changeUserInformation = new ChangeUserInformation(dataBase);
-                    changeUserInformation.toChange(foundUsers.get(Integer.parseInt(whichOne) - 1),whichUser);
+                    changeUserInformation.toChange(foundUsers.get(Integer.parseInt(whichOne) - 1), whichUser);
                     ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
                     managerUserPage.usersPage(whichUser);
                 } else {
@@ -94,9 +96,9 @@ public class PhoneNumberSearcher {
 
     public void showFoundUsers(ArrayList<Integer> foundUsers) {
         int j = 1;
-        for (int i = 0; i < foundUsers.size(); i++) {
-            System.out.print(+j + ")");
-            System.out.println(dataBase.getRegularUsers().get(foundUsers.get(i)).getPhoneNumber());
+        for (Integer foundUser : foundUsers) {
+            System.out.print(j + ")");
+            System.out.println(dataBase.getRegularUsers().get(foundUser).getPhoneNumber());
             j++;
         }
     }

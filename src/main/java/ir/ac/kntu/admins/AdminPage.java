@@ -25,17 +25,20 @@ public class AdminPage {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( ADMIN MENU )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showAdminsMenu();
-        } else if (nextChoose.equals("2")) {
-            MainMenu mainMenu = new MainMenu(dataBase);
-            mainMenu.showMenu();
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            goToAdminPage();
+        switch (nextChoose) {
+            case "1" -> showAdminsMenu();
+            case "2" -> {
+                MainMenu mainMenu = new MainMenu(dataBase);
+                mainMenu.showMenu();
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                goToAdminPage();
+            }
         }
     }
 
@@ -81,12 +84,11 @@ public class AdminPage {
             UsernameAndPasswordChecker usernameAndPasswordChecker = new UsernameAndPasswordChecker();
             int index = usernameAndPasswordChecker.checkUsernameAndPassword(dataBase.getSellers());
             if (index != -1) {
-                SellerPage sellerPage =  new SellerPage(dataBase);
+                SellerPage sellerPage = new SellerPage(dataBase);
                 sellerPage.goToSellerPage(index);
             } else {
                 goToAdminPage();
             }
         }
     }
-
 }

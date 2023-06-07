@@ -23,7 +23,7 @@ public class Games extends Product {
 
     private boolean isBeta;
 
-    private HashMap<RegularUser, Double> usersRate = new HashMap<>();
+    private HashMap<RegularUser, Double> usersRate;
 
     private ArrayList<Admin> developers;
 
@@ -93,14 +93,6 @@ public class Games extends Product {
         this.beginningNumber = beginningNumber;
     }
 
-    public HashMap<RegularUser, Double> getUsersRate() {
-        return usersRate;
-    }
-
-    public void setUsersRate(HashMap<RegularUser, Double> usersRate) {
-        this.usersRate = usersRate;
-    }
-
     public GamesLevel getGamesLevel() {
         return gamesLevel;
     }
@@ -125,7 +117,7 @@ public class Games extends Product {
         this.developers = developers;
     }
 
-    public void addDeveloper(Admin developer){
+    public void addDeveloper(Admin developer) {
         this.developers.add(developer);
     }
 
@@ -134,6 +126,4 @@ public class Games extends Product {
         usersRate = new HashMap<>();
         developers = new ArrayList<>();
     }
-
-
 }

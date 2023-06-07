@@ -3,8 +3,6 @@ package ir.ac.kntu.admins.commonInAccessories;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 
-import java.util.ArrayList;
-
 import static ir.ac.kntu.helpers.Scan.*;
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
@@ -23,19 +21,21 @@ public class ChangeAccessories {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( CHANGE ACCESSORIES )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showAccessoriesOption(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("2")) {
-            AccessoriesPage accessoriesPage = new AccessoriesPage(dataBase);
-            accessoriesPage.goToAccessoriesPage(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            changeAccessories(whichUser, typeOfAdmin);
+        switch (nextChoose) {
+            case "1" -> showAccessoriesOption(whichUser, typeOfAdmin);
+            case "2" -> {
+                AccessoriesPage accessoriesPage = new AccessoriesPage(dataBase);
+                accessoriesPage.goToAccessoriesPage(whichUser, typeOfAdmin);
+            }
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                changeAccessories(whichUser, typeOfAdmin);
+            }
         }
-
     }
 
     public void showAccessoriesOption(int whichUser, String typeOfAdmin) {
@@ -69,33 +69,36 @@ public class ChangeAccessories {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( CHANGE MONITOR GAMING )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showMonitorGaming();
-            String whichOne = scanString();
-            if (Integer.parseInt(whichOne) - 1 >= dataBase.getMonitorGaming().size() || Integer.parseInt(whichOne) - 1 < 0) {
-                incorrect();
-                changeMonitorGaming(whichUser,typeOfAdmin);
-            } else {
-                if (typeOfAdmin.equals("SELLER")) {
-                    if (!dataBase.getMonitorGaming().get(Integer.parseInt(whichOne) - 1).getSellers().
-                            contains(dataBase.getSellers().get(whichUser))) {
-                        notSeller();
-                        changeMonitorGaming(whichUser,typeOfAdmin);
+        switch (nextChoose) {
+            case "1" -> {
+                showMonitorGaming();
+                String whichOne = scanString();
+                if (Integer.parseInt(whichOne) - 1 >= dataBase.getMonitorGaming().size() || Integer.parseInt(whichOne) - 1 < 0) {
+                    incorrect();
+                    changeMonitorGaming(whichUser, typeOfAdmin);
+                } else {
+                    if (typeOfAdmin.equals("SELLER")) {
+                        if (!dataBase.getMonitorGaming().get(Integer.parseInt(whichOne) - 1).getSellers().
+                                contains(dataBase.getSellers().get(whichUser))) {
+                            notSeller();
+                            changeMonitorGaming(whichUser, typeOfAdmin);
+                        }
                     }
+                    whichMonitorGamingOption();
+                    toChangeMonitorGaming(Integer.parseInt(whichOne) - 1);
+                    System.out.println("Monitor gaming changed successfully!");
+                    changeAccessories(whichUser, typeOfAdmin);
                 }
-                whichMonitorGamingOption();
-                toChangeMonitorGaming(Integer.parseInt(whichOne) - 1);
-                System.out.println("Monitor gaming changed successfully!");
-                changeAccessories(whichUser,typeOfAdmin);
             }
-        } else if (nextChoose.equals("2")) {
-            changeAccessories(whichUser, typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            changeMonitorGaming(whichUser, typeOfAdmin);
+            case "2" -> changeAccessories(whichUser, typeOfAdmin);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                changeMonitorGaming(whichUser, typeOfAdmin);
+            }
         }
     }
 
@@ -103,33 +106,36 @@ public class ChangeAccessories {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( CHANGE GAME PAD )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
-        if (nextChoose.equals("1")) {
-            showGamePads();
-            String whichOne = scanString();
-            if (Integer.parseInt(whichOne) - 1 >= dataBase.getGamePads().size() || Integer.parseInt(whichOne) - 1 < 0) {
-                incorrect();
-                changeGamePad(whichUser,typeOfAdmin);
-            } else {
-                if (typeOfAdmin.equals("SELLER")) {
-                    if (!dataBase.getGamePads().get(Integer.parseInt(whichOne) - 1).getSellers().
-                            contains(dataBase.getSellers().get(whichUser))) {
-                        notSeller();
-                        changeGamePad(whichUser,typeOfAdmin);
+        switch (nextChoose) {
+            case "1" -> {
+                showGamePads();
+                String whichOne = scanString();
+                if (Integer.parseInt(whichOne) - 1 >= dataBase.getGamePads().size() || Integer.parseInt(whichOne) - 1 < 0) {
+                    incorrect();
+                    changeGamePad(whichUser, typeOfAdmin);
+                } else {
+                    if (typeOfAdmin.equals("SELLER")) {
+                        if (!dataBase.getGamePads().get(Integer.parseInt(whichOne) - 1).getSellers().
+                                contains(dataBase.getSellers().get(whichUser))) {
+                            notSeller();
+                            changeGamePad(whichUser, typeOfAdmin);
+                        }
                     }
+                    whichGamePadOption();
+                    toChangeGamePad(Integer.parseInt(whichOne) - 1);
+                    System.out.println("Game pad changed successfully!");
+                    changeAccessories(whichUser, typeOfAdmin);
                 }
-                whichGamePadOption();
-                toChangeGamePad(Integer.parseInt(whichOne) - 1);
-                System.out.println("Game pad changed successfully!");
-                changeAccessories(whichUser,typeOfAdmin);
             }
-        } else if (nextChoose.equals("2")) {
-            changeAccessories(whichUser,typeOfAdmin);
-        } else if (nextChoose.equals("3")) {
-            drawingLines();
-            exit();
-        } else {
-            incorrect();
-            changeGamePad(whichUser,typeOfAdmin);
+            case "2" -> changeAccessories(whichUser, typeOfAdmin);
+            case "3" -> {
+                drawingLines();
+                exit();
+            }
+            default -> {
+                incorrect();
+                changeGamePad(whichUser, typeOfAdmin);
+            }
         }
     }
 
@@ -163,33 +169,34 @@ public class ChangeAccessories {
     public void toChangeGamePad(int index) {
         String which = scanString();
         switch (Integer.parseInt(which)) {
-            case 1:
+            case 1 -> {
                 toChangeWhat("name");
                 dataBase.getGamePads().get(index).setName(scanString());
-                break;
-            case 2:
+            }
+            case 2 -> {
                 toChangeWhat("description");
                 dataBase.getGamePads().get(index).setDescription(scanString());
-                break;
-            case 3:
+            }
+            case 3 -> {
                 toChangeWhat("cost");
                 dataBase.getGamePads().get(index).setCost(scanDouble());
-                break;
-            case 4:
+            }
+            case 4 -> {
                 toChangeWhat("number");
                 dataBase.getGamePads().get(index).setNumber(scanInt());
-                break;
-            case 5:
+            }
+            case 5 -> {
                 System.out.println("Choose connection type :");
                 showGamePadConnections(dataBase.getGamePads().get(index));
-                break;
-            case 6:
+            }
+            case 6 -> {
                 System.out.println("Choose device type :");
                 showGamePadDevices(dataBase.getGamePads().get(index));
-                break;
-            default:
+            }
+            default -> {
                 incorrect();
                 toChangeGamePad(index);
+            }
         }
     }
 

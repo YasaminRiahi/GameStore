@@ -1,6 +1,5 @@
 package ir.ac.kntu.products.accessories.monitorGaming;
 
-import ir.ac.kntu.products.Product;
 import ir.ac.kntu.products.accessories.Accessories;
 
 public class MonitorGaming extends Accessories {

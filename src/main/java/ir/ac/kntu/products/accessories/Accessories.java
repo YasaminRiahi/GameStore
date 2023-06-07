@@ -33,13 +33,7 @@ public class Accessories extends Product {
         return sellers;
     }
 
-    public void setSellers(ArrayList<Admin> sellers) {
-        this.sellers = sellers;
-    }
-
     public void addSellers(Admin seller){
         this.sellers.add(seller);
     }
-
-
 }

@@ -5,7 +5,6 @@ public enum SellerOptions {
     PROFILE("1"),
     ACCESSORIES("2");
 
-
     private String value;
 
     SellerOptions(String value) {

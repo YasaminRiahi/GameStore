@@ -59,10 +59,6 @@ public class RegularUser extends User implements Comparable<RegularUser> {
         this.myGames = myGames;
     }
 
-    public void addMyGames(Games game) {
-        this.myGames.add(game);
-    }
-
     public ArrayList<RegularUser> getFriends() {
         return friends;
     }
@@ -71,20 +67,8 @@ public class RegularUser extends User implements Comparable<RegularUser> {
         this.friends = friends;
     }
 
-    public void addFriends(RegularUser friend) {
-        this.friends.add(friend);
-    }
-
     public ArrayList<RegularUser> getRequests() {
         return requests;
-    }
-
-    public void setRequests(ArrayList<RegularUser> requests) {
-        this.requests = requests;
-    }
-
-    public void addRequests(RegularUser request) {
-        this.requests.add(request);
     }
 
     public HashMap<MonitorGaming, Integer> getMonitorGaming() {
