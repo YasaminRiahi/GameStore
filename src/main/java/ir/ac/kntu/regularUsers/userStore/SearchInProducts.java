@@ -109,6 +109,7 @@ public class SearchInProducts {
             String name = scanString();
             showFoundProducts(searchGameByName(name), searchMonitorByName(name), searchPadByName(name));
             choose(whichUser, stopwatch1, searchGameByName(name), searchMonitorByName(name), searchPadByName(name));
+            searchInProducts(whichUser,stopwatch1);
         } else if (nextChoose.equals("2")) {
             searchInProducts(whichUser, stopwatch1);
         } else if (nextChoose.equals("3")) {
@@ -129,6 +130,7 @@ public class SearchInProducts {
             String name = scanString();
             showFoundProducts(new ArrayList<Integer>(), searchMonitorByName(name), searchPadByName(name));
             choose(whichUser, stopwatch1, new ArrayList<Integer>(), searchMonitorByName(name), searchPadByName(name));
+            searchInProducts(whichUser,stopwatch1);
         } else if (nextChoose.equals("2")) {
             searchInProducts(whichUser, stopwatch1);
         } else if (nextChoose.equals("3")) {
@@ -136,7 +138,7 @@ public class SearchInProducts {
             exit();
         } else {
             incorrect();
-            searchInAllProducts(whichUser, stopwatch1);
+            searchInAllAccessories(whichUser,stopwatch1);
         }
     }
 
@@ -149,6 +151,7 @@ public class SearchInProducts {
             String name = scanString();
             showFoundProducts(searchGameByName(name), new ArrayList<Integer>(), new ArrayList<Integer>());
             choose(whichUser, stopwatch1, searchGameByName(name), new ArrayList<Integer>(), new ArrayList<Integer>());
+            searchInProducts(whichUser,stopwatch1);
         } else if (nextChoose.equals("2")) {
             searchInProducts(whichUser, stopwatch1);
         } else if (nextChoose.equals("3")) {
@@ -156,19 +159,20 @@ public class SearchInProducts {
             exit();
         } else {
             incorrect();
-            searchInAllProducts(whichUser, stopwatch1);
+            searchInGames(whichUser,stopwatch1);
         }
     }
 
     public void searchInMonitors(int whichUser, Stopwatch1 stopwatch1) {
         drawingLines();
-        System.out.println(ConsoleColors.BLUE_BOLD + "******( SEARCH IN MONITORS )******" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( SEARCH IN GAMING MONITORS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             System.out.println("Enter name:");
             String name = scanString();
             showFoundProducts(new ArrayList<Integer>(), searchMonitorByName(name), new ArrayList<Integer>());
             choose(whichUser, stopwatch1, new ArrayList<Integer>(), searchMonitorByName(name), new ArrayList<Integer>());
+            searchInProducts(whichUser,stopwatch1);
         } else if (nextChoose.equals("2")) {
             searchInProducts(whichUser, stopwatch1);
         } else if (nextChoose.equals("3")) {
@@ -176,19 +180,20 @@ public class SearchInProducts {
             exit();
         } else {
             incorrect();
-            searchInAllProducts(whichUser, stopwatch1);
+            searchInMonitors(whichUser,stopwatch1);
         }
     }
 
     public void searchInPads(int whichUser, Stopwatch1 stopwatch1) {
         drawingLines();
-        System.out.println(ConsoleColors.BLUE_BOLD + "******( SEARCH IN PADS )******" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( SEARCH IN GAME PADS )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         if (nextChoose.equals("1")) {
             System.out.println("Enter name:");
             String name = scanString();
             showFoundProducts(new ArrayList<Integer>(), new ArrayList<Integer>(), searchPadByName(name));
             choose(whichUser, stopwatch1, new ArrayList<Integer>(), new ArrayList<Integer>(), searchPadByName(name));
+            searchInProducts(whichUser,stopwatch1);
         } else if (nextChoose.equals("2")) {
             searchInProducts(whichUser, stopwatch1);
         } else if (nextChoose.equals("3")) {
@@ -196,7 +201,7 @@ public class SearchInProducts {
             exit();
         } else {
             incorrect();
-            searchInAllProducts(whichUser, stopwatch1);
+            searchInPads(whichUser,stopwatch1);
         }
     }
 
@@ -266,7 +271,6 @@ public class SearchInProducts {
         } else {
             System.out.println(ConsoleColors.RED + "No result!Try again" + ConsoleColors.RESET);
         }
-        searchInProducts(whichUser, stopwatch1);
     }
 
     public void chooseFromAll(int whichUser, Stopwatch1 stopwatch1, ArrayList<Integer> foundGames, ArrayList<Integer> foundMonitors,

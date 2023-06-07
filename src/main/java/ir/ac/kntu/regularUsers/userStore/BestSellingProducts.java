@@ -4,10 +4,8 @@ import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.products.Product;
 import ir.ac.kntu.regularUsers.Stopwatch1;
 import ir.ac.kntu.store.DataBase;
-
 import java.util.ArrayList;
 import java.util.Collections;
-
 import static ir.ac.kntu.helpers.TextTypings.*;
 import static ir.ac.kntu.helpers.TextTypings.incorrect;
 

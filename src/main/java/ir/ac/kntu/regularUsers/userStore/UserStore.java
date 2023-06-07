@@ -64,7 +64,8 @@ public class UserStore {
             SearchInProducts searchInProducts = new SearchInProducts(dataBase);
             searchInProducts.searchInProducts(whichUser,stopwatch1);
         } else if (userStoreOptions == UserStoreOptions.SHOW_PRODUCTS_BY_FILTERING_COST) {
-            ;
+            FilteringCostOfProducts filteringCostOfProducts = new FilteringCostOfProducts(dataBase);
+            filteringCostOfProducts.filteringProducts(whichUser,stopwatch1);
         } else if (userStoreOptions == UserStoreOptions.SHOW_BEST_SELLING_PRODUCTS) {
             BestSellingProducts bestSellingProducts = new BestSellingProducts(dataBase);
             bestSellingProducts.bestSelling(whichUser,stopwatch1);
@@ -222,69 +223,4 @@ public class UserStore {
             }
         }
     }
-//    public void showGamesByFilteringCost(Store store, int userIndex) {
-//        drawingLines();
-//        System.out.println(ConsoleColors.BLUE_BOLD + "******( SHOW GAMES BY FILTERING COST )******" +
-//                ConsoleColors.RESET);
-//        String nextChoose = whereToGo();
-//        if (nextChoose.equals("1")) {
-//            System.out.println("Enter beginning cost and termination cost :");
-//            ArrayList<Integer> foundGames = searchGameByFiltering(store, scanDouble(), scanDouble());
-//            if (foundGames.size() == 0) {
-//                System.out.println(ConsoleColors.RED + "No result!Try again" + ConsoleColors.RESET);
-//                showGamesByFilteringCost(store, userIndex);
-//            } else {
-//                showFoundGames(foundGames, store);
-//                String whichGame = scanString();
-//                if (Integer.parseInt(whichGame) - 1 >= foundGames.size() || Integer.parseInt(whichGame) - 1 < 0) {
-//                    incorrect();
-//                    showGamesByFilteringCost(store, userIndex);
-//                } else {
-//                    int gameIndex = foundGames.get(Integer.parseInt(whichGame) - 1);
-//                    showGameByDetails(store, gameIndex, userIndex, 3);
-//                    if (checkHaving(store, userIndex, gameIndex) == 0) {
-//                        switch (wantBuy()) {
-//                            case "1":
-//                                buyGame(store, userIndex, gameIndex);
-//                                break;
-//                            case "2":
-//                                listOfGames(store, userIndex);
-//                                break;
-//                            default:
-//                                incorrect();
-//                                searchInGames(store, userIndex);
-//                        }
-//                    } else {
-//                        userStore(store, userIndex);
-//                    }
-//                }
-//            }
-//        } else if (nextChoose.equals("2")) {
-//            userStore(store, userIndex);
-//        } else if (nextChoose.equals("3")) {
-//            System.out.println("Finish!");
-//            drawingLines();
-//            exit();
-//        } else {
-//            incorrect();
-//            showGamesByFilteringCost(store, userIndex);
-//        }
-//    }
-//
-
-//
-//
-
-//
-//    public ArrayList searchGameByFiltering(Store store, double beginningCost, double terminationCost) {
-//        ArrayList<Integer> indexes = new ArrayList<Integer>();
-//        for (int i = 0; i < store.getGames().size(); i++) {
-//            if (store.getGames().get(i).getCost() >= beginningCost &&
-//                    store.getGames().get(i).getCost() <= terminationCost) {
-//                indexes.add(i);
-//            }
-//        }
-//        return indexes;
-//    }
-
 }
