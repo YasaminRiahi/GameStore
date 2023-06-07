@@ -188,6 +188,7 @@ public class DataBase {
         gamePad1.setConnectionType(ConnectionType.WIRELESS);
         gamePad1.setDeviceType(DeviceType.PLAY_STATION);
         gamePad1.setNumber(100);
+        gamePad1.getSellers().add(sellers.get(0));
         ArrayList<String> community1 = new ArrayList<>();
         community1.add("It's really cool!");
         gamePad1.setCommunity(community1);
@@ -201,6 +202,7 @@ public class DataBase {
         ArrayList<String> community2 = new ArrayList<>();
         community2.add("Not bad!");
         gamePad2.setCommunity(community2);
+        gamePad2.getSellers().add(sellers.get(1));
         addGamePad(gamePad1);
         addGamePad(gamePad2);
     }

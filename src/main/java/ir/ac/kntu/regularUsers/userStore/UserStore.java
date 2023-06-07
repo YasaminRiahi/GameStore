@@ -101,6 +101,12 @@ public class UserStore {
         System.out.println("5)Screen size : " + dataBase.getMonitorGaming().get(index).getScreenSize());
         System.out.println("6)Refresh rate :" + dataBase.getMonitorGaming().get(index).getRefreshRate());
         System.out.println("7)Response time :" + dataBase.getMonitorGaming().get(index).getResponseTime());
+        System.out.println("8)Community :");
+        int j = 1;
+        for (int i = 0; i < dataBase.getMonitorGaming().get(i).getCommunity().size(); i++) {
+            System.out.println("    " + j + ")" + dataBase.getMonitorGaming().get(index).getCommunity().get(i));
+            j++;
+        }
     }
 
     public void showGamePadByDetails(int index) {
@@ -110,6 +116,12 @@ public class UserStore {
         System.out.println("4)Number : " + dataBase.getGamePads().get(index).getNumber());
         System.out.println("5)Connection type : " + dataBase.getGamePads().get(index).getConnectionType());
         System.out.println("6)Device type :" + dataBase.getGamePads().get(index).getDeviceType());
+        System.out.println("7)Community :");
+        int j = 1;
+        for (int i = 0; i < dataBase.getGamePads().get(index).getCommunity().size(); i++) {
+            System.out.println("    " + j + ")" + dataBase.getGamePads().get(index).getCommunity().get(i));
+            j++;
+        }
     }
 
     public int checkHavingGame(int userIndex, int gameIndex) {

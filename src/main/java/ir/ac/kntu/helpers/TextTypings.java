@@ -66,14 +66,6 @@ public class TextTypings {
         return scanString();
     }
 
-    public static String communityOrRate() {
-        System.out.println("Enter a number");
-        System.out.println("1)See community of this game");
-        System.out.println("2)Rate this game");
-        System.out.println("3)Go to previous page");
-        return scanString();
-    }
-
     public static String submitIdea() {
         System.out.println("Do you want to submit your idea?");
         System.out.println("1)Yes");
@@ -118,6 +110,22 @@ public class TextTypings {
         System.out.println("Do you want to choose anything else?");
         System.out.println("1)Yes");
         System.out.println("2)No");
+        return scanString();
+    }
+
+    public static String communityOrRate(){
+        System.out.println("Enter a number");
+        System.out.println("1)Add community");
+        System.out.println("2)Rate this game");
+        System.out.println("3)Go to previous page");
+        return scanString();
+    }
+
+    public static String communityOrReport(){
+        System.out.println("Enter a number");
+        System.out.println("1)Add community");
+        System.out.println("2)Report a crash");
+        System.out.println("3)Go to previous page");
         return scanString();
     }
 }
