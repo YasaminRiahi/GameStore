@@ -1,6 +1,9 @@
 package ir.ac.kntu.regularUsers;
 
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.regularUsers.profile.UserProfile;
+import ir.ac.kntu.regularUsers.userFriend.UserFriend;
+import ir.ac.kntu.regularUsers.userStore.UserStore;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.TextTypings.*;

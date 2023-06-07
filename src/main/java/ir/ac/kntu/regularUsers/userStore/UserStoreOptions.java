@@ -1,4 +1,4 @@
-package ir.ac.kntu.regularUsers;
+package ir.ac.kntu.regularUsers.userStore;
 
 import java.util.PrimitiveIterator;
 

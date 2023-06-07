@@ -1,6 +1,6 @@
 package ir.ac.kntu.regularUsers;
 
-class Stopwatch1 {
+public class Stopwatch1 {
     private final long nanoSecondsPerMillisecond = 1000000;
 
     private final long nanoSecondsPerSecond = 1000000000;

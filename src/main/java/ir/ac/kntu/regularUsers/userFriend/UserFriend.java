@@ -1,8 +1,11 @@
-package ir.ac.kntu.regularUsers;
+package ir.ac.kntu.regularUsers.userFriend;
 
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.products.accessories.gamePad.GamePad;
 import ir.ac.kntu.products.accessories.monitorGaming.MonitorGaming;
+import ir.ac.kntu.regularUsers.RegularUser;
+import ir.ac.kntu.regularUsers.RegularUserPage;
+import ir.ac.kntu.regularUsers.Stopwatch1;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;

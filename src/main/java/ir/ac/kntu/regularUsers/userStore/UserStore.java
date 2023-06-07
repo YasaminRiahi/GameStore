@@ -1,8 +1,9 @@
-package ir.ac.kntu.regularUsers;
+package ir.ac.kntu.regularUsers.userStore;
 
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.products.games.Games;
 import ir.ac.kntu.products.games.GamesLevel;
+import ir.ac.kntu.regularUsers.*;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
@@ -60,7 +61,8 @@ public class UserStore {
             ListOfProducts listOfProducts = new ListOfProducts(dataBase);
             listOfProducts.listOfProducts(whichUser, stopwatch1);
         } else if (userStoreOptions == UserStoreOptions.SEARCH_IN_PRODUCTS) {
-            ;
+            SearchInProducts searchInProducts = new SearchInProducts(dataBase);
+            searchInProducts.searchInProducts(whichUser,stopwatch1);
         } else if (userStoreOptions == UserStoreOptions.SHOW_PRODUCTS_BY_FILTERING_COST) {
             ;
         } else if (userStoreOptions == UserStoreOptions.SHOW_BEST_SELLING_PRODUCTS) {
@@ -78,6 +80,14 @@ public class UserStore {
         System.out.println("5)Number of rates : " + dataBase.getGames().get(gameIndex).getNumberOfRates());
         System.out.println("6)Cost :" + dataBase.getGames().get(gameIndex).getCost());
         System.out.println("7)Level :" + dataBase.getGames().get(gameIndex).getGamesLevel());
+        if (!dataBase.getGames().get(gameIndex).isBeta()){
+            System.out.println("7)Community :");
+            int j = 1;
+            for (int i = 0; i < dataBase.getGames().get(gameIndex).getCommunity().size(); i++) {
+                System.out.println("    " + j + ")" + dataBase.getGames().get(gameIndex).getCommunity().get(i));
+                j++;
+            }
+        }
     }
 
     public void showMonitorGamingByDetails(int index) {
@@ -183,6 +193,7 @@ public class UserStore {
                             put(dataBase.getMonitorGaming().get(index), 1);
                 }
                 dataBase.getMonitorGaming().get(index).setNumberOfSoldItems(dataBase.getMonitorGaming().get(index).getNumberOfSoldItems() + 1);
+                dataBase.getRegularUsers().get(userIndex).setWallet(currentBalance - cost);
                 System.out.println("Gaming monitor bought successfully!");
             }
         }
@@ -205,58 +216,11 @@ public class UserStore {
                             put(dataBase.getGamePads().get(index), 1);
                 }
                 dataBase.getMonitorGaming().get(index).setNumberOfSoldItems(dataBase.getMonitorGaming().get(index).getNumberOfSoldItems() + 1);
+                dataBase.getRegularUsers().get(userIndex).setWallet(currentBalance - cost);
                 System.out.println("Game pad bought successfully!");
             }
         }
     }
-//    public void searchInGames(Store store, int userIndex) {
-//        drawingLines();
-//        System.out.println(ConsoleColors.BLUE_BOLD + "******( SEARCH IN GAMES )******" + ConsoleColors.RESET);
-//        String nextChoose = whereToGo();
-//        if (nextChoose.equals("1")) {
-//            System.out.println("Enter game name :");
-//            ArrayList<Integer> foundGames = searchGameByName(scanString(), store);
-//            if (foundGames.size() == 0) {
-//                System.out.println(ConsoleColors.RED + "No result!Try again" + ConsoleColors.RESET);
-//                searchInGames(store, userIndex);
-//            } else {
-//                showFoundGames(foundGames, store);
-//                String whichGame = scanString();
-//                if (Integer.parseInt(whichGame) - 1 >= foundGames.size() || Integer.parseInt(whichGame) - 1 < 0) {
-//                    incorrect();
-//                    searchInGames(store, userIndex);
-//                } else {
-//                    int gameIndex = foundGames.get(Integer.parseInt(whichGame) - 1);
-//                    showGameByDetails(store, gameIndex, userIndex, 2);
-//                    if (checkHaving(store, userIndex, gameIndex) == 0) {
-//                        switch (wantBuy()) {
-//                            case "1":
-//                                buyGame(store, userIndex, gameIndex);
-//                                break;
-//                            case "2":
-//                                listOfGames(store, userIndex);
-//                                break;
-//                            default:
-//                                incorrect();
-//                                searchInGames(store, userIndex);
-//                        }
-//                    } else {
-//                        userStore(store, userIndex);
-//                    }
-//                }
-//            }
-//        } else if (nextChoose.equals("2")) {
-//            userStore(store, userIndex);
-//        } else if (nextChoose.equals("3")) {
-//            System.out.println("Finish!");
-//            drawingLines();
-//            exit();
-//        } else {
-//            incorrect();
-//            searchInGames(store, userIndex);
-//        }
-//    }
-//
 //    public void showGamesByFilteringCost(Store store, int userIndex) {
 //        drawingLines();
 //        System.out.println(ConsoleColors.BLUE_BOLD + "******( SHOW GAMES BY FILTERING COST )******" +
@@ -309,15 +273,7 @@ public class UserStore {
 
 //
 //
-//    public ArrayList searchGameByName(String name, Store store) {
-//        ArrayList<Integer> indexes = new ArrayList<Integer>();
-//        for (int i = 0; i < store.getGames().size(); i++) {
-//            if (store.getGames().get(i).getName().toLowerCase().startsWith(name.toLowerCase())) {
-//                indexes.add(i);
-//            }
-//        }
-//        return indexes;
-//    }
+
 //
 //    public ArrayList searchGameByFiltering(Store store, double beginningCost, double terminationCost) {
 //        ArrayList<Integer> indexes = new ArrayList<Integer>();
@@ -329,13 +285,5 @@ public class UserStore {
 //        }
 //        return indexes;
 //    }
-//
-//    public void showFoundGames(ArrayList<Integer> foundGames, Store store) {
-//        int j = 1;
-//        for (int i = 0; i < foundGames.size(); i++) {
-//            System.out.print(+j + ")");
-//            System.out.println(store.getGames().get(foundGames.get(i)).getName());
-//            j++;
-//        }
-//    }
+
 }

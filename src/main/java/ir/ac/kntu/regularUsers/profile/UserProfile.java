@@ -1,8 +1,10 @@
-package ir.ac.kntu.regularUsers;
+package ir.ac.kntu.regularUsers.profile;
 
 import ir.ac.kntu.admins.managers.ChangeUserInformation;
 import ir.ac.kntu.admins.managers.ViewUserInformation;
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.regularUsers.RegularUserPage;
+import ir.ac.kntu.regularUsers.Stopwatch1;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scan.*;

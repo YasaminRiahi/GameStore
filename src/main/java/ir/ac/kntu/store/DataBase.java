@@ -154,7 +154,7 @@ public class DataBase {
         String description1 = "As a young boy, Link is tricked by Ganondorf, the King of the Gerudo Thieves...";
         ArrayList<String> community1 = new ArrayList<>();
         community1.add("Cool game!");
-        Games game1 = new Games("The Legend Of Zelda",description1,60,"Action-Adventure",9.1,
+        Games game1 = new Games("Legend Of Zelda",description1,60,"Action-Adventure",9.1,
                 768,GamesLevel.LEVEL_3);
         game1.setCommunity(community1);
         game1.setBeta(false);

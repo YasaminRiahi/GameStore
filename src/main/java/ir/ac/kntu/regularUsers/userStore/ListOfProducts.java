@@ -1,6 +1,8 @@
-package ir.ac.kntu.regularUsers;
+package ir.ac.kntu.regularUsers.userStore;
 
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.regularUsers.Stopwatch1;
+import ir.ac.kntu.regularUsers.userStore.UserStore;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scan.scanString;
