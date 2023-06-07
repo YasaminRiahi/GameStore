@@ -128,4 +128,12 @@ public class TextTypings {
         System.out.println("3)Go to previous page");
         return scanString();
     }
+
+    public static String feedbackOrRate(){
+        System.out.println("Enter a number");
+        System.out.println("1)Add feedback");
+        System.out.println("2)Rate this game");
+        System.out.println("3)Go to previous page");
+        return scanString();
+    }
 }

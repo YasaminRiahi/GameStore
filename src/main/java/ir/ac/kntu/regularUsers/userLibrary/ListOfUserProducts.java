@@ -98,7 +98,11 @@ public class ListOfUserProducts {
                 System.out.println("Which game?");
                 int whichGame = Integer.parseInt(scanString()) - 1;
                 userLibrary.showGameByDetails(whichUser, whichGame);
-                addCommunityOrRate(whichUser, whichGame, stopwatch1);
+                if (dataBase.getRegularUsers().get(whichUser).getMyGames().get(whichGame).isBeta()){
+                    addFeedbackOrRate(whichUser,whichGame,stopwatch1);
+                }else {
+                    addCommunityOrRate(whichUser, whichGame, stopwatch1);
+                }
                 listOfProducts(whichUser, stopwatch1);
                 break;
             case "2":
@@ -143,6 +147,23 @@ public class ListOfUserProducts {
         }
     }
 
+    public void addFeedbackOrRate(int whichUser, int whichGame, Stopwatch1 stopwatch1) {
+        switch (feedbackOrRate()) {
+            case "1":
+                gameFeedback(whichUser,whichGame,stopwatch1);
+                break;
+            case "2":
+                rateGame(whichUser, whichGame, stopwatch1);
+                break;
+            case "3":
+                listOfProducts(whichUser, stopwatch1);
+                break;
+            default:
+                incorrect();
+                listOfProducts(whichUser, stopwatch1);
+        }
+    }
+
     public void gameCommunity(int userIndex, int gameIndex, Stopwatch1 stopwatch1) {
         drawingLines();
         System.out.println(ConsoleColors.BLUE_BOLD + "******( GAME COMMUNITY )******" + ConsoleColors.RESET);
@@ -161,6 +182,27 @@ public class ListOfUserProducts {
         } else {
             incorrect();
             gameCommunity(gameIndex, userIndex, stopwatch1);
+        }
+    }
+
+    public void gameFeedback(int userIndex, int gameIndex, Stopwatch1 stopwatch1) {
+        drawingLines();
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( GAME FEEDBACK )******" + ConsoleColors.RESET);
+        String nextChoose = whereToGo();
+        Games game = dataBase.getRegularUsers().get(userIndex).getMyGames().get(gameIndex);
+        if (nextChoose.equals("1")) {
+            System.out.println("Enter your idea:");
+            game.getFeedback().add(scanString());
+            System.out.println("Your idea added successfully!");
+            listOfProducts(userIndex, stopwatch1);
+        } else if (nextChoose.equals("2")) {
+            listOfProducts(userIndex, stopwatch1);
+        } else if (nextChoose.equals("3")) {
+            drawingLines();
+            exit();
+        } else {
+            incorrect();
+            gameFeedback(userIndex,gameIndex,stopwatch1);
         }
     }
 

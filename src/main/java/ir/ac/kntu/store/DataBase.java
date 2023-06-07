@@ -158,6 +158,7 @@ public class DataBase {
                 768,GamesLevel.LEVEL_3);
         game1.setCommunity(community1);
         game1.setBeta(false);
+        game1.addDeveloper(developers.get(0));
         games.add(game1);
         String description2 = "Hawk's back - with new technology, new pros and new tricks! THPS2, the legend rides on!…";
         ArrayList<String> community2 = new ArrayList<>();
@@ -166,6 +167,7 @@ public class DataBase {
                 6.6,116,GamesLevel.LEVEL_1);
         game2.setCommunity(community2);
         game2.setBeta(true);
+        game2.addDeveloper(developers.get(1));
         games.add(game2);
         String description3 = "Step into the Dark... As Carrington Institute's most promising new Agent..";;
         ArrayList<String> community3 = new ArrayList<>();
@@ -174,6 +176,7 @@ public class DataBase {
                 GamesLevel.LEVEL_2);
         game3.setCommunity(community3);
         game3.setBeta(false);
+        game3.addDeveloper(developers.get(1));
         games.add(game3);
     }
 
