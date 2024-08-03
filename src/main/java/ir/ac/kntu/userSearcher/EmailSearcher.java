@@ -4,6 +4,7 @@ import ir.ac.kntu.admins.managers.ChangingUserInformation;
 import ir.ac.kntu.admins.managers.ManagerUserPage;
 import ir.ac.kntu.admins.managers.ViewingUserInformation;
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
@@ -76,6 +77,7 @@ public class EmailSearcher {
                     }
                     dataBase.getRegularUsers().remove(dataBase.getRegularUsers().get(foundUsers.get(Integer.parseInt(whichOne) - 1)));
                     System.out.println("User removed successfully!");
+                    DaoWriter.writeData(dataBase);
                     ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
                     managerUserPage.usersPage(whichUser);
                 }

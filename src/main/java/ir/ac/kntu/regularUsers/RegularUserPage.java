@@ -5,6 +5,7 @@ import ir.ac.kntu.regularUsers.profile.UserProfile;
 import ir.ac.kntu.regularUsers.userFriend.UserFriend;
 import ir.ac.kntu.regularUsers.userLibrary.UserLibrary;
 import ir.ac.kntu.regularUsers.userStore.UserStore;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
@@ -31,6 +32,7 @@ public class RegularUserPage {
                 int time = (int) stopwatch1.getElapsedSeconds() / 10;
                 int newScore = dataBase.getRegularUsers().get(userIndex).getScore() + time;
                 dataBase.getRegularUsers().get(userIndex).setScore(newScore);
+                DaoWriter.writeData(dataBase);
                 SigningInOrSigningUp signingInOrSigningUp = new SigningInOrSigningUp(dataBase);
                 signingInOrSigningUp.signInOrUp();
             }

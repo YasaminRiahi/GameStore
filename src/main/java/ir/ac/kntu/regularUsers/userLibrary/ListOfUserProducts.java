@@ -6,6 +6,7 @@ import ir.ac.kntu.products.accessories.monitorGaming.MonitorGaming;
 import ir.ac.kntu.products.games.Games;
 import ir.ac.kntu.regularUsers.Stopwatch1;
 import ir.ac.kntu.regularUsers.userStore.UserStore;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scanner.scanDouble;
@@ -167,6 +168,7 @@ public class ListOfUserProducts {
                 System.out.println("Enter your idea:");
                 game.getCommunity().add(scanString());
                 System.out.println("Your idea added successfully!");
+                DaoWriter.writeData(dataBase);
                 listOfProducts(userIndex, stopwatch1);
             }
             case "2" -> listOfProducts(userIndex, stopwatch1);
@@ -191,6 +193,7 @@ public class ListOfUserProducts {
                 System.out.println("Enter your idea:");
                 game.getFeedback().add(scanString());
                 System.out.println("Your idea added successfully!");
+                DaoWriter.writeData(dataBase);
                 listOfProducts(userIndex, stopwatch1);
             }
             case "2" -> listOfProducts(userIndex, stopwatch1);
@@ -216,6 +219,7 @@ public class ListOfUserProducts {
                 game.addRate(dataBase.getRegularUsers().get(userIndex), scanDouble());
                 game.updateRate();
                 System.out.println("You rated successfully!");
+                DaoWriter.writeData(dataBase);
                 listOfProducts(userIndex, stopwatch1);
             }
             case "2" -> listOfProducts(userIndex, stopwatch1);
@@ -251,6 +255,7 @@ public class ListOfUserProducts {
                 System.out.println("Enter your idea:");
                 gamePad.getCommunity().add(scanString());
                 System.out.println("Your idea added successfully!");
+                DaoWriter.writeData(dataBase);
                 listOfProducts(whichUser, stopwatch1);
             }
             case "2" -> listOfProducts(whichUser, stopwatch1);
@@ -274,6 +279,7 @@ public class ListOfUserProducts {
                 System.out.println("Enter your report massage:");
                 gamePad.getSellers().get(0).getReportMassage().add(gamePad.getName() + "  ->  "+scanString());
                 System.out.println("Your massage sent successfully!");
+                DaoWriter.writeData(dataBase);
                 listOfProducts(whichUser, stopwatch1);
             }
             case "2" -> listOfProducts(whichUser, stopwatch1);
@@ -309,6 +315,7 @@ public class ListOfUserProducts {
                 System.out.println("Enter your idea:");
                 monitorGaming.getCommunity().add(scanString());
                 System.out.println("Your idea added successfully!");
+                DaoWriter.writeData(dataBase);
                 listOfProducts(whichUser, stopwatch1);
             }
             case "2" -> listOfProducts(whichUser, stopwatch1);
@@ -332,6 +339,7 @@ public class ListOfUserProducts {
                 System.out.println("Enter your report massage:");
                 monitorGaming.getSellers().get(0).getReportMassage().add(monitorGaming.getName() +"  ->  "+ scanString());
                 System.out.println("Your massage sent successfully!");
+                DaoWriter.writeData(dataBase);
                 listOfProducts(whichUser, stopwatch1);
             }
             case "2" -> listOfProducts(whichUser, stopwatch1);

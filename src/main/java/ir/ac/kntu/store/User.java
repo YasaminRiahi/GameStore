@@ -1,6 +1,8 @@
 package ir.ac.kntu.store;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private DataBase dataBase;
 

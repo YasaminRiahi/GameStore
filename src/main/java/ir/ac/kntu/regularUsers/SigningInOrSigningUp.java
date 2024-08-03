@@ -2,6 +2,7 @@ package ir.ac.kntu.regularUsers;
 
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.menu.MainMenu;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scanner.scanString;
@@ -112,6 +113,7 @@ public class SigningInOrSigningUp {
         RegularUser user = scanUsers(dataBase);
         dataBase.addRegularUser(user);
         System.out.println("You signed up successfully!");
+        DaoWriter.writeData(dataBase);
         Stopwatch1 stopwatch1 = new Stopwatch1();
         stopwatch1.start();
         RegularUserPage regularUserPage = new RegularUserPage(dataBase);

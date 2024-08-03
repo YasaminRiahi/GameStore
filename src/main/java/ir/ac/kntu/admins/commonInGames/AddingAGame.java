@@ -3,6 +3,7 @@ package ir.ac.kntu.admins.commonInGames;
 import ir.ac.kntu.admins.developers.DeveloperGamePage;
 import ir.ac.kntu.admins.managers.ManagerGamePage;
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scanner.scanGames;
@@ -25,10 +26,12 @@ public class AddingAGame {
             case "1" -> {
                 if (typeOfAdmin.equals("MANAGER")) {
                     dataBase.addGames(scanGames());
+                    DaoWriter.writeData(dataBase);
                     ManagerGamePage managerGamePage = new ManagerGamePage(dataBase);
                     managerGamePage.gamesPage(whichUser);
                 } else {
                     dataBase.addGames(scanGames());
+                    DaoWriter.writeData(dataBase);
                     dataBase.getGames().get(dataBase.getGames().size() - 1).addDeveloper(dataBase.getDevelopers().get(whichUser));
                     dataBase.getDevelopers().get(whichUser).getDeveloperGame().
                             add(dataBase.getGames().get(dataBase.getGames().size() - 1));

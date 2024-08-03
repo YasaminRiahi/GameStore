@@ -2,7 +2,7 @@ package ir.ac.kntu.admins.sellers;
 
 import ir.ac.kntu.admins.AdminPage;
 import ir.ac.kntu.admins.AdminProfile;
-import ir.ac.kntu.admins.commonInAccessories.AccessoriesPage;
+import ir.ac.kntu.admins.commonalities.accessories.AccessoriesPage;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 

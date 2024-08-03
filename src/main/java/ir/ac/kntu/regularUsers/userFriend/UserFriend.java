@@ -6,6 +6,7 @@ import ir.ac.kntu.products.accessories.monitorGaming.MonitorGaming;
 import ir.ac.kntu.regularUsers.RegularUser;
 import ir.ac.kntu.regularUsers.RegularUserPage;
 import ir.ac.kntu.regularUsers.Stopwatch1;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
@@ -253,11 +254,13 @@ public class UserFriend {
                     dataBase.getRegularUsers().get(userIndex).getRequests().remove(index);
                     friend.getFriends().add(dataBase.getRegularUsers().get(userIndex));
                     friend.getRequests().remove(dataBase.getRegularUsers().get(userIndex));
+                    DaoWriter.writeData(dataBase);
                     requests(userIndex, stopwatch1);
                 }
                 case "2" -> {
                     dataBase.getRegularUsers().get(userIndex).getRequests().remove(index);
                     System.out.println("User declined successfully!");
+                    DaoWriter.writeData(dataBase);
                     requests(userIndex, stopwatch1);
                 }
                 case "3" -> showRequests(userIndex, stopwatch1);
@@ -380,6 +383,7 @@ public class UserFriend {
         if (isRequested(userIndex, foundUser) == 0) {
             dataBase.getRegularUsers().get(foundUser).getRequests().add(dataBase.getRegularUsers().get(userIndex));
             System.out.println("You requested successfully");
+            DaoWriter.writeData(dataBase);
         } else {
             System.out.println("You've already requested this user and she/he has not accepted or declined!");
         }

@@ -2,6 +2,7 @@ package ir.ac.kntu.admins.managers;
 
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.products.games.Games;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.Collections;
@@ -61,5 +62,6 @@ public class GameCrashReport {
         Collections.sort(game.getDevelopers());
         game.getDevelopers().get(0).getInbox().add(game);
         System.out.println("Massage sent successfully!");
+        DaoWriter.writeData(dataBase);
     }
 }

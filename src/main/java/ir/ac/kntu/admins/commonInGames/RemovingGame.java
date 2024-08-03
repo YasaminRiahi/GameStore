@@ -3,6 +3,7 @@ package ir.ac.kntu.admins.commonInGames;
 import ir.ac.kntu.admins.developers.DeveloperGamePage;
 import ir.ac.kntu.admins.managers.ManagerGamePage;
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ public class RemovingGame {
                     }
                     dataBase.getGames().remove(Integer.parseInt(whichGame) - 1);
                     System.out.println("Game removed successfully!");
+                    DaoWriter.writeData(dataBase);
                     removeGames(whichUser, typeOfAdmin);
                 }
             }
@@ -116,6 +118,7 @@ public class RemovingGame {
                 }
                 dataBase.getGames().remove(Integer.parseInt(whichGame) - 1);
                 System.out.println("Game removed successfully!");
+                DaoWriter.writeData(dataBase);
                 removeGames(whichUser, typeOfAdmin);
             }
         }

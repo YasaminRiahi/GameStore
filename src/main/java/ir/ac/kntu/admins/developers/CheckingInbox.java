@@ -2,6 +2,7 @@ package ir.ac.kntu.admins.developers;
 
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.products.games.Games;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.Collections;
@@ -68,11 +69,13 @@ public class CheckingInbox {
                 dataBase.getDevelopers().get(whichDeveloper).getInbox().remove(games);
                 dataBase.getDevelopers().get(whichDeveloper).getScheduledEvents().add(games);
                 System.out.println("You accepted it successfully!");
+                DaoWriter.writeData(dataBase);
             }
             case "2" -> {
                 dataBase.getDevelopers().get(whichDeveloper).getInbox().remove(games);
                 giveToAnother(games, whichDeveloper);
                 System.out.println("You declined it successfully!");
+                DaoWriter.writeData(dataBase);
             }
             case "3" -> checkInbox(whichDeveloper);
             default -> {

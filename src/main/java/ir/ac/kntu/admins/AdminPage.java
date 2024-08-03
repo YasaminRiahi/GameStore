@@ -13,7 +13,7 @@ import static ir.ac.kntu.helpers.TextTypings.*;
 
 public class AdminPage {
 
-    private TypeOfAdmins typeOfAdmins;
+    private AdminsType adminsType;
 
     private DataBase dataBase;
 
@@ -43,17 +43,17 @@ public class AdminPage {
     }
 
     public void showAdminsMenu() {
-        for (TypeOfAdmins typeOfAdmins1 : TypeOfAdmins.values()) {
-            System.out.print(typeOfAdmins1.getValue() + ")");
-            System.out.println(typeOfAdmins1);
+        for (AdminsType adminsType1 : AdminsType.values()) {
+            System.out.print(adminsType1.getValue() + ")");
+            System.out.println(adminsType1);
         }
         fromValue(getNumberFromOptions());
     }
 
     public void fromValue(String value) {
-        for (TypeOfAdmins e : TypeOfAdmins.values()) {
+        for (AdminsType e : AdminsType.values()) {
             if (e.getValue().equals(value)) {
-                this.typeOfAdmins = e;
+                this.adminsType = e;
                 goToOptions();
             }
         }
@@ -62,7 +62,7 @@ public class AdminPage {
     }
 
     public void goToOptions() {
-        if (typeOfAdmins == TypeOfAdmins.Managers) {
+        if (adminsType == AdminsType.Managers) {
             UsernameAndPasswordChecker usernameAndPasswordChecker = new UsernameAndPasswordChecker();
             int index = usernameAndPasswordChecker.checkUsernameAndPassword(dataBase.getManagers());
             if (index != -1) {
@@ -71,7 +71,7 @@ public class AdminPage {
             } else {
                 goToAdminPage();
             }
-        } else if (typeOfAdmins == TypeOfAdmins.Developers) {
+        } else if (adminsType == AdminsType.Developers) {
             UsernameAndPasswordChecker usernameAndPasswordChecker = new UsernameAndPasswordChecker();
             int index = usernameAndPasswordChecker.checkUsernameAndPassword(dataBase.getDevelopers());
             if (index != -1) {

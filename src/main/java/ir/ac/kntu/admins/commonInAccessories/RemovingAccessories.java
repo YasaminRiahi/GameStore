@@ -1,6 +1,7 @@
 package ir.ac.kntu.admins.commonInAccessories;
 
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scanner.scanString;
@@ -86,6 +87,7 @@ public class RemovingAccessories {
                     }
                     dataBase.getMonitorGaming().remove(dataBase.getMonitorGaming().get(Integer.parseInt(whichOne) - 1));
                     System.out.println("Monitor gaming removed successfully!");
+                    DaoWriter.writeData(dataBase);
                     removeAccessories(whichUser, typeOfAdmin);
                 }
             }
@@ -122,6 +124,7 @@ public class RemovingAccessories {
                     }
                     dataBase.getGamePads().remove(dataBase.getGamePads().get(Integer.parseInt(whichOne) - 1));
                     System.out.println("Game pad removed successfully!");
+                    DaoWriter.writeData(dataBase);
                     removeAccessories(whichUser, typeOfAdmin);
                 }
             }

@@ -4,6 +4,7 @@ import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.products.games.Games;
 import ir.ac.kntu.products.games.GamesLevel;
 import ir.ac.kntu.regularUsers.*;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.TextTypings.*;
@@ -106,7 +107,7 @@ public class UserStore {
         System.out.println("7)Response time :" + dataBase.getMonitorGaming().get(index).getResponseTime());
         System.out.println("8)Community :");
         int j = 1;
-        for (int i = 0; i < dataBase.getMonitorGaming().get(i).getCommunity().size(); i++) {
+        for (int i = 0; i < dataBase.getMonitorGaming().get(index).getCommunity().size(); i++) {
             System.out.println("    " + j + ")" + dataBase.getMonitorGaming().get(index).getCommunity().get(i));
             j++;
         }
@@ -161,6 +162,7 @@ public class UserStore {
                     dataBase.getRegularUsers().get(userIndex).setWallet(currentBalance - cost);
                     dataBase.getGames().get(userIndex).setNumberOfSoldItems(dataBase.getGames().get(userIndex).getNumberOfSoldItems() + 1);
                     System.out.println("Game bought successfully!");
+                    DaoWriter.writeData(dataBase);
                 }
             } else {
                 System.out.println(ConsoleColors.RED + "You can't buy this game because of game level and your score!"
@@ -211,8 +213,10 @@ public class UserStore {
                             put(dataBase.getMonitorGaming().get(index), 1);
                 }
                 dataBase.getMonitorGaming().get(index).setNumberOfSoldItems(dataBase.getMonitorGaming().get(index).getNumberOfSoldItems() + 1);
+                dataBase.getMonitorGaming().get(index).setNumber(dataBase.getMonitorGaming().get(index).getNumber());
                 dataBase.getRegularUsers().get(userIndex).setWallet(currentBalance - cost);
                 System.out.println("Gaming monitor bought successfully!");
+                DaoWriter.writeData(dataBase);
             }
         }
     }
@@ -233,9 +237,11 @@ public class UserStore {
                     dataBase.getRegularUsers().get(userIndex).getGamePad().
                             put(dataBase.getGamePads().get(index), 1);
                 }
-                dataBase.getMonitorGaming().get(index).setNumberOfSoldItems(dataBase.getMonitorGaming().get(index).getNumberOfSoldItems() + 1);
+                dataBase.getGamePads().get(index).setNumberOfSoldItems(dataBase.getGamePads().get(index).getNumberOfSoldItems() + 1);
+                dataBase.getGamePads().get(index).setNumber(dataBase.getGamePads().get(index).getNumber() - 1);
                 dataBase.getRegularUsers().get(userIndex).setWallet(currentBalance - cost);
                 System.out.println("Game pad bought successfully!");
+                DaoWriter.writeData(dataBase);
             }
         }
     }

@@ -1,6 +1,7 @@
 package ir.ac.kntu.admins.developers;
 
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class AddingDevelopersToGame {
                         dataBase.getDevelopers().get(whichDeveloper).getDeveloperGame().get(indexOfGame).
                                 addDeveloper(dataBase.getDevelopers().get(indexes.get(Integer.parseInt(whichOne) - 1)));
                         System.out.println("Developer Added successfully!");
+                        DaoWriter.writeData(dataBase);
                     }
                     addDevelopers(whichDeveloper);
                 }

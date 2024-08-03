@@ -3,6 +3,7 @@ package ir.ac.kntu.admins.commonInGames;
 import ir.ac.kntu.admins.developers.DeveloperGamePage;
 import ir.ac.kntu.admins.managers.ManagerGamePage;
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
@@ -87,6 +88,7 @@ public class ChangingGameInformation {
                     whichOption();
                     toChange(Integer.parseInt(whichGame) - 1);
                     System.out.println("Game changed successfully!");
+                    DaoWriter.writeData(dataBase);
                     changeGamesInformation(whichUser, typeOfAdmin);
                 }
             }
@@ -144,6 +146,7 @@ public class ChangingGameInformation {
                 whichOption();
                 toChange(Integer.parseInt(whichGame) - 1);
                 System.out.println("Game changed successfully!");
+                DaoWriter.writeData(dataBase);
                 changeGamesInformation(whichUser, typeOfAdmin);
             }
         }

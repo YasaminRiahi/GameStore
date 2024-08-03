@@ -2,6 +2,7 @@ package ir.ac.kntu.admins.developers;
 
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.products.games.Games;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scanner.scanString;
@@ -53,6 +54,7 @@ public class ScheduledEvents {
             System.out.println("Choose one of the games!");
             Games game = dataBase.getDevelopers().get(whichDeveloper).getScheduledEvents().get(Integer.parseInt(scanString()) - 1);
             fixOrNo(game, whichDeveloper);
+            DaoWriter.writeData(dataBase);
         }
     }
 

@@ -1,8 +1,8 @@
 package ir.ac.kntu.admins.managers;
 
-import ir.ac.kntu.admins.commonInGames.AddingAGame;
-import ir.ac.kntu.admins.commonInGames.ChangingGameInformation;
-import ir.ac.kntu.admins.commonInGames.RemovingGame;
+import ir.ac.kntu.admins.commonalities.games.AddingAGame;
+import ir.ac.kntu.admins.commonalities.games.ChangingGameInformation;
+import ir.ac.kntu.admins.commonalities.games.RemovingGame;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.store.DataBase;
 

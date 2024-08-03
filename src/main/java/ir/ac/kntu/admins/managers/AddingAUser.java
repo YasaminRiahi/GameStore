@@ -2,6 +2,7 @@ package ir.ac.kntu.admins.managers;
 
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.regularUsers.RegularUser;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scanner.scanUsers;
@@ -25,6 +26,7 @@ public class AddingAUser {
                 RegularUser newUser = scanUsers(dataBase);
                 dataBase.getRegularUsers().add(newUser);
                 System.out.println("User added successfully!");
+                DaoWriter.writeData(dataBase);
                 ManagerUserPage managerUserPage = new ManagerUserPage(dataBase);
                 managerUserPage.usersPage(whichManager);
             }

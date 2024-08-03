@@ -1,6 +1,7 @@
 package ir.ac.kntu.admins.commonInAccessories;
 
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scanner.scanGamePad;
@@ -78,6 +79,7 @@ public class AddingAccessories {
                     dataBase.getMonitorGaming().get(dataBase.getMonitorGaming().size() - 1).addSellers(dataBase.getSellers().
                             get(whichUser));
                 }
+                DaoWriter.writeData(dataBase);
                 addMonitorGaming(whichUser, typeOfAdmin);
             }
             case "2" -> addAccessories(whichUser, typeOfAdmin);
@@ -103,6 +105,7 @@ public class AddingAccessories {
                     dataBase.getGamePads().get(dataBase.getGamePads().size() - 1).addSellers(dataBase.getSellers().
                             get(whichUser));
                 }
+                DaoWriter.writeData(dataBase);
                 addGamePad(whichUser, typeOfAdmin);
             }
             case "2" -> addAccessories(whichUser, typeOfAdmin);

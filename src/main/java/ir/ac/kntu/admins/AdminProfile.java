@@ -4,6 +4,7 @@ import ir.ac.kntu.admins.developers.DeveloperPage;
 import ir.ac.kntu.admins.managers.ManagerPage;
 import ir.ac.kntu.admins.sellers.*;
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import java.util.ArrayList;
@@ -94,7 +95,6 @@ public class AdminProfile {
                 }
                 admins.get(index).setUserName(newUsername);
                 changedSuccessfully();
-                changeItems(index, admins, typeOfAdmin);
             }
             case "2" -> {
                 System.out.println("Enter new password:");
@@ -105,25 +105,23 @@ public class AdminProfile {
                 }
                 admins.get(index).setPassword(newPassword);
                 changedSuccessfully();
-                changeItems(index, admins, typeOfAdmin);
             }
             case "3" -> {
                 System.out.println("Enter new phone number:");
                 admins.get(index).setPhoneNumber(scanString());
                 changedSuccessfully();
-                changeItems(index, admins, typeOfAdmin);
             }
             case "4" -> {
                 System.out.println("Enter new Email:");
                 admins.get(index).setEmail(scanString());
                 changedSuccessfully();
-                changeItems(index, admins, typeOfAdmin);
             }
             default -> {
                 incorrect();
-                changeItems(index, admins, typeOfAdmin);
             }
         }
+        DaoWriter.writeData(dataBase);
+        changeItems(index, admins, typeOfAdmin);
     }
 
     public String whichItem() {

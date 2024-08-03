@@ -103,7 +103,7 @@ public class FilteringCostOfProducts {
 
     public void filteringAllAccessories(int whichUser, Stopwatch1 stopwatch1, SearchingInProducts searchInProducts) {
         drawingLines();
-        System.out.println(ConsoleColors.BLUE_BOLD + "******( Filtering All ACCESSORIES )******" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE_BOLD + "******( FILTERING All ACCESSORIES )******" + ConsoleColors.RESET);
         String nextChoose = whereToGo();
         switch (nextChoose) {
             case "1" -> {

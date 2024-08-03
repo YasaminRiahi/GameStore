@@ -1,8 +1,9 @@
 package ir.ac.kntu.products;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Product implements Comparable<Product> {
+public class Product implements Comparable<Product>, Serializable {
 
     private String name;
 

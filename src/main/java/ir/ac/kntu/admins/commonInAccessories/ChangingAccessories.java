@@ -1,6 +1,7 @@
 package ir.ac.kntu.admins.commonInAccessories;
 
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scanner.*;
@@ -87,6 +88,7 @@ public class ChangingAccessories {
                     whichMonitorGamingOption();
                     toChangeMonitorGaming(Integer.parseInt(whichOne) - 1);
                     System.out.println("Monitor gaming changed successfully!");
+                    DaoWriter.writeData(dataBase);
                     changeAccessories(whichUser, typeOfAdmin);
                 }
             }
@@ -124,6 +126,7 @@ public class ChangingAccessories {
                     whichGamePadOption();
                     toChangeGamePad(Integer.parseInt(whichOne) - 1);
                     System.out.println("Game pad changed successfully!");
+                    DaoWriter.writeData(dataBase);
                     changeAccessories(whichUser, typeOfAdmin);
                 }
             }

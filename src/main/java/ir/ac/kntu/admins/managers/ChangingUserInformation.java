@@ -1,6 +1,7 @@
 package ir.ac.kntu.admins.managers;
 
 import ir.ac.kntu.helpers.ConsoleColors;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 import ir.ac.kntu.userSearcher.UserSearcher;
 
@@ -74,6 +75,7 @@ public class ChangingUserInformation {
             }
         }
         System.out.println("User changed successfully!");
+        DaoWriter.writeData(dataBase);
         changeAUserInformation(whichManager);
     }
 

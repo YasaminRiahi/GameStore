@@ -9,10 +9,14 @@ import ir.ac.kntu.products.games.Games;
 import ir.ac.kntu.products.games.GamesLevel;
 import ir.ac.kntu.regularUsers.RegularUser;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
-public class DataBase {
+public class DataBase implements Serializable {
 
     private ArrayList<Games> games;
 
@@ -125,7 +129,7 @@ public class DataBase {
     }
 
     public void addDefaultAdmins() {
-        Admin admin1 = new Admin("YasaminRiahi", "Y1274183871r", "091404369998", "ysminriahi@gmail.com");
+        Admin admin1 = new Admin("YasaminRiahi", "Y1274183871r", "09140436998", "ysminriahi@gmail.com");
         Admin admin2 = new Admin("BaharOrak", "Bahar821017", "09160340853", "baharorak@gmail.com");
         Admin admin3 = new Admin("RaziehRiahi", "Razii78Riahi", "09167594761", "raziriahi@gmail.com");
         Admin admin4 = new Admin("ShakibaMirzadeh", "Shakiba1352", "09132135049", "ShMirzadeh8962");
@@ -299,4 +303,17 @@ public class DataBase {
         friends3.add(regularUsers.get(0));
         regularUsers.get(2).setFriends(friends3);
     }
+
+    public void addData() {
+        try {
+            FileWriter writer = new FileWriter("data.txt");
+            writer.write("Hello world!");
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
 }

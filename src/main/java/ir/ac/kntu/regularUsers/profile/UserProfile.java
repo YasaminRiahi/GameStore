@@ -4,6 +4,7 @@ import ir.ac.kntu.admins.managers.ViewingUserInformation;
 import ir.ac.kntu.helpers.ConsoleColors;
 import ir.ac.kntu.regularUsers.RegularUserPage;
 import ir.ac.kntu.regularUsers.Stopwatch1;
+import ir.ac.kntu.store.DaoWriter;
 import ir.ac.kntu.store.DataBase;
 
 import static ir.ac.kntu.helpers.Scanner.*;
@@ -80,6 +81,7 @@ public class UserProfile {
             }
         }
         System.out.println("The change was successful!");
+        DaoWriter.writeData(dataBase);
         profile(userIndex, stopwatch1);
     }
 
